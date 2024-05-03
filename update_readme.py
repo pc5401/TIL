@@ -2,14 +2,15 @@ import os
 
 readme_contents = "# Today I Learned\n\n"
 
-for root, dirs, files in os.walk("TIL"):
+for root, dirs, files in os.walk("."):
     dirs.sort()
-    # "잡동사니" 폴더를 제외하고 싶다면 아래와 같이 처리
+    # "잡동사니" 제외
     if "잡동사니" in dirs:
-        dirs.remove("잡동사니")  # 목록에서 "잡동사니" 폴더 제거
+        dirs.remove("잡동사니")
+
     if "README.md" in files:
-        path = os.path.relpath(root, "TIL").replace(os.sep, '/')
-        if "잡동사니" not in path.split('/'):  # 경로에 "잡동사니"가 포함되지 않은 경우에만 추가
+        path = os.path.relpath(root, ".").replace(os.sep, '/')
+        if "잡동사니" not in path.split('/'):
             readme_link = os.path.join(path, "README.md").replace(os.sep, '/')
             readme_contents += f"- [{path}]({readme_link})\n"
 
