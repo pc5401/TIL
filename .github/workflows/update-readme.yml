@@ -5,13 +5,13 @@ on:
     branches:
       - master
     paths:
-      - 'TIL/**'
+      - '*/learn/**'
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Update README
         run: python update_readme.py
       - name: Commit and push if changed
