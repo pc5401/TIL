@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'TIL/learn/**'
+      - '*/learn/**'
 
 jobs:
   update-readme:
