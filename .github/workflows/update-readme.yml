@@ -1,0 +1,23 @@
+name: Update README
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'TIL/**'
+
+jobs:
+  update-readme:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Update README
+        run: python update_readme.py
+      - name: Commit and push if changed
+        run: |
+          git config --global user.email "pc5401@naver.com"
+          git config --global user.name "pc5401"
+          git add README.md
+          git commit -m "Update README" || exit 0
+          git push
