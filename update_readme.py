@@ -15,18 +15,20 @@ def get_md_title(file_path: str) -> str:
 
 def write_content(path: str, cnt: int):
     content = ''
-    # 현재 경로의 디렉토리 목록과 파일 목록만 가져오기
     dirs = [d for d in os.listdir(path) if os.path.isdir(os.path.join(path, d))]
     files = [f for f in os.listdir(path) if os.path.isfile(os.path.join(path, f))]
 
     for dir in dirs:
-        content += f'{"#" * cnt} [{dir}]({path}/{dir})\n'
+        dir_path = f"{path}/{dir}".replace("\\", "/")  # 윈도우에서도 호환되는 경로 생성
+        content += f'{"#" * cnt} [{dir}]({dir_path})\n'
         content += write_content(os.path.join(path, dir), cnt+1)
 
     for filename in files:
-        content += f'- [{get_md_title(os.path.join(path, filename))}]({path}/{filename})\n'
+        file_path = f"{path}/{filename}".replace("\\", "/")  # 윈도우에서도 호환되는 경로 생성
+        content += f'- [{get_md_title(os.path.join(path, filename))}]({file_path})\n'
 
     return content
+
 
 def main():
     logging.info("Starting script...")
