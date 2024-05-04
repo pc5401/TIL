@@ -11,6 +11,9 @@ on:
 jobs:
   update-readme:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./TIL  # 작업 디렉토리 설정
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
