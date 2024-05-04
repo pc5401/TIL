@@ -3,7 +3,8 @@ name: Update README
 on:
   push:
     branches:
-      - master
+      - "master"
+      - "main" 
     paths:
       - 'TIL/learn/**'
 
