@@ -46,32 +46,3 @@ GitHub Actions는 개발 팀이 소프트웨어 개발과정을 자동화하고,
 
 
 
-### 예시 (내 TIL repo 의 update-readme.yml 파일 참고)
-
-```
-name: Update README
-
-on:  # 이 워크플로우가 언제 실행될지 정의
-  push:
-    branches:  # 특정 브랜치에 대한 푸시에서만 반응
-      - master
-    paths:  # 특정 경로의 파일들이 변경되었을 때만 반응
-      - 'TIL/**'  
-
-jobs:  # 작업 정의
-  update-readme:  # 작업의 ID 및 이름
-    runs-on: ubuntu-latest  # 작업이 실행될 환경
-    steps:
-      - uses: actions/checkout@v2  # GitHub 저장소를 체크아웃
-      - name: Update README
-        run: python update_readme.py  # Python 스크립트 실행
-      - name: Commit and push if changed 
-        run: |  # 다중 라인 스크립트 시작
-          git config --global user.email "pc5401@naver.com"
-          git config --global user.name "pc5401"
-          git add README.md
-          git commit -m "Update README" || exit 0
-          git push
-
-
-```
