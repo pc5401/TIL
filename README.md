@@ -1,11 +1,11 @@
 # Today I Learned
 
 
-## [GitHub](./learn/GitHub)
-- [GitHub Actions ¼Ò°³](./learn/GitHub/github_Actions.md)
 ## [Python](./learn/Python)
-- [¾Ë°í¸®µëÀ» À§ÇÑ ÆÄÀÌ½ã ¸ğµâµé](./learn/Python/python_modul_for_algo.md)
-## [µğÀÚÀÎ_ÆĞÅÏ](./learn/µğÀÚÀÎ_ÆĞÅÏ)
-- [SOLID: °´Ã¼ÁöÇâ °³¹ß 5´ë ¿ø¸®](./learn/µğÀÚÀÎ_ÆĞÅÏ/solid.md)
-## [¸éÁ¢ÁØºñ](./learn/¸éÁ¢ÁØºñ)
-- [CS °ü·Ã Áú¹®](./learn/¸éÁ¢ÁØºñ/CS.md)
+- [ì•Œê³ ë¦¬ë“¬ì„ ìœ„í•œ íŒŒì´ì¬ ëª¨ë“ˆë“¤](./learn/Python/python_modul_for_algo.md)
+## [ë©´ì ‘ì¤€ë¹„](./learn/ë©´ì ‘ì¤€ë¹„)
+- [CS ê´€ë ¨ ì§ˆë¬¸](./learn/ë©´ì ‘ì¤€ë¹„/CS.md)
+## [ë””ìì¸_íŒ¨í„´](./learn/ë””ìì¸_íŒ¨í„´)
+- [SOLID: ê°ì²´ì§€í–¥ ê°œë°œ 5ëŒ€ ì›ë¦¬](./learn/ë””ìì¸_íŒ¨í„´/solid.md)
+## [GitHub](./learn/GitHub)
+- [GitHub Actions ì†Œê°œ](./learn/GitHub/github_Actions.md)
