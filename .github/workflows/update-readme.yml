@@ -5,15 +5,10 @@ on:
     branches:
       - "master"
       - "main" 
-    paths:
-      - 'TIL/learn/**'
 
 jobs:
   update-readme:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./TIL  # 작업 디렉토리 설정
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
@@ -22,13 +17,21 @@ jobs:
           python-version: '3.8'
       - name: Install Dependencies
         run: |
+          echo "Installing dependencies..."
           python -m pip install --upgrade pip
+          echo "Dependencies installed."
       - name: Update README
-        run: python update_readme.py
+        run: |
+          echo "Running update_readme.py..."
+          python update_readme.py
+          echo "update_readme.py completed."
       - name: Commit and push if changed
         run: |
+          echo "Configuring git..."
           git config --global user.email "pc5401@naver.com"
           git config --global user.name "pc5401"
           git add README.md
-          git commit -m "Update README" || exit 0
+          git commit -m "Update README" || echo "No changes to commit."
           git push
+          echo "Changes pushed."
+      
