@@ -1,5 +1,7 @@
 import os
+import logging
 
+logging.basicConfig(level=logging.INFO)
 
 def get_md_title(file_path: str) -> str:
     """마크다운 파일에서 첫 줄의 제목을 추출한다."""
@@ -27,10 +29,10 @@ def write_content(path: str, cnt: int):
     return content
 
 def main():
+    logging.info("Starting script...")
     readme_contents = "# Today I Learned\n\n\n"
     root_dir = "./learn"
     readme_contents += write_content(root_dir, 2)
-    print(readme_contents)
     with open('README.md', 'w') as f:
         f.write(readme_contents)
 
