@@ -4,7 +4,9 @@ on:
   push:
     branches:
       - "master"
-      - "main" 
+      - "main"
+    paths:
+      - "TIL/learn/**"
 
 jobs:
   update-readme:
