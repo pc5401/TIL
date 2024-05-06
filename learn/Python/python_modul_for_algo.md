@@ -4,8 +4,6 @@
 
 math 모듈은 수학적인 함수와 상수를 제공한다. (그냥 파이썬 문법이 쌀집 계산기이면 math 쓰면 공학용 계산기다!!) 
 
-
-
 1. `sqrt(x)`: x의 제곱근을 반환
    
    ```python
@@ -81,4 +79,67 @@ math 모듈은 수학적인 함수와 상수를 제공한다. (그냥 파이썬 
    import math
    
    print(math.gcd(60, 48))  # 12
+   ```
+
+
+
+## itertools
+
+- ineration + tools 의 합성어로 Python의 itertools 모듈은 효과적인 반복을 위한 여러 가지 함수를 제공한다.
+
+- 이터레이션은 결과를 생성하기위한 프로세스의 반복
+1. `itertools.permutations(iterable, r=None)`: 입력 iterable에서 r 개의 원소를 선택하여 순서를 고려한 순열을 생성한다. 만약 r이 지정되지 않으면, 모든 원소를 사용한 순열을 반환한다.
+   
+   ```python
+   import itertools
+   
+   for p in itertools.permutations('ABC', 2):
+       print(p)
+   
+   # 출력: ('A', 'B'), ('A', 'C'), ('B', 'A'), ('B', 'C'), ('C', 'A'), ('C', 'B')
+   ```
+
+2. `itertools.combinations(iterable, r)`: 입력 iterable에서 r 개의 원소를 선택하여 순서를 고려하지 않은 조합을 생성
+   
+   ```python
+   import itertools
+   
+   for c in itertools.combinations('ABC', 2):
+       print(c)
+   
+   # 출력: ('A', 'B'), ('A', 'C'), ('B', 'C')
+   ```
+
+3. `itertools.product(*iterables, repeat=1)`: 입력 iterables의 카르테시안 곱을 반환한다. repeat은 iterables가 반복되는 횟수를 지정하는 것
+   
+   ```python
+   import itertools
+   
+   for p in itertools.product('AB', repeat=2):
+       print(p)
+   
+   # 출력: ('A', 'A'), ('A', 'B'), ('B', 'A'), ('B', 'B')
+   ```
+
+4. `itertools.chain(*iterables)`: 여러 iterables를 하나의 iterator로 결합
+   
+   ```python
+   import itertools
+   
+   for c in itertools.chain('ABC', '123'):
+       print(c)
+   
+   # 출력: 'A', 'B', 'C', '1', '2', '3'
+   ```
+
+5. `itertools.cycle(iterable)`: iterable의 원소들을 무한히 반복한다. 계속 돈다.
+   
+   ```python
+   import itertools
+   
+   c = itertools.cycle('AB')
+   for i in range(6):
+       print(next(c))
+   
+   # 출력: 'A', 'B', 'A', 'B', 'A', 'B'
    ```
