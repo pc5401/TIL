@@ -1,6 +1,8 @@
 # Today I Learned
 
 
+## [Linux](./learn/Linux)
+- [기본 명령어](./learn/Linux/basic_commands.md)
 ## [Python](./learn/Python)
 - [알고리듬을 위한 파이썬 모듈들](./learn/Python/python_modul_for_algo.md)
 ## [면접준비](./learn/면접준비)
