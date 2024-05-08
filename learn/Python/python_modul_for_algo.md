@@ -81,8 +81,6 @@ math 모듈은 수학적인 함수와 상수를 제공한다. (그냥 파이썬 
    print(math.gcd(60, 48))  # 12
    ```
 
-
-
 ## itertools
 
 - ineration + tools 의 합성어로 Python의 itertools 모듈은 효과적인 반복을 위한 여러 가지 함수를 제공한다.
