@@ -141,3 +141,60 @@ math 모듈은 수학적인 함수와 상수를 제공한다. (그냥 파이썬 
    
    # 출력: 'A', 'B', 'A', 'B', 'A', 'B'
    ```
+
+
+
+## collections
+
+> Python의 **`collections`** 모듈은 다양한 유형의 데이터 컨테이너를 제공하며, 이 중 몇 가지는 코딩 테스트에서 특히 유용하다:
+
+1. **`collections.Counter(iterable)`**: iterable의 원소들을 세어서, 각 원소를 키로 하고 그 개수를 값으로 하는 딕셔너리를 생성한다. 이 클래스는 원소의 빈도 수를 세는 데 매우 유용함.
+   
+   ```python
+   from collections import Counter
+   
+   c = Counter('abcabc')
+   print(c)  # 출력: Counter({'a': 2, 'b': 2, 'c': 2})
+   ```
+
+2. **`collections.defaultdict(default_type)`**: 디폴트 딕셔너리는 키가 없을 경우에 주어진 default_type의 기본값을 반환.
+   
+   ```python
+   from collections import defaultdict
+   
+   d = defaultdict(int)
+   print(d['key'])  # 출력: 0
+   ```
+
+3. **`collections.deque`**: 양쪽 끝에서 빠르게 추가 및 제거를 할 수 있는 큐를 구현한다. 스택과 큐의 기능을 모두 갖추고 있어 유용하다. `bfs` , `queue`, `우선순위 큐` 등에서 활용
+   
+   ```python
+   from collections import deque
+   
+   dq = deque([1, 2, 3])
+   dq.append(4)  # 끝에 추가
+   dq.appendleft(0)  # 앞에 추가
+   print(dq)  # 출력: deque([0, 1, 2, 3, 4])
+   ```
+
+4. **`collections.namedtuple(typename, field_names)`**: 각 필드에 이름을 부여할 수 있는 튜플의 서브클래스를 생성한다.
+   
+   ```python
+   from collections import namedtuple
+   
+   Point = namedtuple('Point', ['x', 'y'])
+   p = Point(11, 22)
+   print(p.x, p.y)  # 출력: 11 22
+   ```
+
+5. **`collections.OrderedDict`**: 키의 추가 순서를 기억하는 딕셔너리.
+   
+   ```python
+   from collections import OrderedDict
+   
+   od = OrderedDict()
+   od['a'] = 1
+   od['b'] = 2
+   od['c'] = 3
+   print(od)  # 출력: OrderedDict([('a', 1), ('b', 2), ('c', 3)])
+   ```
