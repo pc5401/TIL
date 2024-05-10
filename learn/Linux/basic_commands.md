@@ -4,18 +4,16 @@
 
 > 기본 형식: man <명령어>
 
-
-
 옵션
 
 - `-k` : 메뉴얼 통합 검색
 - `-s` [section-number] : 해당 섹션에서 메뉴얼 보기(생략 가능)
-    - section-number
-        1.  User Commands
-        2. System Calls
-        3. Subroutines
-        4. Devices
-        5. File Formats
+  - section-number
+    1. User Commands
+    2. System Calls
+    3. Subroutines
+    4. Devices
+    5. File Formats
 
 네비게이션(이동)
 
@@ -25,21 +23,22 @@
 - q : quit
 
 예시
+
 ```bash
     man ls
     man -k delete
     man -s userdel
     ```
+```
 
 ## ls : 파일 목록보기
 
 > 기본 형식: ls <옵션> <파일|디렉토리>
-> 
 
 옵션
 
 - `-a` : dot(.) 로 시작하는 숨겨진 파일까지 모두 표시
-- `-l` : 파일, 디렉터리의 자세한 정보(type, permision, link, size, owner)  표시
+- `-l` : 파일, 디렉터리의 자세한 정보(type, permision, link, size, owner) 표시
 - `-R` : 하위 디렉토리까지 모두 출력
 - `-d` : 디렉토리 내용이 아닌 디렉토리 자체를 출력
 
@@ -47,18 +46,14 @@
 
 ```bash
 ls
-ls -l
 ls -a
-ls -l /tmp
-ls -ald /tmp
-ls -R /usr/local
-ls -alh
 ```
+
+
 
 ## mkdir : 디렉토리 생성
 
 > 기본 형식: mkdir <옵션> <디렉토리_이름>
-
 
 옵션
 
@@ -80,7 +75,7 @@ mkdir -p ~/dir/subdir/subsubdir
 ## rmdir : 디렉토리 삭제
 
 > 기본 형식: rmdir <옵션> <디렉토리_이름>
- 
+
 - 비어 있는 디렉토리만 삭제 가능
 
 옵션
@@ -97,7 +92,6 @@ rmdir share
 ## cd : 디렉토리 이동
 
 > 기본 형식: cd <디렉토리_이름>
- 
 
 아규먼트
 
@@ -118,7 +112,6 @@ cd $HOME
 ## cp : 파일 복사
 
 > 기본 형식: cp <옵션> 원본파일이름 목적지파일이름
- 
 
 옵션
 
@@ -140,7 +133,6 @@ cp -r conf.d conf.d.backup # 디렉토리는 -r 옵션 필수
 ## mv : 파일 이동하기 + 이름 변경에도 활용!!
 
 > 기본 형식: mv <옵션> 원본파일이름 새이름
- 
 
 옵션
 
@@ -157,7 +149,6 @@ mv conf.d setup.d
 ## rm : 파일 삭제 - 주의하면서 사용
 
 > 기본 형식: rm <옵션> 파일이름
- 
 
 옵션
 
@@ -175,3 +166,34 @@ $ rm -f aaa # -f 옵션을 이용하면 파일이 없어도 오류가 발생X
 
 $ rm -rf a_directory # 디렉토리를 삭제
 ```
+
+
+
+# 리눅스 디렉토리 구조
+
+- `pwd` : 현재 작업 디렉토리 보기
+- `ls` : 파일 목록 보기
+- `cd` : 디렉토리 이동
+
+### 리눅스
+
+> 기본 구조 → `cd` 로 이동, `ls` 으로 확인하면서 이용
+
+- `/` : 최상의 디렉토리
+- `/bin` : 리눅스 기본 명령어
+  - 원래는 `/usr/bin` 에 위치
+- `/sbin` : 리눅스 시스템 관련 명령어
+  - 원래는 `/usr/sbin` 에 위치
+- `/usr` : 애플리케이션과 유틸리티 설치 디렉토리
+- `/etc` : 시스템 설정 파일
+  - .conf 파일 많음 ASCII text 형태로
+- `/var` : 변동 파일 및 로그파일이나 데이타베이스 디렉토리
+  - `log` : 다양한 리눅스 관련 로그 기록됨
+- `/tmp` : 임시디렉토리
+  - `/run` 도 비슷한 역할을 한다.
+- `/proc` : 메모리에서 동작중인 프로세스 정보 화일
+  - 현재 순간의 상황
+- `/sys` : 시스템 하드웨어 정보 및 구성 파일 시스템
+- `/root` : 시스템 최고 관리자 root 사용자의 홈 디렉토리
+- `/home` : 일반 사용자들의 홈 디렉토리
+- `/dev` : 하드웨어 장치 파일
