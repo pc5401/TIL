@@ -1,7 +1,5 @@
 # 기본적인 사용법
 
- 
-
 ## **기본 타입 지정**
 
 ```ts
@@ -26,7 +24,6 @@ let responseStatus: null = null;
 
 // Undefined type
 let userLocation: undefined = undefined;
-
 ```
 
 - 변수 선언 시 **`변수명: 타입명`** 형태로 타입을 지정할 수 있다.
@@ -48,7 +45,6 @@ temperature = 'hot hot'; // 에
 ```ts
 let userNames: string[] = ['kim', 'park', 'choi'];
 let userAge: { age: number } = { age: 22 };
-
 ```
 
 - 배열이나 객체도 타입 지정이 가능하다
@@ -141,7 +137,6 @@ let users: User[] = [
   { name: 'Alice', age: 25, isActive: true },
   { name: 'Bob', age: 30, isActive: false }
 ];
-
 ```
 
 - 객체 타입이 복잡할 경우 **`type`** 키워드를 사용하여 정의할 수 있으며, 선택적 속성은 **`?`**를 사용하여 표시한다.

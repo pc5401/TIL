@@ -142,8 +142,6 @@ math 모듈은 수학적인 함수와 상수를 제공한다. (그냥 파이썬 
    # 출력: 'A', 'B', 'A', 'B', 'A', 'B'
    ```
 
-
-
 ## collections
 
 > Python의 **`collections`** 모듈은 다양한 유형의 데이터 컨테이너를 제공하며, 이 중 몇 가지는 코딩 테스트에서 특히 유용하다:
@@ -197,4 +195,63 @@ math 모듈은 수학적인 함수와 상수를 제공한다. (그냥 파이썬 
    od['b'] = 2
    od['c'] = 3
    print(od)  # 출력: OrderedDict([('a', 1), ('b', 2), ('c', 3)])
+   ```
+
+# **heapq**
+
+> Python의 **`heapq`** 모듈은 힙 자료구조를 제공한다. 힙은 완전 이진 트리의 일종으로, 우선순위 큐를 구현하는 데 사용된다.
+
+1. **`heapq.heappush(heap, item)`**: 힙에 새로운 요소를 추가한다.
+   
+   ```python
+   import heapq
+   
+   h = []
+   heapq.heappush(h, (5, 'write code'))
+   heapq.heappush(h, (7, 'release product'))
+   heapq.heappush(h, (1, 'write spec'))
+   heapq.heappush(h, (3, 'create tests'))
+   print(h)
+   # 출력: [(1, 'write spec'), (3, 'create tests'), (5, 'write code'), (7, 'release product')]
+   ```
+
+2. **`heapq.heappop(heap)`**: 힙에서 가장 작은 요소를 제거하고 그 요소를 반환한다. 이것은 힙의 주요 기능인 '최솟값 추출'을 구현한다.
+   
+   ```python
+   import heapq
+   
+   h = [1, 3, 5, 7, 9, 2, 4, 6, 8, 0]
+   heapq.heapify(h)
+   print(heapq.heappop(h))  # 출력: 0
+   ```
+
+3. **`heapq.heapify(x)`**: 주어진 리스트 x를 즉시 힙으로 변환한다 (선형 시간).
+   
+   ```python
+   import heapq
+   
+   h = [3, 5, 1, 4, 6, 7, 2, 0, 8, 9]
+   heapq.heapify(h)
+   print(h)  # 출력: [0, 2, 1, 4, 3, 7, 5, 3, 8, 9]
+   ```
+
+4. **`heapq.heapreplace(heap, item)`**: 힙에서 가장 작은 요소를 제거하고 새로운 item을 추가한다. 이 함수는 한 번의 연산으로 이 두 가지 작업을 수행하므로, heappop() 후 heappush()를 호출하는 것보다 더 효율적이다.
+   
+   ```python
+   import heapq
+   
+   h = [1, 3, 5, 7, 9, 2, 4, 6, 8, 0]
+   heapq.heapify(h)
+   heapq.heapreplace(h, -5)
+   print(h)  # 출력: [-5, 0, 2, 4, 1, 3, 5, 6, 8, 9]
+   ```
+
+5. `heapq.nlargest(n, iterable[, key])`**와 `heapq.nsmallest(n, iterable[, key])`**: 데이터에서 가장 큰 n 개의 요소, 또는 가장 작은 n 개의 요소를 반환한.
+   
+   ```python
+   import heapq
+   
+   nums = [1, 8, 2, 23, 7, -4, 18, 23, 42, 37, 2]
+   print(heapq.nlargest(3, nums))  # 출력: [42, 37, 23]
+   print(heapq.nsmallest(3, nums))  # 출력: [-4, 1, 2]
    ```
