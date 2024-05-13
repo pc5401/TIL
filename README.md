@@ -7,6 +7,8 @@
 - [기본적인 사용법](./learn/Typescript/basic.md)
 ## [Python](./learn/Python)
 - [알고리듬을 위한 파이썬 모듈들](./learn/Python/python_modul_for_algo.md)
+## [algorithm_record](./learn/algorithm_record)
+- [cpp로 알고리듬 풀면서 배움점](./learn/algorithm_record/cpp_record.md)
 ## [면접준비](./learn/면접준비)
 - [CS 관련 질문](./learn/면접준비/CS.md)
 ## [디자인_패턴](./learn/디자인_패턴)
