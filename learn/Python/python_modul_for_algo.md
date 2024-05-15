@@ -255,3 +255,41 @@ math 모듈은 수학적인 함수와 상수를 제공한다. (그냥 파이썬 
    print(heapq.nlargest(3, nums))  # 출력: [42, 37, 23]
    print(heapq.nsmallest(3, nums))  # 출력: [-4, 1, 2]
    ```
+
+# **`bisect`**
+
+> Python의 **`bisect`** 모듈은 이진 검색과 정렬된 리스트에 대한 요소 삽입을 제공합니다.
+
+⚠️ **`bisect`** 모듈은 리스트가 이미 정렬되어 있는 경우에만 작동한다는 점을 명심
+
+- **`bisect`** 모듈은 큰 데이터 집합에서 아이템을 빠르게 찾는 데 특히 유용하며, 리스트를 다시 정렬할 필요 없이 아이템을 삽입할 수 있다는 장점이 있습니다. 이러한 특성 때문에, **`bisect`** 모듈은 효율적인 코드 작성 및 알고리즘 최적화에 주로 사용
+
+1. **`bisect.bisect_left(a, x, lo=0, hi=len(a))`**: 정렬된 순서를 유지하면서 리스트 a에 x를 삽입할 왼쪽 인덱스를 찾습니다. 즉, 리스트의 왼쪽부터 시작하여 x와 같거나 큰 첫 번째 요소의 인덱스를 반환합니다.
+    
+    ```python
+    import bisect
+    
+    nums = [1, 3, 4, 4, 6, 8]
+    print(bisect.bisect_left(nums, 4))  # 출력: 2
+    ```
+    
+2. **`bisect.bisect_right(a, x, lo=0, hi=len(a))`** 또는 **`bisect.bisect(a, x, lo=0, hi=len(a))`**: 정렬된 순서를 유지하면서 리스트 a에 x를 삽입할 오른쪽 인덱스를 찾습니다. 즉, 리스트의 왼쪽부터 시작하여 x보다 큰 첫 번째 요소의 인덱스를 반환합니다.
+    
+    ```python
+    import bisect
+    
+    nums = [1, 3, 4, 4, 6, 8]
+    print(bisect.bisect(nums, 4))  # 출력: 4
+    ```
+    
+3. **`bisect.insort_left(a, x, lo=0, hi=len(a))`**: x를 a에 오름차순으로 삽입합니다. a는 이미 정렬되어 있어야 합니다. x가 a에 이미 있으면, 삽입 위치는 기존 항목 앞(왼쪽)이 됩니다.
+    
+    ```python
+    import bisect
+    
+    nums = [1, 3, 4, 4, 6, 8]
+    bisect.insort_left(nums, 5)
+    print(nums)  # 출력: [1, 3, 4, 4, 5, 6, 8]
+    ```
+    
+4. **`bisect.insort_right(a, x, lo=0, hi=len(a))`** 또는 **`bisect.insort(a, x, lo=0, hi=len(a))`**: x를 a에 오름차순으로 삽입합니다. a는 이미 정렬되어 있어야 합니다. x가 a에 이미 있으면, 삽입 위치는 기존 항목 뒤(오른쪽)가 됩니다.
