@@ -16,6 +16,7 @@
 - [생성 패턴 (Creational Patterns)](./learn/디자인_패턴/creational_patterns.md)
 - [Singleton Pattern (싱글턴 패턴)](./learn/디자인_패턴/singleton.md)
 - [SOLID: 객체지향 개발 5대 원리](./learn/디자인_패턴/solid.md)
+- [팩토리 메서드 패턴 (Factory Method Pattern)](./learn/디자인_패턴/factory_method.md)
 ## [Linux](./learn/Linux)
 - [기본 명령어](./learn/Linux/basic_commands.md)
 ## [Python](./learn/Python)
