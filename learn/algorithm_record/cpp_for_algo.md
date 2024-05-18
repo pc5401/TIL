@@ -135,4 +135,119 @@ int main() {
 #### 요약
 std::vector는 동적 배열로서의 역할을 충실히 수행하며, 다양한 기능을 통해 효율적인 데이터 관리를 지원한다.
 
+## 벡터의 고급 기능
+
+### 삽입 및 삭제
+
+벡터에서 특정 위치에 요소를 삽입하거나 삭제할 수 있다.
+
+```cpp
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+
+    // 특정 위치에 요소 삽입
+    vec.insert(vec.begin() + 2, 10);
+
+    // 특정 위치에 여러 요소 삽입
+    vec.insert(vec.end(), {6, 7, 8});
+
+    // 특정 위치의 요소 삭제
+    vec.erase(vec.begin() + 3);
+
+    // 특정 범위의 요소 삭제
+    vec.erase(vec.begin() + 1, vec.begin() + 3);
+
+    for(int i : vec) {
+        std::cout << i << " ";
+    }
+
+    return 0;
+}
+```
+
+### 벡터의 메모리 관리
+벡터는 내부적으로 메모리를 관리한다. shrink_to_fit 메서드를 사용하여 벡터의 용량을 현재 크기에 맞출 수 있다.
+
+``` cpp
+#include <vector>
+#include <iostream>
+
+int main() {
+    std::vector<int> vec = {1, 2, 3, 4, 5};
+
+    // 벡터의 용량을 늘림
+    vec.reserve(100);
+
+    std::cout << "벡터의 크기: " << vec.size() << std::endl;
+    std::cout << "벡터의 용량: " << vec.capacity() << std::endl;
+
+    // 벡터의 용량을 크기에 맞춤
+    vec.shrink_to_fit();
+
+    std::cout << "shrink_to_fit 후 벡터의 용량: " << vec.capacity() << std::endl;
+
+    return 0;
+}
+```
+
+### 벡터의 2차원 배열
+벡터를 사용하여 2차원 배열을 만들 수 있다.
+
+``` cpp
+#include <vector>
+#include <iostream>
+
+int main() {
+    // 2차원 벡터 선언 및 초기화
+    std::vector<std::vector<int>> vec2D(3, std::vector<int>(4, 0));
+
+    // 2차원 벡터 요소 접근 및 수정
+    vec2D[1][2] = 5;
+
+    for(const auto& row : vec2D) {
+        for(int val : row) {
+            std::cout << val << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    return 0;
+}
+```
+
+### 벡터 정렬 및 탐색
+벡터의 요소를 정렬하거나 특정 값을 탐색할 수 있다.
+
+``` cpp
+#include <vector>
+#include <iostream>
+#include <algorithm>
+
+int main() {
+    std::vector<int> vec = {4, 2, 5, 1, 3};
+
+    // 벡터 정렬
+    std::sort(vec.begin(), vec.end());
+
+    // 벡터 출력
+    for(int i : vec) {
+        std::cout << i << " ";
+    }
+    std::cout << std::endl;
+
+    // 이진 탐색 (벡터가 정렬된 상태여야 함)
+    if (std::binary_search(vec.begin(), vec.end(), 3)) {
+        std::cout << "3이 벡터에 존재합니다." << std::endl;
+    } else {
+        std::cout << "3이 벡터에 존재하지 않습니다." << std::endl;
+    }
+
+    return 0;
+}
+
+```
+
 이 문서는 C++ Reference를 참조하여 작성함
