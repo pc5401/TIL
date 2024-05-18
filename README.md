@@ -2,6 +2,7 @@
 
 
 ## [algorithm_record](./learn/algorithm_record)
+- [알고리듬용 C++ STL 정리](./learn/algorithm_record/cpp_for_algo.md)
 - [cpp로 알고리듬 풀면서 배움점](./learn/algorithm_record/cpp_record.md)
 ## [면접준비](./learn/면접준비)
 - [CS 관련 질문](./learn/면접준비/CS.md)
