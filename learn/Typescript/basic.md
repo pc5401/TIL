@@ -17,13 +17,13 @@ let hasLicense: boolean = false;
 
 // BigInt type
 const largeNumber: bigint = 9007199254740991n;
-let amount: bigint = BigInt(1000);  // Another way to define BigInt
+let amount: bigint = BigInt(1000);
 
 // Null type
 let responseStatus: null = null;
 
 // Undefined type
-let userLocation: undefined = undefined;
+let userLocation: string | undefined = undefined;
 ```
 
 - 변수 선언 시 **`변수명: 타입명`** 형태로 타입을 지정할 수 있다.
@@ -35,7 +35,7 @@ let userLocation: undefined = undefined;
 let userName: string = 'kim';
 userName = 123; // 에러 발생, number 는 안 됨
 let temperature: number = 31.2;
-temperature = 'hot hot'; // 에
+temperature = 'hot hot'; // 에러 발생, string 은 안 됨
 ```
 
 - 지정된 타입과 다른 값을 할당하려고 하면 타입스크립트는 에러 메시지를 띄워 타입 관련 버그를 사전에 방지한다.
@@ -45,6 +45,13 @@ temperature = 'hot hot'; // 에
 ```ts
 let userNames: string[] = ['kim', 'park', 'choi'];
 let userAge: { age: number } = { age: 22 };
+
+// 객체 타입 예시
+let user: { name: string, age: number, isActive: boolean } = {
+  name: 'kim',
+  age: 22,
+  isActive: true,
+};
 ```
 
 - 배열이나 객체도 타입 지정이 가능하다
@@ -63,6 +70,7 @@ let flexibleType: string | number = 100;
 ```ts
 type NameType = string | number;
 let contactDetail: NameType = 'kim';
+contactDetail = 123;
 ```
 
 - **`type`** 키워드를 사용하여 복잡한 타입을 간단한 이름으로 참조할 수 있다.
@@ -125,9 +133,7 @@ let user: UserDetails = {
   name: 'park',
   age: 50
 };
-```
 
-```ts
 type User = {
   name: string;
   age: number;
