@@ -12,6 +12,7 @@
 - [YAML 에 대해서](./learn/Data_formats/YAML.md)
 ## [GitHub](./learn/GitHub)
 - [GitHub Actions 소개](./learn/GitHub/github_Actions.md)
+- [git 기초](./learn/GitHub/github_basic.md)
 - [github 트러블슈팅](./learn/GitHub/troubleshooting.md)
 ## [디자인_패턴](./learn/디자인_패턴)
 - [생성 패턴 (Creational Patterns)](./learn/디자인_패턴/creational_patterns.md)
