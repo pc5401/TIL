@@ -293,3 +293,141 @@ math 모듈은 수학적인 함수와 상수를 제공한다. (그냥 파이썬 
     ```
     
 4. **`bisect.insort_right(a, x, lo=0, hi=len(a))`** 또는 **`bisect.insort(a, x, lo=0, hi=len(a))`**: x를 a에 오름차순으로 삽입합니다. a는 이미 정렬되어 있어야 합니다. x가 a에 이미 있으면, 삽입 위치는 기존 항목 뒤(오른쪽)가 됩니다.
+
+
+# **`functools`**
+
+> **`functools`** 모듈은 **고차 함수**와 **콜러블 객체**에 대한 연산을 위한 것으로, 주로 함수를 조작하거나 관리하는 데 사용됩니다.
+
+- 고차 함수
+    - 고차 함수는 다른 함수를 인수로 받거나 결과로 반환하는 함수를 의미.
+    - Python에서는 함수를 일급 객체로 취급하기 때문에, 고차 함수를 사용하는 것이 가능
+    - 고차 함수는 코드의 가독성과 재사용성을 높이며, 함수형 프로그래밍 패러다임을 구현하는 데 사
+    
+    ### 예시 )
+    
+    1. 함수를 인자로 받는 경우: 고차 함수는 다른 함수를 인자로 받을 수 있습니다. 이를 통해, 특정 로직을 공통 함수로 작성하고, 그 함수를 다양한 함수에 적용하여 코드 중복을 줄일 수 있습니다. **`map`**, **`filter`**, **`reduce`** 등이 이에 해당합니다.
+        
+        예를 들어, **`map`** 함수는 함수와 리스트를 인자로 받아 리스트의 모든 요소에 함수를 적용한 결과를 반환합니다.
+        
+        ```python
+        def square(x):
+            return x ** 2
+        
+        numbers = [1, 2, 3, 4, 5]
+        result = map(square, numbers)
+        print(list(result))  # 출력: [1, 4, 9, 16, 25]
+        ```
+        
+    2. 함수를 반환하는 경우: 고차 함수는 함수를 결과로 반환할 수 있습니다. 이를 통해, 필요에 따라 동적으로 함수를 생성하거나 수정할 수 있습니다.
+        
+        예를 들어, 함수를 반환하는 함수를 만들어보겠습니다:
+        
+        ```python
+        -def make_multiplier(n):
+            def multiplier(x):
+                return x * n
+            return multiplier
+        
+        times_two = make_multiplier(2)
+        print(times_two(4))  # 출력: 8
+        
+        times_three = make_multiplier(3)
+        print(times_three(4))  # 출력: 12
+        ```
+        
+        여기서 **`make_multiplier`**는 고차 함수입니다. 이 함수는 **`multiplier`**라는 새로운 함수를 생성하고 반환합니다. 생성된 **`multiplier`** 함수는 **`make_multiplier`**에 전달된 인자에 따라 다르게 작동합니다.
+        
+    
+- 콜러블 객체
+    - 콜러블(Callable) 객체는 Python에서 "호출 가능"한 객체를 뜻함
+    - 콜러블 객체는 호출 연산자인 괄호 **`()`**를 사용하여 호출
+    - 어떤 종류의 연산이든 정의 가능
+    
+    ### 예시)
+    
+    1. **함수(Function)**: 함수는 가장 많이 사용되는 콜러블 객체입니다. 사용자 정의 함수뿐만 아니라 Python 내장 함수도 포함됩니다.
+        
+        ```python
+        def call_me():
+            print("Called!")
+        
+        call_me()  # 출력: "Called!"
+        ```
+        
+    2. **메서드(Method)**: 클래스의 인스턴스에 바인딩된 함수를 말합니다.
+        
+        ```python
+        class CallableClass:
+            def call_me(self):
+                print("Called!")
+        
+        instance = CallableClass()
+        instance.call_me()  # 출력: "Called!"
+        ```
+        
+    3. **클래스(Class)**: 클래스도 콜러블입니다. 클래스를 호출하면 그 결과로 해당 클래스의 인스턴스가 생성됩니다.
+        
+        ```python
+        class CallableClass:
+            def __init__(self):
+                print("Instance Created!")
+        
+        instance = CallableClass()  # 출력: "Instance Created!"
+        ```
+        
+    4. **클래스 인스턴스(Class Instances)**: 클래스 인스턴스는 그 클래스에 **`__call__`** 메서드가 구현되어 있을 때 콜러블합니다.
+        
+        ```python
+        class CallableClass:
+            def __call__(self):
+                print("Instance Called!")
+        
+        instance = CallableClass()
+        instance()  # 출력: "Instance Called!"
+        ```
+        
+    5. **제너레이터(Generator)**: 제너레이터 함수는 호출될 때마다 일련의 값을 생성하는 콜러블입니다.
+        
+        콜러블 객체인지 확인하는 방법은 내장 함수인 **`callable()`**을 사용하면 됩니다.
+        
+        ```python
+        print(callable(call_me))  # 출력: True
+        print(callable(CallableClass))  # 출력: True
+        print(callable(instance))  # 출력: True
+        
+        ```
+        
+1. **`functools.partial(func, *args, **keywords)`**: 부분 적용 함수를 생성합니다. 즉, 하나 이상의 인자를 이미 고정한 함수의 새 버전을 만듭니다.
+    
+    ```python
+    from functools import partial
+    
+    def add(a, b):
+        return a + b
+    add_five = partial(add, 5)
+    print(add_five(3))  # 출력: 8
+    ```
+    
+2. **`functools.lru_cache(maxsize=128, typed=False)`**: 이 데코레이터는 최근에 사용한 입력과 그 결과를 캐시하므로 이전에 계산한 결과를 재사용할 수 있습니다. 동적 프로그래밍 문제에 유용합니다.
+    
+    ```python
+    from functools import lru_cache
+    
+    @lru_cache(maxsize=None)
+    def fib(n):
+        if n < 2:
+            return n
+        return fib(n-1) + fib(n-2)
+    print(fib(10))  # 출력: 55
+    ```
+    
+3. **`functools.reduce(function, iterable[, initializer])`**: 누적적으로 iterable의 항목에 function을 적용하여 하나의 출력을 만듭니다.
+    
+    ```python
+    from functools import reduce
+    
+    print(reduce(lambda x, y: x * y, [1, 2, 3, 4, 5]))  # 출력: 120
+    ```
+    
+4. **`functools.total_ordering`**: 이 클래스 데코레이터는 클래스가 비교 메서드 중 하나(**`__lt__`**, **`__le__`**, **`__gt__`**, **`__ge__`**)와 **`__eq__`** 메서드를 제공하면 나머지 비교 메서드를 자동으로 추가해줍니다.
