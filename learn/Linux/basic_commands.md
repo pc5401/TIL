@@ -197,3 +197,79 @@ $ rm -rf a_directory # 디렉토리를 삭제
 - `/root` : 시스템 최고 관리자 root 사용자의 홈 디렉토리
 - `/home` : 일반 사용자들의 홈 디렉토리
 - `/dev` : 하드웨어 장치 파일
+
+## 파일 및 디렉토리 관리 심화
+
+### chmod : 파일 권한 변경
+> 기본 형식: chmod <옵션> <권한> <파일|디렉토리>
+
+옵션
+
+- R : 하위 디렉토리 및 파일에 대해 재귀적으로 권한 변경
+권한 표기법
+
+- 숫자 표기법: 소유자, 그룹, 기타 사용자에 대한 권한을 각각 3자리 숫자로 설정
+  - 읽기: 4, 쓰기: 2, 실행: 1
+  - 예: 755 (소유자는 읽기, 쓰기, 실행 / 그룹과 기타 사용자는 읽기, 실행)
+- 기호 표기법: u (소유자), g (그룹), o (기타 사용자), a (모두)와 + (추가), - (제거), = (설정)
+  - 예: u+x (소유자에게 실행 권한 추가)
+
+예시
+``` bash
+chmod 755 filename # 소유자는 읽기, 쓰기, 실행 권한, 그룹과 기타 사용자는 읽기, 실행 권한 설정
+chmod -R 644 directory # 디렉토리 및 하위 파일들을 소유자는 읽기, 쓰기, 그룹과 기타 사용자는 읽기 권한 설정
+chmod u+x script.sh # 소유자에게 실행 권한 추가
+
+```
+
+### chown : 파일 소유자 변경
+> 기본 형식: chown <옵션> <소유자>[:<그룹>] <파일|디렉토리>
+
+옵션
+- R : 하위 디렉토리 및 파일에 대해 재귀적으로 소유자 변경
+예시
+
+``` bash
+chown user1 filename # filename의 소유자를 user1로 변경
+chown user1:group1 filename # filename의 소유자와 그룹을 user1와 group1로 변경
+chown -R user2 /path/to/directory # /path/to/directory 및 하위 파일들의 소유자를 user2로 변경
+```
+
+### chgrp : 파일 그룹 변경
+> 기본 형식: chgrp <옵션> <그룹> <파일|디렉토리>
+
+옵션
+- R : 하위 디렉토리 및 파일에 대해 재귀적으로 그룹 변경
+
+예시
+
+```bash
+chgrp group1 filename # filename의 그룹을 group1로 변경
+chgrp -R group2 /path/to/directory # /path/to/directory 및 하위 파일들의 그룹을 group2로 변경
+```
+#### 파일 권한 예시 및 주석
+``` bash
+# 파일 filename의 권한을 소유자는 읽기, 쓰기, 실행 권한 (7), 그룹과 기타 사용자는 읽기, 실행 권한 (5)으로 설정
+chmod 755 filename 
+
+# 디렉토리 directory 및 그 하위 파일들의 권한을 소유자는 읽기, 쓰기 (6), 그룹과 기타 사용자는 읽기 권한 (4)으로 설정
+chmod -R 644 directory 
+
+# 스크립트 script.sh에 대해 소유자에게 실행 권한 추가
+chmod u+x script.sh
+
+# 파일 filename의 소유자를 user1로 변경
+chown user1 filename 
+
+# 파일 filename의 소유자와 그룹을 user1와 group1로 변경
+chown user1:group1 filename 
+
+# 디렉토리 /path/to/directory 및 그 하위 파일들의 소유자를 user2로 재귀적으로 변경
+chown -R user2 /path/to/directory 
+
+# 파일 filename의 그룹을 group1로 변경
+chgrp group1 filename 
+
+# 디렉토리 /path/to/directory 및 그 하위 파일들의 그룹을 group2로 재귀적으로 변경
+chgrp -R group2 /path/to/directory 
+```
