@@ -49,8 +49,6 @@ ls
 ls -a
 ```
 
-
-
 ## mkdir : 디렉토리 생성
 
 > 기본 형식: mkdir <옵션> <디렉토리_이름>
@@ -167,8 +165,6 @@ $ rm -f aaa # -f 옵션을 이용하면 파일이 없어도 오류가 발생X
 $ rm -rf a_directory # 디렉토리를 삭제
 ```
 
-
-
 # 리눅스 디렉토리 구조
 
 - `pwd` : 현재 작업 디렉토리 보기
@@ -201,44 +197,52 @@ $ rm -rf a_directory # 디렉토리를 삭제
 ## 파일 및 디렉토리 관리 심화
 
 ### chmod : 파일 권한 변경
+
 > 기본 형식: chmod <옵션> <권한> <파일|디렉토리>
 
 옵션
 
 - R : 하위 디렉토리 및 파일에 대해 재귀적으로 권한 변경
-권한 표기법
+  권한 표기법
 
 - 숫자 표기법: 소유자, 그룹, 기타 사용자에 대한 권한을 각각 3자리 숫자로 설정
+  
   - 읽기: 4, 쓰기: 2, 실행: 1
   - 예: 755 (소유자는 읽기, 쓰기, 실행 / 그룹과 기타 사용자는 읽기, 실행)
+
 - 기호 표기법: u (소유자), g (그룹), o (기타 사용자), a (모두)와 + (추가), - (제거), = (설정)
+  
   - 예: u+x (소유자에게 실행 권한 추가)
 
 예시
-``` bash
+
+```bash
 chmod 755 filename # 소유자는 읽기, 쓰기, 실행 권한, 그룹과 기타 사용자는 읽기, 실행 권한 설정
 chmod -R 644 directory # 디렉토리 및 하위 파일들을 소유자는 읽기, 쓰기, 그룹과 기타 사용자는 읽기 권한 설정
 chmod u+x script.sh # 소유자에게 실행 권한 추가
-
 ```
 
 ### chown : 파일 소유자 변경
+
 > 기본 형식: chown <옵션> <소유자>[:<그룹>] <파일|디렉토리>
 
 옵션
-- R : 하위 디렉토리 및 파일에 대해 재귀적으로 소유자 변경
-예시
 
-``` bash
+- R : 하위 디렉토리 및 파일에 대해 재귀적으로 소유자 변경
+  예시
+
+```bash
 chown user1 filename # filename의 소유자를 user1로 변경
 chown user1:group1 filename # filename의 소유자와 그룹을 user1와 group1로 변경
 chown -R user2 /path/to/directory # /path/to/directory 및 하위 파일들의 소유자를 user2로 변경
 ```
 
 ### chgrp : 파일 그룹 변경
+
 > 기본 형식: chgrp <옵션> <그룹> <파일|디렉토리>
 
 옵션
+
 - R : 하위 디렉토리 및 파일에 대해 재귀적으로 그룹 변경
 
 예시
@@ -247,8 +251,10 @@ chown -R user2 /path/to/directory # /path/to/directory 및 하위 파일들의 �
 chgrp group1 filename # filename의 그룹을 group1로 변경
 chgrp -R group2 /path/to/directory # /path/to/directory 및 하위 파일들의 그룹을 group2로 변경
 ```
+
 #### 파일 권한 예시 및 주석
-``` bash
+
+```bash
 # 파일 filename의 권한을 소유자는 읽기, 쓰기, 실행 권한 (7), 그룹과 기타 사용자는 읽기, 실행 권한 (5)으로 설정
 chmod 755 filename 
 
@@ -292,3 +298,52 @@ chgrp -R group2 /path/to/directory
 ps -e # 시스템의 모든 프로세스 표시
 ps -ef # 모든 프로세스를 풀 포맷으로 표시
 ps -u username # 특정 사용자의 모든 프로세스 표시
+```
+
+### top : 실시간 프로세스 모니터링
+
+> 기본 형식 : top
+
+명령어 설명
+
+- `top` 실행 후 실시간으로 프로세스 정보를 표
+
+- 인터페이스 내에서 다양한 명령어 사용 가능 (예: `q` 종료, `k` 특정 프로세스 종료)
+
+예시
+
+```bash
+top # 실시간으로 시스템의 모든 프로세스 모니터링
+```
+
+## kill : 프로세스 종료
+
+> 기본 형식: kill <옵션> <프로세스ID>
+
+옵션
+
+- `-9` : 강제 종료 (SIGKILL)
+
+예시
+
+```bash
+kill 1234 # 프로세스 ID 1234를 정상 종료
+kill -9 1234 # 프로세스 ID 1234를 강제 종료
+```
+
+## pkill : 프로세스 이름으로 종료
+
+> 기본 형식: pkill <옵션> <프로세스이름>
+
+옵션
+
+- `-f` : 풀 명령어 라인으로 매칭
+
+예시
+
+```bash
+pkill firefox # 이름이 firefox인 모든 프로세스를 종료
+pkill -f 'python script.py' # 풀 명령어 라인을 기준으로 프로세스를 종료
+```
+
+
