@@ -273,3 +273,22 @@ chgrp group1 filename
 # 디렉토리 /path/to/directory 및 그 하위 파일들의 그룹을 group2로 재귀적으로 변경
 chgrp -R group2 /path/to/directory 
 ```
+
+# 프로세스 관리
+
+## ps : 현재 실행 중인 프로세스 보기
+
+> 기본 형식: ps <옵션>
+
+옵션
+
+- `-e` : 모든 프로세스 표시
+- `-f` : 풀 포맷으로 출력
+- `-u` <사용자> : 특정 사용자의 프로세스 표시
+
+예시
+
+```bash
+ps -e # 시스템의 모든 프로세스 표시
+ps -ef # 모든 프로세스를 풀 포맷으로 표시
+ps -u username # 특정 사용자의 모든 프로세스 표시
