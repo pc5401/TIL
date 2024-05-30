@@ -21,5 +21,6 @@
 - [팩토리 메서드 패턴 (Factory Method Pattern)](./learn/디자인_패턴/factory_method.md)
 ## [Linux](./learn/Linux)
 - [기본 명령어](./learn/Linux/basic_commands.md)
+- [네트워크 관리](./learn/Linux/network.md)
 ## [Python](./learn/Python)
 - [알고리듬을 위한 파이썬 모듈들](./learn/Python/python_modul_for_algo.md)
