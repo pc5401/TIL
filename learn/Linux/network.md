@@ -1,5 +1,7 @@
 # 네트워크 관리
 
+
+
 ## ifconfig : 네트워크 인터페이스 설정
 
 > 기본 형식: ifconfig <인터페이스> <옵션>
@@ -11,11 +13,13 @@
 
 예시
 
-bash
-
-코드 복사
-
+```bash
 `ifconfig eth0 up # eth0 인터페이스 활성화 ifconfig eth0 down # eth0 인터페이스 비활성화 ifconfig eth0 192.168.1.100 netmask 255.255.255.0 # eth0에 IP 주소 및 서브넷 마스크 설정`
+```
+
+
+
+
 
 ## ping : 네트워크 연결 테스트
 
@@ -27,13 +31,13 @@ bash
 
 예시
 
-bash
+```bash
+ping google.com # google.com으로 패킷 전송
+ping -c 4 google.com # google.com으로 4번 패킷 전송
+#
+```
 
-코드 복사
 
-`ping google.com # google.com으로 패킷 전송 ping -c 4 google.com # google.com으로 4번 패킷 전송`
-
-## netstat : 네트워크 상태 보기
 
 > 기본 형식: netstat <옵션>
 
@@ -45,11 +49,11 @@ bash
 
 예시
 
-bash
-
-코드 복사
-
-`netstat -a # 모든 연결 및 포트 표시 netstat -t # TCP 연결만 표시 netstat -u # UDP 연결만 표시`
+```bash
+netstat -a # 모든 연결 및 포트 표시
+netstat -t # TCP 연결만 표시
+netstat -u # UDP 연결만 표시
+```
 
 ## traceroute : 경로 추적
 
@@ -61,11 +65,9 @@ bash
 
 예시
 
-bash
-
-코드 복사
-
-`traceroute google.com # google.com까지의 경로 추적`
+```bash
+traceroute google.com # google.com까지의 경로 추적
+```
 
 ### 패키지 관리
 
@@ -82,11 +84,12 @@ bash
 
 예시
 
-bash
-
-코드 복사
-
-`sudo apt-get update # 패키지 목록 업데이트 sudo apt-get upgrade # 모든 패키지 업그레이드 sudo apt-get install vim # vim 패키지 설치 sudo apt-get remove vim # vim 패키지 삭제`
+```bash
+sudo apt-get update # 패키지 목록 업데이트
+sudo apt-get upgrade # 모든 패키지 업그레이드
+sudo apt-get install vim # vim 패키지 설치
+sudo apt-get remove vim # vim 패키지 삭제
+```
 
 ## yum : 패키지 설치 및 관리 (RHEL 계열)
 
@@ -100,13 +103,13 @@ bash
 
 예시
 
-bash
+```bash
+sudo yum update # 패키지 목록 업데이트 및 모든 패키지 업그레이드
+sudo yum install vim # vim 패키지 설치
+sudo yum remove vim # vim 패키지 삭제
+```
 
-코드 복사
-
-`sudo yum update # 패키지 목록 업데이트 및 모든 패키지 업그레이드 sudo yum install vim # vim 패키지 설치 sudo yum remove vim # vim 패키지 삭제`
-
-### 디스크 관리
+# 디스크 관리
 
 ## df : 파일 시스템 디스크 공간 사용량 확인
 
@@ -118,13 +121,13 @@ bash
 
 예시
 
-bash
-
-코드 복사
-
-`df -h # 사람이 읽기 쉬운 형식으로 디스크 사용량 출력`
+```bash
+df -h # 사람이 읽기 쉬운 형식으로 디스크 사용량 출력
+```
 
 ## du : 디스크 사용량 확인
+
+
 
 > 기본 형식: du <옵션> <디렉토리>
 
@@ -135,10 +138,7 @@ bash
 
 예시
 
-bash
-
-코드 복사
-
-`du -h /home/user # /home/user 디렉토리의 디스크 사용량 출력 du -sh /home/user # /home/user 디렉토리의 요약된 총계만 출력`
-
-이
+```bash
+du -h /home/user # /home/user 디렉토리의 디스크 사용량 출력
+du -sh /home/user # /home/user 디렉토리의 요약된 총계만 출력
+```
