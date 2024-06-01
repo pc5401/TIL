@@ -8,6 +8,7 @@
 - [you don't konw js](./learn/Javascript/you_don't_know.md)
 ## [면접준비](./learn/면접준비)
 - [CS 관련 질문](./learn/면접준비/CS.md)
+- [프론트 면접 내용](./learn/면접준비/frontend.md)
 ## [Typescript](./learn/Typescript)
 - [기본적인 사용법](./learn/Typescript/basic.md)
 ## [Data_formats](./learn/Data_formats)
