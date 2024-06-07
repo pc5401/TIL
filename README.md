@@ -18,6 +18,7 @@
 - [git 기초](./learn/GitHub/github_basic.md)
 - [github 트러블슈팅](./learn/GitHub/troubleshooting.md)
 ## [디자인_패턴](./learn/디자인_패턴)
+- [빌더 패턴(Builder Pattern)](./learn/디자인_패턴/builder_pattern.md)
 - [생성 패턴 (Creational Patterns)](./learn/디자인_패턴/creational_patterns.md)
 - [Singleton Pattern (싱글턴 패턴)](./learn/디자인_패턴/singleton.md)
 - [SOLID: 객체지향 개발 5대 원리](./learn/디자인_패턴/solid.md)
