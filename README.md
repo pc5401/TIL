@@ -6,6 +6,8 @@
 - [cpp로 알고리듬 풀면서 배움점](./learn/algorithm_record/cpp_record.md)
 ## [Javascript](./learn/Javascript)
 - [you don't konw js](./learn/Javascript/you_don't_know.md)
+## [DB](./learn/DB)
+- [mysql 학습](./learn/DB/mysql_basic.md)
 ## [면접준비](./learn/면접준비)
 - [CS 관련 질문](./learn/면접준비/CS.md)
 - [프론트 면접 내용](./learn/면접준비/frontend.md)
