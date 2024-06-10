@@ -35,7 +35,6 @@ SELECT database(); -- company 출력된다.
 
 ## IT 회사 RDB 만들기(table 정의)
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f74544a9-ab95-4d48-a8f3-1ad5e0c8f043/17e03c8d-dc33-4860-947d-d6f08cc458b4/Untitled.png)
 
 # create table
 
@@ -104,7 +103,6 @@ create table WORKS_ON(
 
 > table의 schema를 변경하고 싶을 때 사용
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f74544a9-ab95-4d48-a8f3-1ad5e0c8f043/3574568e-7206-457a-ac95-7e23f4d153d4/Untitled.png)
 
 ### DEPARTMENT table에 leader_id FK 지정
 
