@@ -14,6 +14,7 @@
 ## [Typescript](./learn/Typescript)
 - [기본적인 사용법](./learn/Typescript/basic.md)
 ## [Data_formats](./learn/Data_formats)
+- [REST API 개념과 활용 방법](./learn/Data_formats/restAPI.md)
 - [JSON 에 대해서](./learn/Data_formats/JSON.md)
 - [YAML 에 대해서](./learn/Data_formats/YAML.md)
 ## [GitHub](./learn/GitHub)
