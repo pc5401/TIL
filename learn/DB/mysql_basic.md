@@ -115,11 +115,7 @@ ALTER TABLE department ADD FOREIGN KEY (leader_id)
 
 ## 데이터 타입
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f74544a9-ab95-4d48-a8f3-1ad5e0c8f043/49b7b0a8-7ee8-4cc6-a996-f9876a66c343/Untitled.png)
-
-> 숫자
-
-참고)
+숫자
 
 - PostgreSQL에서는 `TINYINT` `MEDIUMINT` 가 없다.
 
@@ -133,7 +129,9 @@ ALTER TABLE department ADD FOREIGN KEY (leader_id)
   
   MySQL 에서 DECIMAL, NUMERIC 는 차이가 없이 `precision` 넘으면 저장하지 않는다.
 
-참고)
+
+
+문자열
 
 - VARCHAR VS CHAR
   
@@ -149,32 +147,40 @@ ALTER TABLE department ADD FOREIGN KEY (leader_id)
 
 - PostgreSQL은 TINYTEXT, MEDIUMTEXT, LONGTEXT 이 없이 TEXT만 있다.
 
-참고)
+
+
+날짜와 시간
 
 - DATETIME VS TIMESTAMP
   
   TIMESTAMP `UTC` 다. 즉, TIMEZONE에 영향을 받는다.
 
-참고)
+
+
+byte-string
 
 byte-string : 보안과 관련해서 암호화 하고자 할 때, 사용된다.
 
-## constraint PRIMARY KEY
+
+
+## 제약 조건 (constraints)
+
+### constraint PRIMARY KEY
 
 - primary key : table의 tuple 을 식별하기 위해 사용, 하나 이상의 attribue(s) 로 구성
 - primary key 는 중복된 값을 가질 수 없으며, NULL 도 값으로 가질 수 없다.
 
-## constraint UNIQUE
+### constraint UNIQUE
 
 - UNIQUE로 지정된 attribue(s)는 중복된 값을 가질 수 없다.
 - 단, NULL 은 중복을 허용할 수도 있다. (RDBMS 마다 다름)
 
-## constraint NOT NULL
+### constraint NOT NULL
 
 - attribute가 NOT NULL로 지정되면 해당 attribute는 NULL을 값으로 가질 수 없다.
 - UNIQUE와 자주 사용
 
-## constraint DEFAULT
+### constraint DEFAULT
 
 - attribute의 default 값을 정의할 때 사용
 - 새로운 tuple을 저장할 때 해당 attribute에 대한 값이 없다면 default 값으로 저장
@@ -381,3 +387,76 @@ SELECT id FROM employee WHERE birth_date IS NULL; -- 제대로 조회됨
 - SQL 에서 NULL과 비교 연산을 하게 되면 그 결과는 UNKNOWN이다.
 - UNKNOWN 은 `TRUE 일수도 있고 FALSE 일 수도 있다`라는 의미이다.
 - three-value logic : 비교 / 논리 연산의 결과로 TRUE, FALSE UNKNOWN을 가진다.
+
+## 
+
+## 집계 함수 (Aggregate Functions)
+
+### COUNT
+
+- 튜플의 수를 센다.
+- null이 아닌 값을 센다.
+
+```sql
+SELECT COUNT(*) FROM employee; 
+-- 모든 튜플의 수를 센다. SELECT COUNT(name) FROM employee; 
+-- name이 null이 아닌 값을 센다.
+```
+
+### SUM
+
+- 특정 attribute의 합을 구한다.
+- null은 계산에서 제외된다.
+
+```sql
+SELECT SUM(salary) FROM employee; -- salary의 합을 구한다
+```
+
+### AVG
+
+- 특정 attribute의 평균을 구한다.
+- null은 계산에서 제외된다.
+
+```sql
+SELECT AVG(salary) FROM employee; -- salary의 평균을 구한다.
+```
+
+### MAX
+
+- 특정 attribute의 최대값을 구한다.
+- null은 계산에서 제외된다.
+
+```sql
+SELECT MAX(salary) FROM employee; -- salary의 최대값을 구한다.
+```
+
+### MIN
+
+- 특정 attribute의 최소값을 구한다.
+- null은 계산에서 제외된다.
+
+```sql
+SELECT MIN(salary) FROM employee; -- salary의 최소값을 구한다.
+```
+
+## GROUP BY
+
+- 특정 attribute를 기준으로 튜플을 그룹화 한다.
+- 집계 함수를 사용하여 각 그룹에 대한 통계를 구할 수 있다.
+
+```sql
+SELECT dept_id, COUNT(*) as num_employees FROM employee GROUP BY dept_id; -- 각 부서별 직원 수를 센다.
+```
+
+## HAVING
+
+- GROUP BY 절로 그룹화한 결과에 조건을 걸 때 사용한다.
+- WHERE 절과 비슷하지만, HAVING 절은 그룹화된 데이터에 조건을 적용한다.
+
+```sql
+SELECT dept_id, AVG(salary) as avg_salary 
+FROM employee 
+GROUP BY dept_id 
+HAVING AVG(salary) > 6000000; 
+-- 평균 연봉이 6000000 이상인 부서만 조회
+```
