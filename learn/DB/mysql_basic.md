@@ -129,8 +129,6 @@ ALTER TABLE department ADD FOREIGN KEY (leader_id)
   
   MySQL 에서 DECIMAL, NUMERIC 는 차이가 없이 `precision` 넘으면 저장하지 않는다.
 
-
-
 문자열
 
 - VARCHAR VS CHAR
@@ -147,21 +145,15 @@ ALTER TABLE department ADD FOREIGN KEY (leader_id)
 
 - PostgreSQL은 TINYTEXT, MEDIUMTEXT, LONGTEXT 이 없이 TEXT만 있다.
 
-
-
 날짜와 시간
 
 - DATETIME VS TIMESTAMP
   
   TIMESTAMP `UTC` 다. 즉, TIMEZONE에 영향을 받는다.
 
-
-
 byte-string
 
 byte-string : 보안과 관련해서 암호화 하고자 할 때, 사용된다.
-
-
 
 ## 제약 조건 (constraints)
 
@@ -459,4 +451,130 @@ FROM employee
 GROUP BY dept_id 
 HAVING AVG(salary) > 6000000; 
 -- 평균 연봉이 6000000 이상인 부서만 조회
+```
+
+## JOIN
+
+### INNER JOIN
+
+- 두 테이블에서 조건에 맞는 데이터만 조회한다.
+
+```sql
+SELECT e.id, e.name, d.name as department_name 
+FROM employee e INNER JOIN department d 
+ON e.dept_id = d.id;
+```
+
+### LEFT JOIN (LEFT OUTER JOIN)
+
+- 왼쪽 테이블의 모든 데이터를 조회하고, 오른쪽 테이블에서 조건에 맞는 데이터만 조회한다.
+- 오른쪽 테이블에 조건에 맞는 데이터가 없는 경우, null로 표시된다.
+
+```sql
+SELECT e.id, e.name, d.name as department_name 
+FROM employee e LEFT JOIN department d 
+ON e.dept_id = d.id;
+```
+
+### RIGHT JOIN (RIGHT OUTER JOIN)
+
+- 오른쪽 테이블의 모든 데이터를 조회하고, 왼쪽 테이블에서 조건에 맞는 데이터만 조회한다.
+- 왼쪽 테이블에 조건에 맞는 데이터가 없는 경우, null로 표시된다.
+
+```sql
+SELECT e.id, e.name, d.name as department_name 
+FROM employee e RIGHT JOIN department d 
+ON e.dept_id = d.id;
+```
+
+### FULL JOIN (FULL OUTER JOIN)
+
+- 두 테이블의 모든 데이터를 조회하고, 조건에 맞는 데이터만 서로 매칭한다.
+- 조건에 맞는 데이터가 없는 경우, null로 표시된다.
+- MySQL에서는 FULL OUTER JOIN을 지원하지 않는다. 대신 LEFT JOIN과 RIGHT JOIN을 조합하여 사용한다.
+
+```sql
+SELECT e.id, e.name, d.name as department_name 
+FROM employee e LEFT JOIN department d 
+ON e.dept_id = d.id 
+UNION SELECT e.id, e.name, d.name as department_name 
+FROM employee e RIGHT JOIN department d 
+ON e.dept_id = d.id;
+```
+
+## 윈도우 함수 (Window Functions)
+
+### 기본 개념
+
+- 집계 함수와 달리, 윈도우 함수는 각 튜플에 대해 결과를 반환한다.
+- 윈도우 함수는 OVER 절을 사용하여 윈도우를 정의한다.
+
+### ROW_NUMBER()
+
+- 각 그룹 내에서 행 번호를 매긴다.
+
+```sql
+SELECT name, salary, ROW_NUMBER() 
+OVER (PARTITION BY dept_id ORDER BY salary DESC) as row_num 
+FROM employee;
+```
+
+### RANK()
+
+- 각 그룹 내에서 순위를 매긴다. 동점자가 있을 경우, 같은 순위를 부여하고 다음 순위는 건너뛴다.
+
+```sql
+SELECT name, salary, RANK() 
+OVER (PARTITION BY dept_id ORDER BY salary DESC) as rank 
+FROM employee;
+```
+
+
+
+### DENSE_RANK()
+
+- 각 그룹 내에서 순위를 매긴다. 동점자가 있을 경우, 같은 순위를 부여하지만 다음 순위를 건너뛰지 않는다.
+
+```sql
+SELECT name, salary, DENSE_RANK() 
+OVER (PARTITION BY dept_id ORDER BY salary DESC) as dense_rank 
+FROM employee;
+```
+
+
+
+### NTILE(n)
+
+- 각 그룹을 n개의 버킷으로 나눈다.
+
+```sql
+SELECT name, salary, NTILE(4) 
+OVER (PARTITION BY dept_id ORDER BY salary DESC) as quartile 
+FROM employee;
+```
+
+### LAG()와 LEAD()
+
+- LAG()는 이전 행의 값을 가져온다.
+- LEAD()는 다음 행의 값을 가져온다.
+
+```sql
+SELECT name, salary, LAG(salary, 1) 
+OVER (PARTITION BY dept_id ORDER BY salary) as prev_salary, LEAD(salary, 1) 
+OVER (PARTITION BY dept_id ORDER BY salary) as next_salary 
+FROM employee;
+```
+
+
+
+### CUME_DIST()와 PERCENT_RANK()
+
+- CUME_DIST()는 누적 분포를 계산한다.
+- PERCENT_RANK()는 백분위 순위를 계산한다.
+
+```sql
+SELECT name, salary, CUME_DIST() 
+OVER (PARTITION BY dept_id ORDER BY salary) as cume_dist, 
+PERCENT_RANK() OVER (PARTITION BY dept_id ORDER BY salary) as percent_rank 
+FROM employee;
 ```
