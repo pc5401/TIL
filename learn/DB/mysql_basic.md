@@ -529,8 +529,6 @@ OVER (PARTITION BY dept_id ORDER BY salary DESC) as rank
 FROM employee;
 ```
 
-
-
 ### DENSE_RANK()
 
 - 각 그룹 내에서 순위를 매긴다. 동점자가 있을 경우, 같은 순위를 부여하지만 다음 순위를 건너뛰지 않는다.
@@ -540,8 +538,6 @@ SELECT name, salary, DENSE_RANK()
 OVER (PARTITION BY dept_id ORDER BY salary DESC) as dense_rank 
 FROM employee;
 ```
-
-
 
 ### NTILE(n)
 
@@ -565,8 +561,6 @@ OVER (PARTITION BY dept_id ORDER BY salary) as next_salary
 FROM employee;
 ```
 
-
-
 ### CUME_DIST()와 PERCENT_RANK()
 
 - CUME_DIST()는 누적 분포를 계산한다.
@@ -577,4 +571,95 @@ SELECT name, salary, CUME_DIST()
 OVER (PARTITION BY dept_id ORDER BY salary) as cume_dist, 
 PERCENT_RANK() OVER (PARTITION BY dept_id ORDER BY salary) as percent_rank 
 FROM employee;
+```
+
+## 트랜잭션 (Transactions)
+
+### 기본 개념
+
+- 트랜잭션은 데이터베이스에서의 일련의 작업들을 하나의 논리적인 단위로 묶은 것이다.
+- 트랜잭션은 ACID 특성을 가져야 한다.
+  - Atomicity (원자성)
+  - Consistency (일관성)
+  - Isolation (고립성)
+  - Durability (지속성)
+
+### 트랜잭션 제어 구문
+
+#### 시작
+
+```sql
+START TRANSACTION;
+```
+
+#### 커밋 (Commit)
+
+- 트랜잭션 내의 모든 작업을 영구적으로 반영한다.
+
+```sql
+COMMIT;
+```
+
+#### 롤백 (Rollback)
+
+- 트랜잭션 내의 모든 작업을 취소한다.
+
+```sql
+ROLLBACK;
+```
+
+#### 저장점 (Savepoint)
+
+- 트랜잭션 내에서 특정 시점으로 롤백할 수 있도록 저장점을 설정한다.
+
+```sql
+SAVEPOINT savepoint_name;
+```
+
+#### 저장점으로 롤백
+
+```sql
+ROLLBACK TO savepoint_name;
+```
+
+#### 저장점 해제
+
+```sql
+RELEASE SAVEPOINT savepoint_name;
+```
+
+### 트랜잭션 격리 수준 (Transaction Isolation Levels)
+
+- 트랜잭션 격리 수준은 동시에 여러 트랜잭션이 실행될 때 일관성 있는 결과를 유지하기 위한 메커니즘이다.
+
+#### READ UNCOMMITTED
+
+- 커밋되지 않은 데이터를 읽을 수 있다.
+
+```sql
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+```
+
+#### READ COMMITTED
+
+- 커밋된 데이터만 읽을 수 있다.
+
+```sql
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+```
+
+#### REPEATABLE READ
+
+- 트랜잭션이 시작된 후, 동일한 데이터를 읽을 때 항상 같은 값을 반환한다.
+
+```sql
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+```
+
+#### SERIALIZABLE
+
+- 가장 높은 격리 수준으로, 트랜잭션이 순차적으로 실행되는 것처럼 동작한다.
+
+```sql
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
 ```
