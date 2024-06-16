@@ -117,8 +117,6 @@ ALTER TABLE department ADD FOREIGN KEY (leader_id)
 
 ## 데이터 타입
 
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/f74544a9-ab95-4d48-a8f3-1ad5e0c8f043/49b7b0a8-7ee8-4cc6-a996-f9876a66c343/Untitled.png)
-
 > 숫자
 
 참고)
@@ -207,5 +205,5 @@ crate table TEST(
   - Check constraint ‘test_chk_1’ is violated.
 
 ```sql
-show create table TEST; -- 에러난 페이지 확
+show create table TEST; -- 에러난 페이지 확인
 ```
