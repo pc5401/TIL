@@ -663,3 +663,28 @@ SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
 ```sql
 SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
 ```
+
+## 인덱스 (Indexes)
+### 기본 개념
+
+- 인덱스는 테이블에서 특정 컬럼의 값을 빠르게 찾을 수 있도록 도와준다.
+- 인덱스를 사용하면 조회 속도가 빨라지지만, 삽입, 삭제, 갱신 시 성능이 저하될 수 있다.
+
+#### 인덱스 생성
+``` sql
+CREATE INDEX idx_name ON table_name(column_name);
+```
+#### 유니크 인덱스 생성
+
+```sql
+CREATE UNIQUE INDEX idx_name ON table_name(column_name);
+```
+
+#### 인덱스 삭제
+```sql
+DROP INDEX idx_name ON table_name;
+```
+#### 인덱스 조회
+```sql
+SHOW INDEXES FROM table_name;
+```
