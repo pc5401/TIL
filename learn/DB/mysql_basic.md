@@ -665,15 +665,18 @@ SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
 ```
 
 ## 인덱스 (Indexes)
+
 ### 기본 개념
 
 - 인덱스는 테이블에서 특정 컬럼의 값을 빠르게 찾을 수 있도록 도와준다.
 - 인덱스를 사용하면 조회 속도가 빨라지지만, 삽입, 삭제, 갱신 시 성능이 저하될 수 있다.
 
 #### 인덱스 생성
-``` sql
+
+```sql
 CREATE INDEX idx_name ON table_name(column_name);
 ```
+
 #### 유니크 인덱스 생성
 
 ```sql
@@ -681,10 +684,69 @@ CREATE UNIQUE INDEX idx_name ON table_name(column_name);
 ```
 
 #### 인덱스 삭제
+
 ```sql
 DROP INDEX idx_name ON table_name;
 ```
+
 #### 인덱스 조회
+
 ```sql
 SHOW INDEXES FROM table_name;
+```
+
+## 뷰 (Views)
+
+### 기본 개념
+
+- 뷰는 하나 이상의 테이블에서 유도된 가상 테이블이다.
+- 뷰를 사용하면 복잡한 쿼리를 단순화하고, 데이터 보안을 강화할 수 있다.
+
+### 뷰 생성
+
+```sql
+CREATE VIEW view_name AS SELECT column1, column2 
+FROM table_name 
+WHERE condition;
+```
+
+### 뷰 조회
+
+```sql
+SELECT * FROM view_name;
+```
+
+### 뷰 삭제
+
+```sql
+DROP VIEW view_name;
+```
+
+## 스토어드 프로시저 (Stored Procedures)
+
+### 기본 개념
+
+- 스토어드 프로시저는 미리 컴파일된 SQL 쿼리 집합으로, 데이터베이스 내에서 실행된다.
+- 프로시저를 사용하면 복잡한 작업을 수행할 수 있으며, 코드의 재사용성을 높일 수 있다.
+
+### 프로시저 생성
+
+```sql
+CREATE PROCEDURE procedure_name(IN param1 datatype, OUT param2 datatype) BEGIN 
+-- SQL 구문 
+SELECT column1 INTO param2 FROM table_name WHERE column2 = param1; END;
+```
+
+
+
+### 프로시저 호출
+
+```sql
+CALL procedure_name(param1, @param2); SELECT @param2;
+```
+
+### 프로시저 삭제
+
+```sql
+DROP PROCEDURE procedure_name;
 ```
