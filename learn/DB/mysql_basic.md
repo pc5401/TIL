@@ -737,8 +737,6 @@ CREATE PROCEDURE procedure_name(IN param1 datatype, OUT param2 datatype) BEGIN
 SELECT column1 INTO param2 FROM table_name WHERE column2 = param1; END;
 ```
 
-
-
 ### 프로시저 호출
 
 ```sql
@@ -749,4 +747,85 @@ CALL procedure_name(param1, @param2); SELECT @param2;
 
 ```sql
 DROP PROCEDURE procedure_name;
+```
+
+## 트리거 (Triggers)
+
+### 기본 개념
+
+- 트리거는 특정 이벤트가 발생할 때 자동으로 실행되는 저장된 프로시저이다.
+- 트리거는 데이터 무결성을 유지하는 데 유용하다.
+
+### 트리거 생성
+
+```sql
+CREATE TRIGGER trigger_name BEFORE 
+INSERT ON table_name 
+FOR EACH ROW BEGIN 
+-- SQL 구문 END;
+```
+
+### 트리거 삭제
+
+```sql
+DROP TRIGGER trigger_name;
+```
+
+### 트리거 예제
+
+```sql
+CREATE TRIGGER before_employee_insert BEFORE 
+INSERT ON employee 
+FOR EACH ROW BEGIN IF NEW.salary < 5000000 
+THEN SET NEW.salary = 5000000; 
+END IF; 
+END;
+```
+
+## MySQL 권한 관리
+
+### 사용자 생성
+
+```sql
+CREATE USER 'username'@'host' IDENTIFIED BY 'password';
+```
+
+### 권한 부여
+
+```sql
+GRANT ALL PRIVILEGES ON database.* TO 'username'@'host';
+```
+
+### 권한 적용
+
+```sql
+FLUSH PRIVILEGES;
+```
+
+### 사용자 삭제
+
+```sql
+DROP USER 'username'@'host';
+```
+
+### 권한 조회
+
+```sql
+SHOW GRANTS FOR 'username'@'host';
+```
+
+## 백업과 복구
+
+### 데이터베이스 백업
+
+```shell
+mysqldump -u username -p database_name > backup_file.sql
+```
+
+
+
+### 데이터베이스 복구
+
+```shell
+mysql -u username -p database_name < backup_file.sql
 ```
