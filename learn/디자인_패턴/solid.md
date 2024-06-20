@@ -9,6 +9,7 @@
 - 이처럼 **변경 사항이 있을 때, 애플리케이션의 파급 효과가 적으면** SRP 원칙을 잘 따른 것으로 볼 수 있다.
 
 예시
+
 ```python
 class User:
     def __init__(self, username: str, email: str):
@@ -30,7 +31,6 @@ email_service = EmailService()
 email_service.send_email(user.email, "Welcome to our service!")
 ```
 
-
 ## 개방-폐쇄 원칙(OCP, Open-Closed Principle)
 
 **코드는 확장에 열려있고 수정에 닫혀있어야 한다.**
@@ -45,6 +45,7 @@ email_service.send_email(user.email, "Welcome to our service!")
   - 높은 응집도 보다 민감하고 중요하다.
 
 예시
+
 ```python
 from abc import ABC, abstractmethod
 
@@ -78,7 +79,6 @@ class Triangle(Shape):
         return 0.5 * self.base * self.height
 ```
 
-
 ## 리스코프 치환 법칙(LSP, Liskov Substitution Principle)
 
 **부모 타입 객체가 자식 타입 객체로 변환되어도 프로그램 동작에는 이상이 없어야 한다.**
@@ -87,8 +87,8 @@ class Triangle(Shape):
 - 객체는 프로그램의 정확성을 깨지 않으면서 하위 타입의 인스턴스로 바꿀 수 있어야 한다.
 - 하위 클래스는 인터페이스 규약을 지켜서 작성되어야 한다.
 
-
 예시
+
 ```python
 class Bird:
     def fly(self):
@@ -112,7 +112,6 @@ ostrich = Ostrich()
 make_bird_fly(ostrich)  # 예외 발생
 ```
 
-
 ## 인터페이스 분리원칙(ISP, Interface segregation rinciple)
 
 범용 인터페이스 하나보다는 특정 클라이언트를 위한 여러 개의 인터페이스 분리가 더 좋다.
@@ -121,8 +120,8 @@ make_bird_fly(ostrich)  # 예외 발생
 
 ex. 복합기(범용) 하나 보다 프린터(특정), 복사기(특정) 스캐너(특정), 팩스(특정)를 더하는 게 낫다.
 
-
 예시
+
 ```python
 from abc import ABC, abstractmethod
 
@@ -156,12 +155,12 @@ multi_function_printer.print("My Document")
 multi_function_printer.scan("My Document")
 ```
 
-
 ## 의존관계 역전(DIP Dependency inversion Principle)
 
 구체적인 개념보다는 추상적인 개념에 의존해야 한다.
 
 예시
+
 ```python
 from abc import ABC, abstractmethod
 
@@ -194,4 +193,5 @@ paypal_processor = PayPalPaymentProcessor()
 checkout_service = CheckoutService(paypal_processor)
 checkout_service.checkout(200.0)
 ```
+
 
