@@ -14,6 +14,7 @@
 ## [Linux](./learn/Linux)
 - [기본 명령어](./learn/Linux/basic_commands.md)
 - [네트워크 관리](./learn/Linux/network.md)
+- [wsl2(우분투)에서 node.js 로컬 환경 구축](./learn/Linux/wsl2_with_node.md)
 ## [면접준비](./learn/면접준비)
 - [프론트 면접 내용](./learn/면접준비/frontend.md)
 - [CS 관련 질문](./learn/면접준비/CS.md)
