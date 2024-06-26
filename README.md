@@ -20,6 +20,7 @@
 - [CS 관련 질문](./learn/면접준비/CS.md)
 ## [Javascript](./learn/Javascript)
 - [you don't konw js](./learn/Javascript/you_don't_know.md)
+- [자바스크립트 디버깅 기억소](./learn/Javascript/js_troubleshooting.md)
 - [자바스크립트의 기본적인 사용](./learn/Javascript/basic.md)
 ## [network](./learn/network)
 - [네트워크 계층](./learn/network/network_layer.md)
