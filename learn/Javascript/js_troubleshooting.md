@@ -2,7 +2,7 @@
 
 ## 목차
 
-- [[object Object]가 출력되는 문제](#[object-object]가-출력되는-문제)
+- [[object Object]가 출력되는 문제](#object-object가-출력되는-문제)
 
 ## [object Object]가 출력되는 문제
 
