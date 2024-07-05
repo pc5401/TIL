@@ -5,13 +5,16 @@ logging.basicConfig(level=logging.INFO)
 
 def get_md_title(file_path: str) -> str:
     """마크다운 파일에서 첫 줄의 제목을 추출한다."""
-    with open(file_path, 'r', encoding='utf-8') as file:
-        first_line = file.readline().strip()
-        if first_line.startswith('#'):
-            return first_line.lstrip('#').strip()  # 제목에서 '#' 기호를 제거하고 반환
-        else:
-            return os.path.basename(file_path)  # 제목이 없는 경우 파일 이름 반환
-
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            first_line = file.readline().strip()
+            if first_line.startswith('#'):
+                return first_line.lstrip('#').strip()  # 제목에서 '#' 기호를 제거하고 반환
+            else:
+                return os.path.basename(file_path)  # 제목이 없는 경우 파일 이름 반환
+    except UnicodeDecodeError:
+        logging.error(f"Could not decode file: {file_path}")
+        return "Unknown Title"
 
 def write_content(path: str, cnt: int):
     content = ''
@@ -29,15 +32,14 @@ def write_content(path: str, cnt: int):
 
     return content
 
-
 def main():
     logging.info("Starting script...")
     readme_contents = "# Today I Learned\n\n\n"
     root_dir = "./learn"
     readme_contents += write_content(root_dir, 2)
-    with open('README.md', 'w') as f:
+    with open('README.md', 'w', encoding='utf-8') as f:
         f.write(readme_contents)
-
+    logging.info("README.md updated successfully.")
 
 if __name__ == "__main__":
     main()
