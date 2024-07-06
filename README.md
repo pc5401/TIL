@@ -2,6 +2,8 @@
 
 
 ## [정처기준비](./learn/정처기준비)
+### [image](./learn/정처기준비/image)
+- [Unknown Title](./learn/정처기준비/image/usecase_bookstore.png)
 - [필기 : 03.데이터베이스 활용](./learn/정처기준비/03_Database_Utilization_Written_Test.md)
 - [필기 : 04.정보시스템 구축관리](./learn/정처기준비/05_Information_System_Implementation_and_Management_Written_Test.md)
 - [필기 : 01.소프트웨어 설계](./learn/정처기준비/01_Software_Design_Written_Test.md)
@@ -19,9 +21,11 @@
 - [프론트 면접 내용](./learn/면접준비/frontend.md)
 - [CS 관련 질문](./learn/면접준비/CS.md)
 ## [Javascript](./learn/Javascript)
+- [js 자료구조](./learn/Javascript/data_structure_js.md)
 - [js 알고리즘 노하우](./learn/Javascript/algo_js.md)
 - [CJW vs ESM](./learn/Javascript/CJWvsESM.md)
 - [you don't konw js](./learn/Javascript/you_don't_know.md)
+- [js 의 조합, 순열, 중복조합 등등](./learn/Javascript/comb_permu.md)
 - [자바스크립트 디버깅 기억소](./learn/Javascript/js_troubleshooting.md)
 - [자바스크립트의 기본적인 사용](./learn/Javascript/basic.md)
 - [js 에서 정규표현](./learn/Javascript/regexp_js.md)
@@ -45,6 +49,7 @@
 - [JSON 에 대해서](./learn/Data_formats/JSON.md)
 - [Graphviz](./learn/Data_formats/graphviz.md)
 - [YAML 에 대해서](./learn/Data_formats/YAML.md)
+- [ANSI 이스케이프 시퀀스 표준](./learn/Data_formats/ansi_escape.md)
 ## [디자인_패턴](./learn/디자인_패턴)
 - [SOLID: 객체지향 개발 5대 원리](./learn/디자인_패턴/solid.md)
 - [팩토리 메서드 패턴 (Factory Method Pattern)](./learn/디자인_패턴/factory_method.md)
