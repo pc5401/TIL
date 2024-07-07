@@ -5,7 +5,7 @@
 ### [image](./learn/정처기준비/image)
 - [Unknown Title](./learn/정처기준비/image/usecase_bookstore.png)
 - [필기 : 03.데이터베이스 활용](./learn/정처기준비/03_Database_Utilization_Written_Test.md)
-- [필기 : 04.정보시스템 구축관리](./learn/정처기준비/05_Information_System_Implementation_and_Management_Written_Test.md)
+- [필기 : 05.정보시스템 구축관리](./learn/정처기준비/05_Information_System_Implementation_and_Management_Written_Test.md)
 - [필기 : 01.소프트웨어 설계](./learn/정처기준비/01_Software_Design_Written_Test.md)
 - [필기 : 04.프로그래밍 언어 활용](./learn/정처기준비/04_Programming_Language_Utilization_Written_Test.md)
 - [필기 : 02.소프트웨어 개발 (Software Development)](./learn/정처기준비/02_Software_Development_Written_Test.md)
