@@ -41,8 +41,6 @@
   - 고립성(Isolation): 트랜잭션이 수행되는 동안 다른 트랜잭션의 영향을 받아서는 안 된다.
   - 지속성(Durability): 트랜잭션이 완료된 후에는 시스템 오류가 발생하더라도 결과가 유지되어야 한다.
 
-
-
 ### 데이터베이스 모델링
 
 데이터베이스 모델링은 데이터베이스의 구조를 설계하는 과정으로, 데이터베이스 시스템의 논리적, 물리적 설계를 포함한다. 모델링은 데이터를 효율적으로 저장하고 관리하기 위해 필수적이며, 주로 개념적, 논리적, 물리적 모델링의 세 단계로 나뉜다.
@@ -86,3 +84,96 @@
 - **성능 최적화**: 인덱스와 파티셔닝 등을 활용하여 데이터베이스 성능을 최적화할 수 있다.
 - **유지보수 용이**: 체계적인 모델링을 통해 데이터베이스 구조를 명확히 하고, 변경 사항을 쉽게 관리할 수 있다.
 - **비즈니스 요구사항 반영**: 효과적인 모델링을 통해 비즈니스 요구사항을 데이터베이스 구조에 반영할 수 있다.
+
+### 데이터베이스 스키마(Database Schema)
+
+데이터베이스 스키마는 데이터베이스의 구조와 제약 조건을 정의한 것이다. 스키마는 테이블, 열, 인덱스, 뷰, 트리거, 저장 프로시저 등을 포함하며, 데이터베이스의 논리적 구조를 명확히 한다. 스키마는 주로 논리적 스키마와 물리적 스키마로 구분된다.
+
+#### 1. 논리적 스키마(Logical Schema)
+
+논리적 스키마는 데이터베이스의 논리적 구조를 정의한 것이다. 이는 테이블, 열, 데이터 타입, 제약 조건 등을 포함한다.
+
+- **테이블(Table)**: 데이터가 저장되는 기본 단위로, 행(Row)과 열(Column)로 구성된다.
+- **열(Column)**: 테이블의 각 필드로, 특정 데이터 타입을 가지며, 테이블의 구조를 정의한다.
+- **기본키(Primary Key)**: 각 행을 고유하게 식별하는 열 또는 열의 집합.
+- **외래키(Foreign Key)**: 다른 테이블의 기본키를 참조하는 열로, 테이블 간의 관계를 정의한다.
+- **제약 조건(Constraints)**: 데이터의 무결성을 유지하기 위한 규칙으로, 유일성, NOT NULL, CHECK 등이 있다.
+
+#### 2. 물리적 스키마(Physical Schema)
+
+물리적 스키마는 데이터가 실제로 저장되는 방식과 저장소를 정의한 것이다. 이는 데이터베이스의 성능을 최적화하고, 저장 효율성을 높이기 위해 설계된다.
+
+- **스토리지(Storage)**: 데이터가 저장되는 물리적 위치와 방법.
+- **인덱스(Index)**: 데이터 검색 성능을 최적화하기 위해 사용하는 데이터 구조.
+- **파티셔닝(Partitioning)**: 큰 테이블을 더 작은 부분으로 나누어 저장하고 관리하는 방법.
+- **클러스터링(Clustering)**: 관련 데이터가 물리적으로 인접하게 저장되도록 하는 방법.
+
+### 스키마 설계의 주요 요소
+
+#### 1. 테이블(Table) 설계
+
+- **테이블 정의**: 각 테이블은 고유한 이름을 가지며, 데이터베이스의 엔티티를 표현한다.
+- **열 정의**: 각 테이블은 여러 열로 구성되며, 각 열은 고유한 이름과 데이터 타입을 가진다.
+- **기본키 정의**: 각 테이블은 하나의 기본키를 가지며, 각 행을 고유하게 식별할 수 있어야 한다.
+- **외래키 정의**: 테이블 간의 관계를 정의하며, 참조 무결성을 유지한다.
+
+#### 2. 인덱스(Index) 설계
+
+- **클러스터형 인덱스(Clustered Index)**: 테이블의 행 자체가 인덱스에 따라 정렬되며, 하나의 테이블에 하나만 존재할 수 있다.
+- **비클러스터형 인덱스(Non-clustered Index)**: 인덱스와 데이터가 분리되어 있으며, 인덱스는 데이터 행의 포인터를 포함한다. 하나의 테이블에 여러 개의 비클러스터형 인덱스를 생성할 수 있다.
+
+#### 3. 제약 조건(Constraints) 설계
+
+- **유일성 제약 조건(Unique Constraint)**: 특정 열의 값이 테이블 내에서 유일해야 함을 보장한다.
+- **NOT NULL 제약 조건**: 특정 열의 값이 NULL이 될 수 없음을 보장한다.
+- **CHECK 제약 조건**: 특정 열의 값이 주어진 조건을 만족해야 함을 보장한다.
+- **기본키 제약 조건(Primary Key Constraint)**: 테이블의 기본키를 정의한다.
+- **외래키 제약 조건(Foreign Key Constraint)**: 다른 테이블의 기본키를 참조하는 외래키를 정의한다.
+
+
+
+##### 예시
+
+```sql
+-- 학생 테이블
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    BirthDate DATE,
+    Gender CHAR(1),
+    MajorID INT,
+    FOREIGN KEY (MajorID) REFERENCES Majors(MajorID)
+);
+
+-- 전공 테이블
+CREATE TABLE Majors (
+    MajorID INT PRIMARY KEY,
+    MajorName VARCHAR(100) NOT NULL
+);
+
+-- 강의 테이블
+CREATE TABLE Courses (
+    CourseID INT PRIMARY KEY,
+    CourseName VARCHAR(100) NOT NULL,
+    Credits INT NOT NULL
+);
+
+-- 수강 테이블
+CREATE TABLE Enrollments (
+    EnrollmentID INT PRIMARY KEY,
+    StudentID INT,
+    CourseID INT,
+    EnrollmentDate DATE,
+    FOREIGN KEY (StudentID) REFERENCES Students(StudentID),
+    FOREIGN KEY (CourseID) REFERENCES Courses(CourseID)
+);
+
+-- 인덱스 예시
+CREATE INDEX idx_students_lastname ON Students (LastName);
+
+```
+
+- 학생, 전공, 강의, 수강 테이블을 정의하고, 각 테이블 간의 관계를 외래키로 설정
+
+- 학생의 성을 기준으로 검색 성능을 높이기 위해 인덱스를 생성
