@@ -130,8 +130,6 @@
 - **기본키 제약 조건(Primary Key Constraint)**: 테이블의 기본키를 정의한다.
 - **외래키 제약 조건(Foreign Key Constraint)**: 다른 테이블의 기본키를 참조하는 외래키를 정의한다.
 
-
-
 ##### 예시
 
 ```sql
@@ -171,9 +169,21 @@ CREATE TABLE Enrollments (
 
 -- 인덱스 예시
 CREATE INDEX idx_students_lastname ON Students (LastName);
-
 ```
 
 - 학생, 전공, 강의, 수강 테이블을 정의하고, 각 테이블 간의 관계를 외래키로 설정
 
 - 학생의 성을 기준으로 검색 성능을 높이기 위해 인덱스를 생성
+
+
+
+
+
+### 데이터베이스 관리 시스템(DBMS)
+
+DBMS는 데이터를 정의하고, 저장하며, 관리하고, 검색하는 소프트웨어 시스템이다. 대표적인 DBMS에는 MySQL, PostgreSQL, Oracle, SQL Server 등이 있다. DBMS는 다음과 같은 기능을 제공한다.
+
+- **데이터 정의(DDL: Data Definition Language)**: 데이터베이스의 구조를 정의하는 명령어. 예를 들어, `CREATE`, `ALTER`, `DROP` 등이 있다.
+- **데이터 조작(DML: Data Manipulation Language)**: 데이터베이스의 데이터를 조작하는 명령어. 예를 들어, `SELECT`, `INSERT`, `UPDATE`, `DELETE` 등이 있다.
+- **데이터 제어(DCL: Data Control Language)**: 데이터베이스의 접근을 제어하는 명령어. 예를 들어, `GRANT`, `REVOKE` 등이 있다.
+- **트랜잭션 제어(TCL: Transaction Control Language)**: 트랜잭션을 관리하는 명령어. 예를 들어, `COMMIT`, `ROLLBACK` 등이 있다.
