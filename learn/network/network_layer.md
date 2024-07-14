@@ -17,7 +17,7 @@
 - IP(Internet Protocol) 주소를 사용하여 라우팅한다.
 - 패킷 포워딩, 경로 설정, 네트워크 혼잡 제어를 담당한다.
 - 라우터와 같은 네트워크 장치가 이 계층에서 작동한다.
-4. **전송 계층 (Transport Layer)**
+4. [**전송 계층 (Transport Layer)**](transport_layer.md)
 - 종단 간 데이터 전송의 신뢰성을 보장한다.
 - TCP(Transmission Control Protocol)와 UDP(User Datagram Protocol) 프로토콜을 사용한다.
 - 데이터 세그먼트의 흐름 제어, 오류 수정, 재전송 기능을 수행한다.
@@ -38,7 +38,6 @@
 - 웹 브라우징, 파일 전송, 이메일 전송 등 다양한 네트워크 서비스를 제공한다.
 - 사용자 인터페이스와 직접 상호작용하며, 네트워크 요청을 처리한다.
 
-## 
 
 ## TCP/IP 4계층
 
@@ -53,7 +52,7 @@ TCP/IP 모델은 인터넷을 통해 데이터가 어떻게 전송되는지 설�
 - 데이터 패킷의 주소 지정과 라우팅을 담당한다.
 - IP(Internet Protocol)를 사용하여 데이터 패킷을 목적지까지 전달한다.
 - 주요 프로토콜로는 IP, ICMP(Internet Control Message Protocol), ARP(Address Resolution Protocol)가 있다.
-3. **전송 계층 (Transport Layer)**
+3. [**전송 계층 (Transport Layer)**](./transport_layer.md)
 - OSI 모델의 전송 계층에 해당한다.
 - 데이터 전송의 신뢰성을 보장하고, 데이터 전송을 관리한다.
 - TCP와 UDP 프로토콜을 사용하여 데이터 전송을 제어한다.
