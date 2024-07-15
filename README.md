@@ -4,6 +4,7 @@
 ## [Typescript](./learn/Typescript)
 - [기본적인 사용법](./learn/Typescript/basic.md)
 ## [GitHub](./learn/GitHub)
+- [GitHub Personal Access Tokens 정리](./learn/GitHub/pats.md)
 - [github 트러블슈팅](./learn/GitHub/troubleshooting.md)
 - [git 기초](./learn/GitHub/github_basic.md)
 - [GitHub Actions 소개](./learn/GitHub/github_Actions.md)
