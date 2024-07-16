@@ -10,6 +10,7 @@
 - [GitHub Actions 소개](./learn/GitHub/github_Actions.md)
 ## [Linux](./learn/Linux)
 - [기본 명령어](./learn/Linux/basic_commands.md)
+- [파일 권한( 도대체 764 는 뭘까)](./learn/Linux/authority.md)
 - [네트워크 관리](./learn/Linux/network.md)
 - [wsl2(우분투)에서 node.js 로컬 환경 구축](./learn/Linux/wsl2_with_node.md)
 ## [면접준비](./learn/면접준비)
