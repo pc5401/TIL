@@ -3,6 +3,8 @@
 
 ## [Typescript](./learn/Typescript)
 - [기본적인 사용법](./learn/Typescript/basic.md)
+## [cs](./learn/cs)
+- [TIL: Tokenizer를 활용한 문자열 분석](./learn/cs/tokenizer.md)
 ## [GitHub](./learn/GitHub)
 - [GitHub Personal Access Tokens 정리](./learn/GitHub/pats.md)
 - [github 트러블슈팅](./learn/GitHub/troubleshooting.md)
