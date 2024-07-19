@@ -145,3 +145,37 @@
 - CommonJS는 주로 Node.js 환경에서 사용되며, 기존의 많은 서버 사이드 코드베이스에서 볼 수 있다.
 - ES6 모듈은 브라우저와 서버 모두에서 사용할 수 있으며, 최신 자바스크립트 프로젝트에서 권장된다.
 - 번들러를 사용할 때는 ES6 모듈을 사용하는 것이 더 나은 선택이다. 이는 코드 최적화와 성능 측면에서 장점을 제공하기 때문이다.
+
+## 추가 확장자 .mjs 사용하기
+> ES6 모듈 시스템은 mjs 확장자를 사용하여 package.json 파일의 설정 없이도 모듈화를 지원할 수 있다.
+
+### 1️⃣모듈 내보내기 (Export)
+- `.mjs` 확장자를 사용하여 모듈 파일을 작성 예를 들어, math.mjs 파일에서 함수를 내보낸다.
+
+```javascript
+// math.mjs
+export const add = (a, b) => a + b;
+export const subtract = (a, b) => a - b;
+```
+
+### 2️⃣모듈 가져오기 (Import)
+- 다른 파일에서 .mjs 확장자를 사용하여 모듈을 가져온다. 예를 들어, app.mjs 파일에서 math.mjs 파일을 가져온다.
+
+```javascript
+// app.mjs
+import { add, subtract } from './math.mjs';
+console.log(add(2, 3)); // 5
+console.log(subtract(5, 3)); // 2
+```
+### 3️⃣Node.js에서 .mjs 파일 실행하기
+- Node.js에서 .mjs 파일을 실행할 때는 별도의 설정이 필요 없다. 단순히 파일을 실행한다.
+
+```bash
+node app.mjs
+```
+
+### 확장자 .mjs의 장점
+1. 설정 간소화:
+   - package.json 파일에 "type": "module" 설정을 추가할 필요 없이, .mjs 확장자를 사용하여 ES6 모듈을 사용할 수 있다.
+2. 명확한 구분:
+   - .mjs 확장자를 사용하면, 해당 파일이 ES6 모듈임을 명확하게 구분할 수 있다. 이는 프로젝트 관리와 협업 시에 코드의 모듈 시스템을 쉽게 파악할 수 있게 해준다.
