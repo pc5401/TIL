@@ -66,3 +66,4 @@
 - [js 의 조합, 순열, 중복조합 등등](./learn/Javascript/comb_permu.md)
 - [js 에서 정규표현](./learn/Javascript/regexp_js.md)
 - [자바스크립트의 기본적인 사용](./learn/Javascript/basic.md)
+- [Node.js에서 프로세스 메모리 관리 방식](./learn/Javascript/memory_of_js.md)
