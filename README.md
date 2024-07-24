@@ -4,6 +4,7 @@
 ## [Typescript](./learn/Typescript)
 - [기본적인 사용법](./learn/Typescript/basic.md)
 ## [cs](./learn/cs)
+- [절대 경로 vs 상대 경로](./learn/cs/path.md)
 - [TIL: Tokenizer를 활용한 문자열 분석](./learn/cs/tokenizer.md)
 ## [GitHub](./learn/GitHub)
 - [GitHub Personal Access Tokens 정리](./learn/GitHub/pats.md)
