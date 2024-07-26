@@ -24,6 +24,76 @@ print(pure_function(2, 3))  # 5
 print(pure_function(2, 3))  # 5
 ```
 
+### 순수 함수가 아닌 예시(비순수 함수)
+> 그럼 무엇이 함수를 순수하지 못하게 만드는가?
+> 
+```python
+counter = 0
+
+def impure_function_increment():
+    global counter
+    counter += 1
+    return counter
+
+print(impure_function_increment())  # 1
+print(impure_function_increment())  # 2 (전역 변수 변경)
+```
+- 전역 변수를 변경하는 함수
+
+```python
+def impure_function_append(lst, value):
+    lst.append(value)
+    return lst
+
+sample_list = [1, 2, 3]
+print(impure_function_append(sample_list, 4))  # [1, 2, 3, 4]
+print(impure_function_append(sample_list, 5))  # [1, 2, 3, 4, 5] (원본 리스트 수정)
+```
+- 리스트를 인플레이스(in-place)로 수정하는 함수
+
+```python
+def impure_function_write_to_file(filename, data):
+    with open(filename, 'w') as file:
+        file.write(data)
+    return True
+
+print(impure_function_write_to_file("sample.txt", "Hello World!"))  # True
+print(impure_function_write_to_file("sample.txt", "Hello Again!"))  # True (파일 내용 변경)
+```
+- 파일에 데이터를 쓰는 함수
+
+```python
+import random
+
+def impure_function_random_addition(x):
+    return x + random.randint(1, 10)
+
+print(impure_function_random_addition(5))  # 5 + 랜덤 값
+print(impure_function_random_addition(5))  # 5 + 랜덤 값 (매번 다른 결과)
+
+```
+- 내부적으로 난수를 사용하는 함수
+- 동일한 입력에 대해 항상 동일한 출력을 반환X
+
+```python
+import time
+
+def impure_function_time_based_greeting(name):
+    current_hour = time.localtime().tm_hour
+    if current_hour < 12:
+        return f"Good morning, {name}!"
+    elif current_hour < 18:
+        return f"Good afternoon, {name}!"
+    else:
+        return f"Good evening, {name}!"
+
+print(impure_function_time_based_greeting("Alice"))  # 시간에 따라 다른 인사말
+print(impure_function_time_based_greeting("Alice"))  # 시간에 따라 다른 인사말
+```
+- 내부적으로 시간을 사용하는 함수
+- 동일한 입력에 대해 항상 동일한 출력을 반환X
+
+
 ## 2. 불변성(Immutability)
 불변성은 데이터가 변경되지 않음을 의미한다. 함수형 프로그래밍에서는 변수의 상태를 변경하지 않고, 새로운 값을 생성하여 반환한다.
 ``` python
