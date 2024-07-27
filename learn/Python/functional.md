@@ -108,6 +108,65 @@ print(original_list)  # [1, 2, 3]
 print(new_list)       # [1, 2, 3, 4]
 ```
 
+### 불변성을 위반하는 예시
+
+```python
+original_list = [1, 2, 3]
+
+def impure_add_element(lst, element):
+    lst.append(element)
+    return lst
+
+new_list = impure_add_element(original_list, 4)
+print(original_list)  # [1, 2, 3, 4]
+print(new_list)       # [1, 2, 3, 4] (원본 리스트 수정)
+```
+- 리스트 요소의 인플레이스 추가
+
+```python
+original_dict = {'a': 1, 'b': 2}
+
+def impure_add_entry(d, key, value):
+    d[key] = value
+    return d
+
+new_dict = impure_add_entry(original_dict, 'c', 3)
+print(original_dict)  # {'a': 1, 'b': 2, 'c': 3}
+print(new_dict)       # {'a': 1, 'b': 2, 'c': 3} (원본 딕셔너리 수정)
+```
+- 딕셔너리의 인플레이스 수정
+
+#### 불변성을 유지하는 이점
+1. 예측 가능성: 동일한 입력에 대해 항상 동일한 출력을 반환하므로, 함수의 동작을 예측할 수 있다.
+2. 디버깅 용이성: 데이터의 상태가 변경되지 않으므로, 특정 시점의 데이터 상태를 쉽게 추적할 수 있다.
+3. 병렬 처리: 불변 데이터는 동시에 여러 스레드에서 접근하더라도 안전하므로, 병렬 처리를 용이하게 한다.
+
+### 불변성을 유지하는 방법
+
+```python
+def add_entry(d, key, value):
+    new_dict = d.copy()
+    new_dict[key] = value
+    return new_dict
+```
+- 데이터 복사: 기존 데이터를 변경하지 않고, 새로운 데이터 구조를 생성하여 반환한다.
+
+```python
+코드 복사
+original_set = frozenset([1, 2, 3])
+
+def add_element(s, element):
+    return s.union([element])
+
+new_set = add_element(original_set, 4)
+print(original_set)  # frozenset({1, 2, 3})
+print(new_set)       # frozenset({1, 2, 3, 4})
+```
+- 함수형 자료 구조 사용: 함수형 프로그래밍 언어에서 제공하는 불변 자료 구조를 사용한다. 예를 들어, Python의 `frozenset`은 불변 집합을 제공한다.
+
+> 불변성을 유지함으로써 코드의 안전성과 예측 가능성을 높일 수 있다.
+
+
 ## 3. 고차 함수(Higher-Order Function)
 고차 함수는 함수를 인수로 받거나, 함수를 반환하는 함수이다. map, filter, reduce 등이 예이다.
 ``` python
