@@ -168,7 +168,7 @@ print(new_set)       # frozenset({1, 2, 3, 4})
 
 
 ## 3. 고차 함수(Higher-Order Function)
-고차 함수는 함수를 인수로 받거나, 함수를 반환하는 함수이다. map, filter, reduce 등이 예이다.
+고차 함수는 함수를 인수로 받거나, 함수를 반환하는 함수이다. 추상화를 높이는 데 유용하다. map, filter, reduce 등이 예이다.
 ``` python
 # map 예제
 numbers = [1, 2, 3, 4]
@@ -184,6 +184,11 @@ from functools import reduce
 sum_of_numbers = reduce(lambda x, y: x + y, numbers)
 print(sum_of_numbers)  # 10
 ```
+
+### 고차 함수의 이점
+- 코드 재사용성 증가: 같은 기능을 다양한 상황에서 재사용할 수 있다.
+- 추상화: 코드의 추상화 수준을 높여 복잡한 로직을 간단하게 표현할 수 있다.
+- 가독성 향상: 코드의 가독성을 높여 이해하기 쉬운 코드를 작성할 수 있다.
 
 ## 4. 재귀(Recursion)
 함수형 프로그래밍에서는 루프 대신 재귀를 사용하는 경우가 많다.
