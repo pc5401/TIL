@@ -1,10 +1,13 @@
 # 함수형 기본 개념 정리
+
 - 함수형 프로그래밍(functional programming)은 프로그램을 함수의 계산으로 구성하는 프로그래밍 패러다임이다. 
 - 함수형 프로그래밍의 핵심 개념은 순수 함수(pure function), 불변성(immutability), 고차 함수(higher-order function), 재귀(recursion) 등이다. Python은 객체 지향 프로그래밍 언어이지만, 함수형 프로그래밍의 개념을 지원한다.
 
 ## 1. 순수 함수(Pure Function)
+
 순수 함수는 동일한 입력에 대해 항상 동일한 출력을 반환하고, 함수 외부의 상태를 변경하지 않는 함수이다.
-``` python
+
+```python
 def pure_function(x, y):
     return x + y
 
@@ -14,8 +17,10 @@ print(pure_function(2, 3))  # 5
 ```
 
 ## 1. 순수 함수(Pure Function)
+
 순수 함수는 동일한 입력에 대해 항상 동일한 출력을 반환하고, 함수 외부의 상태를 변경하지 않는 함수이다.
-``` python
+
+```python
 def pure_function(x, y):
     return x + y
 
@@ -25,8 +30,9 @@ print(pure_function(2, 3))  # 5
 ```
 
 ### 순수 함수가 아닌 예시(비순수 함수)
+
 > 그럼 무엇이 함수를 순수하지 못하게 만드는가?
-> 
+
 ```python
 counter = 0
 
@@ -38,6 +44,7 @@ def impure_function_increment():
 print(impure_function_increment())  # 1
 print(impure_function_increment())  # 2 (전역 변수 변경)
 ```
+
 - 전역 변수를 변경하는 함수
 
 ```python
@@ -49,6 +56,7 @@ sample_list = [1, 2, 3]
 print(impure_function_append(sample_list, 4))  # [1, 2, 3, 4]
 print(impure_function_append(sample_list, 5))  # [1, 2, 3, 4, 5] (원본 리스트 수정)
 ```
+
 - 리스트를 인플레이스(in-place)로 수정하는 함수
 
 ```python
@@ -60,6 +68,7 @@ def impure_function_write_to_file(filename, data):
 print(impure_function_write_to_file("sample.txt", "Hello World!"))  # True
 print(impure_function_write_to_file("sample.txt", "Hello Again!"))  # True (파일 내용 변경)
 ```
+
 - 파일에 데이터를 쓰는 함수
 
 ```python
@@ -70,8 +79,8 @@ def impure_function_random_addition(x):
 
 print(impure_function_random_addition(5))  # 5 + 랜덤 값
 print(impure_function_random_addition(5))  # 5 + 랜덤 값 (매번 다른 결과)
-
 ```
+
 - 내부적으로 난수를 사용하는 함수
 - 동일한 입력에 대해 항상 동일한 출력을 반환X
 
@@ -90,13 +99,15 @@ def impure_function_time_based_greeting(name):
 print(impure_function_time_based_greeting("Alice"))  # 시간에 따라 다른 인사말
 print(impure_function_time_based_greeting("Alice"))  # 시간에 따라 다른 인사말
 ```
+
 - 내부적으로 시간을 사용하는 함수
 - 동일한 입력에 대해 항상 동일한 출력을 반환X
 
-
 ## 2. 불변성(Immutability)
+
 불변성은 데이터가 변경되지 않음을 의미한다. 함수형 프로그래밍에서는 변수의 상태를 변경하지 않고, 새로운 값을 생성하여 반환한다.
-``` python
+
+```python
 # 예: 불변 리스트를 생성하여 기존 리스트를 변경하지 않고 새 리스트를 반환
 original_list = [1, 2, 3]
 
@@ -121,6 +132,7 @@ new_list = impure_add_element(original_list, 4)
 print(original_list)  # [1, 2, 3, 4]
 print(new_list)       # [1, 2, 3, 4] (원본 리스트 수정)
 ```
+
 - 리스트 요소의 인플레이스 추가
 
 ```python
@@ -134,9 +146,11 @@ new_dict = impure_add_entry(original_dict, 'c', 3)
 print(original_dict)  # {'a': 1, 'b': 2, 'c': 3}
 print(new_dict)       # {'a': 1, 'b': 2, 'c': 3} (원본 딕셔너리 수정)
 ```
+
 - 딕셔너리의 인플레이스 수정
 
 #### 불변성을 유지하는 이점
+
 1. 예측 가능성: 동일한 입력에 대해 항상 동일한 출력을 반환하므로, 함수의 동작을 예측할 수 있다.
 2. 디버깅 용이성: 데이터의 상태가 변경되지 않으므로, 특정 시점의 데이터 상태를 쉽게 추적할 수 있다.
 3. 병렬 처리: 불변 데이터는 동시에 여러 스레드에서 접근하더라도 안전하므로, 병렬 처리를 용이하게 한다.
@@ -149,6 +163,7 @@ def add_entry(d, key, value):
     new_dict[key] = value
     return new_dict
 ```
+
 - 데이터 복사: 기존 데이터를 변경하지 않고, 새로운 데이터 구조를 생성하여 반환한다.
 
 ```python
@@ -162,14 +177,16 @@ new_set = add_element(original_set, 4)
 print(original_set)  # frozenset({1, 2, 3})
 print(new_set)       # frozenset({1, 2, 3, 4})
 ```
+
 - 함수형 자료 구조 사용: 함수형 프로그래밍 언어에서 제공하는 불변 자료 구조를 사용한다. 예를 들어, Python의 `frozenset`은 불변 집합을 제공한다.
 
 > 불변성을 유지함으로써 코드의 안전성과 예측 가능성을 높일 수 있다.
 
-
 ## 3. 고차 함수(Higher-Order Function)
+
 고차 함수는 함수를 인수로 받거나, 함수를 반환하는 함수이다. 추상화를 높이는 데 유용하다. map, filter, reduce 등이 예이다.
-``` python
+
+```python
 # map 예제
 numbers = [1, 2, 3, 4]
 squared = map(lambda x: x**2, numbers)
@@ -186,13 +203,16 @@ print(sum_of_numbers)  # 10
 ```
 
 ### 고차 함수의 이점
+
 - 코드 재사용성 증가: 같은 기능을 다양한 상황에서 재사용할 수 있다.
 - 추상화: 코드의 추상화 수준을 높여 복잡한 로직을 간단하게 표현할 수 있다.
 - 가독성 향상: 코드의 가독성을 높여 이해하기 쉬운 코드를 작성할 수 있다.
 
 ## 4. 재귀(Recursion)
+
 함수형 프로그래밍에서는 루프 대신 재귀를 사용하는 경우가 많다.
-``` python
+
+```python
 def factorial(n):
     if n == 0:
         return 1
@@ -203,8 +223,10 @@ print(factorial(5))  # 120
 ```
 
 ## 4. 재귀(Recursion)
+
 함수형 프로그래밍에서는 루프 대신 재귀를 사용하는 경우가 많다.
-``` python
+
+```python
 def factorial(n):
     if n == 0:
         return 1
@@ -215,28 +237,108 @@ print(factorial(5))  # 120
 ```
 
 ## 5. 익명 함수(Anonymous Function)
+
 익명 함수는 이름이 없는 함수로, lambda 키워드를 사용하여 정의한다.
-``` python
+
+```python
 # 익명 함수 사용 예제
 add = lambda x, y: x + y
 print(add(2, 3))  # 5
 ```
 
 ## 6. 클로저(Closure)
-클로저는 함수가 자신의 범위 밖에 있는 변수를 기억하고, 접근할 수 있게 하는 기능이다.
-``` python
-def factorial(n):
-    if n == 0:
-        return 1
-    else:
-        return n * factorial(n - 1)
 
-print(factorial(5))  # 120
+클로저는 함수가 자신의 범위 밖에 있는 변수를 기억하고, 접근할 수 있게 하는 기능이다. 클로저는 내부 함수가 외부 함수의 변수에 접근할 수 있도록 함으로써 상태를 유지하거나, 특정 값을 저장해 둘 때 유용하다.
+
+```python
+def outer_function(msg):
+    message = msg
+
+    def inner_function():
+        print(message)
+
+    return inner_function
+
+closure = outer_function("Hello, World!")
+closure()  # Hello, World!
+
 ```
 
+- `outer_function`은 `message`라는 변수를 가지고 있으며, `inner_function`을 반환한다.
+- `closure`는 `inner_function`을 참조하고 있으며, 이 함수는 `outer_function`의 `message` 변수에 접근할 수 있다.
+
+### 클로저를 사용하는 이유
+
+1. **데이터 은닉**: 클로저를 사용하면 변수를 함수 내부에 캡슐화하여 외부에서 직접 접근하지 못하도록 할 수 있다.
+2. **상태 유지**: 클로저를 사용하여 함수 호출 간에 상태를 유지할 수 있다.
+3. **함수형 프로그래밍**: 클로저는 함수형 프로그래밍의 중요한 구성 요소로, 고차 함수나 커링과 함께 사용된다.
+
+### 클로저의 장점
+
+1. **데이터 보호**: 클로저를 사용하면 외부에서 접근할 수 없는 프라이빗 변수를 만들 수 있다.
+2. **코드 간결화**: 클로저를 사용하면 관련된 데이터를 함께 묶어 코드의 가독성을 높일 수 있다.
+3. **유연성**: 클로저를 사용하면 함수의 동작을 쉽게 변경할 수 있으며, 동적 함수 생성을 통해 코드의 유연성을 높일 수 있다. 
+
+### 클로저의 실용 예시
+
+```python
+def make_counter():
+    count = 0
+
+    def counter():
+        nonlocal count # nolocal 키워드 아래 참
+        count += 1
+        return count
+
+    return counter
+
+counter1 = make_counter()
+print(counter1())  # 1
+print(counter1())  # 2
+
+counter2 = make_counter()
+print(counter2())  # 1
+
+
+```
+
+- `make_counter`는 `count` 변수를 가지고 있으며, `counter` 함수를 반환한다.
+- `counter` 함수는 `nonlocal` 키워드를 사용하여 외부 함수의 `count` 변수에 접근하고, 이를 증가시킨다.
+- `counter1`과 `counter2`는 서로 독립된 클로저로, 각기 다른 `count` 상태를 유지한다.
+
+> 클로저는 함수형 프로그래밍에서 중요한 역할을 하며, 데이터 은닉과 상태 유지 등의 다양한 이점을 제공한다.
+
+### 참고 :  nolocal
+
+`nonlocal` 키워드는 파이썬에서 중첩된 함수(함수 내부의 함수)에서 사용되며, 외부(상위) 함수의 변수에 접근하고 수정할 수 있게 해준다.
+
+- 변수 수정(변경)이 아닌 경우는 클로저에서 굳이 필요하지 않는다.
+
+#### `nonlocal` 없이 상태를 변경하려는 경우
+
+```python
+def outer_function():
+    x = 0
+
+    def inner_function():
+        x += 1  # 에러 발생: UnboundLocalError
+        return x
+
+    return inner_function
+
+closure = outer_function()
+print(closure())  # UnboundLocalError 발생
+sure())  # 3
+
+```
+
+- `nonlocal` 키워드를 사용하지 않으면, `inner_function`은 `x` 변수를 로컬 변수로 간주하고, 참조하기 전에 변경하려고 시도하기 때문에 `UnboundLocalError`가 발생한다.
+
 ## 7. 함수 합성(Function Composition)
+
 함수 합성은 여러 함수를 결합하여 새로운 함수를 만드는 것이다.
-``` python
+
+```python
 def compose(f, g):
     return lambda x: f(g(x))
 
@@ -248,8 +350,8 @@ def increment(x):
 
 new_function = compose(double, increment)
 print(new_function(3))  # 8 (increment(3) -> 4, double(4) -> 8)
-
 ```
+
 ## 함수형 프로그래밍 방식의 장점과 단점
 
 ### 함수형 프로그래밍(Functional Programming)
@@ -295,23 +397,23 @@ print(new_function(3))  # 8 (increment(3) -> 4, double(4) -> 8)
 ### 차이점
 
 1. **상태 관리**
-    - **OOP**: 객체의 상태를 변경하면서 동작하는 방식이다. 상태와 행동이 객체 내부에 캡슐화되어 있다.
-    - **FP**: 불변성을 유지하면서 상태를 관리한다. 상태를 변경하는 대신 새로운 상태를 생성하여 반환한다.
+   - **OOP**: 객체의 상태를 변경하면서 동작하는 방식이다. 상태와 행동이 객체 내부에 캡슐화되어 있다.
+   - **FP**: 불변성을 유지하면서 상태를 관리한다. 상태를 변경하는 대신 새로운 상태를 생성하여 반환한다.
 2. **부수 효과**
-    - **OOP**: 객체의 메서드가 객체의 상태를 변경할 수 있다. 이는 부수 효과를 발생시킬 수 있다.
-    - **FP**: 순수 함수는 부수 효과가 없으며, 동일한 입력에 대해 항상 동일한 출력을 반환한다.
+   - **OOP**: 객체의 메서드가 객체의 상태를 변경할 수 있다. 이는 부수 효과를 발생시킬 수 있다.
+   - **FP**: 순수 함수는 부수 효과가 없으며, 동일한 입력에 대해 항상 동일한 출력을 반환한다.
 3. **데이터와 함수의 관계**
-    - **OOP**: 데이터와 데이터를 조작하는 메서드를 하나의 객체로 묶는다. 데이터는 객체의 속성으로, 행동은 객체의 메서드로 구현된다.
-    - **FP**: 데이터와 함수는 분리되어 있다. 함수는 입력 데이터를 받아서 처리한 후 새로운 데이터를 반환한다.
+   - **OOP**: 데이터와 데이터를 조작하는 메서드를 하나의 객체로 묶는다. 데이터는 객체의 속성으로, 행동은 객체의 메서드로 구현된다.
+   - **FP**: 데이터와 함수는 분리되어 있다. 함수는 입력 데이터를 받아서 처리한 후 새로운 데이터를 반환한다.
 4. **코드 구조**
-    - **OOP**: 클래스와 객체를 중심으로 코드가 구조화된다. 상속, 다형성, 인터페이스를 통해 코드 구조를 구성한다.
-    - **FP**: 함수를 중심으로 코드가 구조화된다. 고차 함수, 함수 조합, 커링을 통해 코드 구조를 구성한다.
+   - **OOP**: 클래스와 객체를 중심으로 코드가 구조화된다. 상속, 다형성, 인터페이스를 통해 코드 구조를 구성한다.
+   - **FP**: 함수를 중심으로 코드가 구조화된다. 고차 함수, 함수 조합, 커링을 통해 코드 구조를 구성한다.
 5. **병렬 처리**
-    - **OOP**: 상태가 변경되므로 병렬 처리가 복잡할 수 있다. 동기화와 잠금 메커니즘을 사용해야 할 때가 많다.
-    - **FP**: 상태가 불변이므로 병렬 처리가 상대적으로 용이하다. 부수 효과가 없으므로 동기화가 필요 없다.
+   - **OOP**: 상태가 변경되므로 병렬 처리가 복잡할 수 있다. 동기화와 잠금 메커니즘을 사용해야 할 때가 많다.
+   - **FP**: 상태가 불변이므로 병렬 처리가 상대적으로 용이하다. 부수 효과가 없으므로 동기화가 필요 없다.
 6. **주요 개념**
-    - **OOP**: 클래스, 객체, 상속, 다형성, 캡슐화, 추상화 등.
-    - **FP**: 순수 함수, 고차 함수, 불변성, 함수 조합, 커링 등.
+   - **OOP**: 클래스, 객체, 상속, 다형성, 캡슐화, 추상화 등.
+   - **FP**: 순수 함수, 고차 함수, 불변성, 함수 조합, 커링 등.
 
 ## 결론
 
