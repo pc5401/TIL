@@ -66,6 +66,7 @@
 - [js 에서 정규표현](./learn/Javascript/regexp_js.md)
 - [Node.js에서 프로세스 메모리 관리 방식](./learn/Javascript/memory_of_js.md)
 - [js 의 조합, 순열, 중복조합 등등](./learn/Javascript/comb_permu.md)
+- [함수 선언과 화살표 함수](./learn/Javascript/function_and_arrow_function.md)
 - [JSDoc 기본](./learn/Javascript/jsdoc.md)
 - [js 자료구조](./learn/Javascript/data_structure_js.md)
 - [CJW vs ESM](./learn/Javascript/CJWvsESM.md)
