@@ -64,6 +64,3 @@ if (word === word.toUpperCase()){ // 대문자라면,
 ```
 
 ---
-
-
-ㄸ
