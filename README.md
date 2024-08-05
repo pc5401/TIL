@@ -29,6 +29,7 @@
 - [**추상 팩토리 패턴**(Abstract Factory Pattern)](./learn/디자인_패턴/abstract_factory_pattern.md)
 ## [Linux](./learn/Linux)
 - [운영체제 프로세스 메모리 할당과 동작 방식 (리눅스 기준)](./learn/Linux/process_check.md)
+- [Linux 파일 시스템 정리](./learn/Linux/file_system.md)
 - [wsl2(우분투)에서 node.js 로컬 환경 구축](./learn/Linux/wsl2_with_node.md)
 - [파일 권한( 도대체 764 는 뭘까)](./learn/Linux/authority.md)
 - [기본 명령어](./learn/Linux/basic_commands.md)
