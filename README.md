@@ -66,6 +66,7 @@
 - [you don't konw js](./learn/Javascript/you_don't_know.md)
 - [자바스크립트의 기본적인 사용](./learn/Javascript/basic.md)
 - [자바스크립트 디버깅 기억소](./learn/Javascript/js_troubleshooting.md)
+- [net_module.md](./learn/Javascript/net_module.md)
 - [js 에서 정규표현](./learn/Javascript/regexp_js.md)
 - [Node.js에서 프로세스 메모리 관리 방식](./learn/Javascript/memory_of_js.md)
 - [js 의 조합, 순열, 중복조합 등등](./learn/Javascript/comb_permu.md)
