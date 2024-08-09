@@ -67,6 +67,8 @@
 - [Graphviz](./learn/Data_formats/graphviz.md)
 - [JSON 에 대해서](./learn/Data_formats/JSON.md)
 - [YAML 에 대해서](./learn/Data_formats/YAML.md)
+## [CI_CD](./learn/CI_CD)
+- [CI_CD_Jenkins_Study.md](./learn/CI_CD/CI_CD_Jenkins_Study.md)
 ## [면접준비](./learn/면접준비)
 - [프론트 면접 내용](./learn/면접준비/frontend.md)
 - [CS 관련 질문](./learn/면접준비/CS.md)
