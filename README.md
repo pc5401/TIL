@@ -56,6 +56,7 @@
 - [CJW vs ESM](./learn/Javascript/CJWvsESM.md)
 - [JSDoc 기본](./learn/Javascript/jsdoc.md)
 - [js 자료구조](./learn/Javascript/data_structure_js.md)
+- [javascript_destructuring.md](./learn/Javascript/javascript_destructuring.md)
 - [js 알고리즘 노하우](./learn/Javascript/algo_js.md)
 - [자바스크립트 디버깅 기억소](./learn/Javascript/js_troubleshooting.md)
 - [net_module.md](./learn/Javascript/net_module.md)
