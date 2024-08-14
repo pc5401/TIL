@@ -24,6 +24,8 @@
 - [고급 SQL 기능 및 트랜잭션](./learn/DB/mysql_advanced.md)
 - [MySQL 조회 및 집계 함수](./learn/DB/mysql_queries.md)
 - [MySQL 권한 관리 및 백업/복구](./learn/DB/mysql_admin.md)
+## [data_structure](./learn/data_structure)
+- [배열](./learn/data_structure/array.md)
 ## [Linux](./learn/Linux)
 - [Linux 파일 시스템 정리](./learn/Linux/file_system.md)
 - [운영체제 프로세스 메모리 할당과 동작 방식 (리눅스 기준)](./learn/Linux/process_check.md)
