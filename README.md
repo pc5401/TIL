@@ -25,6 +25,7 @@
 - [MySQL 조회 및 집계 함수](./learn/DB/mysql_queries.md)
 - [MySQL 권한 관리 및 백업/복구](./learn/DB/mysql_admin.md)
 ## [data_structure](./learn/data_structure)
+- [stack_and_queue.md](./learn/data_structure/stack_and_queue.md)
 - [memory_and_pointer.md](./learn/data_structure/memory_and_pointer.md)
 - [연결리스트 (Linked List)](./learn/data_structure/linked_list.md)
 - [배열](./learn/data_structure/array.md)
