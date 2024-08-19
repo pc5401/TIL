@@ -27,6 +27,7 @@
 ## [data_structure](./learn/data_structure)
 - [stack_and_queue.md](./learn/data_structure/stack_and_queue.md)
 - [memory_and_pointer.md](./learn/data_structure/memory_and_pointer.md)
+- [tree_data_structure.md](./learn/data_structure/tree_data_structure.md)
 - [그래프 이론의 기초](./learn/data_structure/graph.md)
 - [연결리스트 (Linked List)](./learn/data_structure/linked_list.md)
 - [배열](./learn/data_structure/array.md)
