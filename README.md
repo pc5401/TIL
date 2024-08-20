@@ -13,6 +13,7 @@
 - [cpp로 알고리듬 풀면서 배움점](./learn/algorithm_record/cpp_record.md)
 - [알고리듬용 C++ STL 정리](./learn/algorithm_record/cpp_for_algo.md)
 ## [Web](./learn/Web)
+- [EJS와 Express 통합 사용법](./learn/Web/ejs.md)
 - [AssemblyScript_test.md](./learn/Web/AssemblyScript_test.md)
 ## [Typescript](./learn/Typescript)
 - [기본적인 사용법](./learn/Typescript/basic.md)
