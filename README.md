@@ -23,6 +23,7 @@
 - [TIL: Tokenizer를 활용한 문자열 분석](./learn/cs/tokenizer.md)
 - [절대 경로 vs 상대 경로](./learn/cs/path.md)
 ## [DB](./learn/DB)
+- [database 소개](./learn/DB/database_intro.md)
 - [mysql 학습](./learn/DB/mysql_basic.md)
 - [고급 SQL 기능 및 트랜잭션](./learn/DB/mysql_advanced.md)
 - [MySQL 조회 및 집계 함수](./learn/DB/mysql_queries.md)
