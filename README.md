@@ -14,6 +14,7 @@
 - [알고리듬용 C++ STL 정리](./learn/algorithm_record/cpp_for_algo.md)
 ## [Web](./learn/Web)
 - [REST API란?](./learn/Web/restapi.md)
+- [event_handling_summary.md](./learn/Web/event_handling_summary.md)
 - [EJS와 Express 통합 사용법](./learn/Web/ejs.md)
 - [AssemblyScript_test.md](./learn/Web/AssemblyScript_test.md)
 - [폰트를 활용한 웹 개발 가이드](./learn/Web/font_guide.md)
