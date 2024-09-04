@@ -17,6 +17,7 @@
 - [event_handling_summary.md](./learn/Web/event_handling_summary.md)
 - [EJS와 Express 통합 사용법](./learn/Web/ejs.md)
 - [AssemblyScript_test.md](./learn/Web/AssemblyScript_test.md)
+- [로그인 방법](./learn/Web/how_to_login.md)
 - [폰트를 활용한 웹 개발 가이드](./learn/Web/font_guide.md)
 ## [Typescript](./learn/Typescript)
 - [기본적인 사용법](./learn/Typescript/basic.md)
