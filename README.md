@@ -39,6 +39,7 @@
 - [SOLID: 객체지향 개발 5대 원리](./learn/디자인_패턴/solid.md)
 - [Singleton Pattern (싱글턴 패턴)](./learn/디자인_패턴/singleton.md)
 ## [DB](./learn/DB)
+- [Express와 MySQL](./learn/DB/mysql_with_express_basic.md)
 - [mysql 학습](./learn/DB/mysql_basic.md)
 - [고급 SQL 기능 및 트랜잭션](./learn/DB/mysql_advanced.md)
 - [MySQL 조회 및 집계 함수](./learn/DB/mysql_queries.md)
