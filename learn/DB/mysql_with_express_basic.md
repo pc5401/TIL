@@ -125,8 +125,6 @@ app.listen(3000, () => {
 });
 ```
 
-
-
 이 코드를 실행하면, `/` 경로로 GET 요청을 보내 MySQL의 `users` 테이블 데이터를 조회할 수 있다.
 
 #### 4. MySQL 쿼리 처리
@@ -178,8 +176,189 @@ Prepared Statements를 사용하면 SQL 인젝션을 걱정할 필요가 없으�
 
 ---
 
-### 마무리
+### 기본 설정 마무리
 
 이렇게 하면 Express와 MySQL을 기본적으로 연동하고, 데이터를 조회하고, 쿼리 실행 시 발생할 수 있다. 끝!
+
+
+
+## CRUD (Create, Read, Update, Delete) 구현
+
+CRUD는 데이터베이스와 상호작용하는 가장 기본적인 기능이다. Express와 MySQL을 연동하여 CRUD 작업을 처리하는 방법을 정리하자. RESTful API 설계에 맞춘 GET, POST, PUT, DELETE 요청을 처리하며, 각 라우트에서 MySQL 쿼리를 실행하는 것이 핵심이다.
+
+---
+
+#### 1. Express API 라우팅과 MySQL 쿼리
+
+Express에서 API를 라우팅하고 MySQL 쿼리를 실행하여 데이터를 처리하는 방법을 단계별로 정리해 보자.
+
+##### 1.1 GET, POST, PUT, DELETE 요청 처리
+
+- **GET**: 데이터를 조회.
+- **POST**: 데이터를 생성.
+- **PUT**: 데이터를 수정.
+- **DELETE**: 데이터를 삭제.
+
+각 요청은 각각의 HTTP 메서드를 사용하여 처리하고, 적절한 MySQL 쿼리를 실행하여 데이터를 조작한다.
+
+---
+
+#### 2. 각 라우트에서 MySQL 쿼리 실행
+
+##### 2.1 GET (데이터 조회)
+
+GET 요청은 데이터베이스에서 데이터를 읽는 데 사용된다. 예를 들어, 모든 사용자를 조회하는 API는 다음과 같이 작성할 수 있다.
+
+```javascript
+app.get('/users', (req, res) => {
+  const sql = 'SELECT * FROM users';
+  connection.query(sql, (err, results) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+    res.json(results);
+  });
+});
+```
+
+
+
+##### 2.2 POST (데이터 삽입)
+
+POST 요청은 데이터베이스에 새 데이터를 삽입하는 데 사용된다. 사용자의 이름과 이메일을 받아 새 사용자를 생성하는 예시:
+
+```javascript
+app.post('/users', (req, res) => {
+  const { name, email } = req.body;
+  const sql = 'INSERT INTO users (name, email) VALUES (?, ?)';
+  
+  // SQL 인젝션 방지 및 입력값 검증
+  connection.query(sql, [name, email], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+    res.status(201).json({ id: result.insertId, name, email });
+  });
+});
+```
+
+##### 2.3 PUT (데이터 수정)
+
+PUT 요청은 기존 데이터를 수정하는 데 사용된다. 예를 들어, 특정 사용자의 정보를 업데이트하는 예시는 다음과 같다:
+
+```javascript
+app.put('/users/:id', (req, res) => {
+  const { id } = req.params;
+  const { name, email } = req.body;
+  const sql = 'UPDATE users SET name = ?, email = ? WHERE id = ?';
+
+  connection.query(sql, [name, email, id], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json({ message: 'User updated successfully' });
+  });
+});
+
+```
+
+##### 2.4 DELETE (데이터 삭제)
+
+DELETE 요청은 데이터를 삭제하는 데 사용된다. 특정 사용자를 삭제하는 예시는 다음과 같다:
+
+```javascript
+app.delete('/users/:id', (req, res) => {
+  const { id } = req.params;
+  const sql = 'DELETE FROM users WHERE id = ?';
+
+  connection.query(sql, [id], (err, result) => {
+    if (err) {
+      return res.status(500).json({ error: 'Database error' });
+    }
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json({ message: 'User deleted successfully' });
+  });
+});
+```
+
+---
+
+#### 3. 입력값 검증 및 SQL 인젝션 방어
+
+모든 사용자 입력은 반드시 검증해야 하며, Prepared Statements를 사용하여 SQL 인젝션을 방지한다. 예를 들어, 입력값이 필수인지 확인하고, MySQL 쿼리에서 플레이스홀더(`?`)를 사용한다.
+
+##### 3.1 입력값 검증
+
+입력값이 존재하는지, 형식이 올바른지 확인하는 과정을 추가해야 한다. 예를 들어, `name`과 `email`이 비어 있거나 잘못된 형식이면 오류 메시지를 반환한다.
+
+```javascript
+if (!name || !email) {
+  return res.status(400).json({ error: 'Missing required fields' });
+}
+```
+
+##### 3.2 SQL 인젝션 방지
+
+Prepared Statements를 사용하여 SQL 인젝션 공격을 막을 수 있다. 쿼리 안에 사용자 입력값을 직접 넣지 않고, `?` 플레이스홀더를 사용해 안전하게 쿼리를 작성한다.
+
+```javascript
+const sql = 'INSERT INTO users (name, email) VALUES (?, ?)';
+connection.query(sql, [name, email], (err, result) => {
+  // ...
+});
+```
+
+---
+
+#### 4. SQL 기본 CRUD 쿼리 예제
+
+##### 4.1 SELECT (데이터 조회)
+
+```sql
+SELECT * FROM users;
+```
+
+##### 4.2 INSERT (데이터 삽입)
+
+```sql
+INSERT INTO users (name, email) 
+VALUES ('John Doe', 'john@example.com');
+```
+
+##### 4.3 UPDATE (데이터 수정)
+
+```sql
+UPDATE users 
+SET name = 'Jane Doe', email = 'jane@example.com' 
+WHERE id = 1;
+```
+
+##### 4.4 DELETE (데이터 삭제)
+
+```sql
+DELETE FROM users WHERE id = 1;
+```
+
+---
+
+#### 5. RESTful API 설계에 맞춘 Express와 MySQL CRUD 구현
+
+CRUD API는 RESTful 설계 원칙을 따른다. 각 HTTP 메서드에 맞춰 적절한 URL과 동작을 구현하는 것이 중요하다.
+
+- **GET** `/users`: 모든 사용자 조회.
+- **POST** `/users`: 새 사용자 추가.
+- **PUT** `/users/:id`: 특정 사용자 수정.
+- **DELETE** `/users/:id`: 특정 사용자 삭제.
+
+---
+
+### CRUD 구현 마무리
+
+이렇게 CRUD 작업을 Express와 MySQL을 통해 처리할 수 있다. 실무에서는 GET, POST, PUT, DELETE 요청을 적절하게 처리하고, 입력값 검증과 SQL 인젝션 방지를 염두에 둬야 한다.
 
 
