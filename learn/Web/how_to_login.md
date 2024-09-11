@@ -122,8 +122,7 @@ Set-Cookie: connect.sid=s%3AAbCdEfGh1234567890; Path=/; Expires=Sun, 25 Oct 2020
 npm install connect-redis redis
 ```
 
-```jsx
-javascript코드 복사
+```javascript
 const RedisStore = require('connect-redis')(session);
 const redis = require('redis');
 const redisClient = redis.createClient();
@@ -146,7 +145,7 @@ app.use(session({
 - **HTTPS 사용**: 세션 ID가 HTTP를 통해 암호화되지 않은 채로 전송되면 공격자가 이를 쉽게 가로챌 수 있으므로, 반드시 HTTPS를 사용해 통신을 암호화해야 한다.
 - **세션 고정 공격 방지**: 사용자가 로그인할 때마다 새로운 세션 ID를 발급해야 한다. 이를 통해 공격자가 기존 세션 ID를 알고 있어도 새로운 로그인 시 새로운 세션 ID가 부여되어 보안이 유지된다.
 
-```jsx
+```javascript
 req.session.regenerate((err) => {
   if (err) {
     return res.send('세션 재생성 실패');
@@ -159,7 +158,7 @@ req.session.regenerate((err) => {
 
 - **세션 타임아웃**: 세션이 너무 오래 유지되면 보안 위험이 증가할 수 있으므로, 적절한 만료 시간을 설정하는 것이 중요하다. 예를 들어, 사용자가 일정 시간 동안 활동하지 않으면 세션을 만료시키는 방식이다.
 
-```jsx
+```javascript
 app.use(session({
   secret: 'your_secret_key',
   resave: false,
@@ -233,7 +232,7 @@ Express.js에서 JWT 기반 인증을 구현하려면 `jsonwebtoken` 라이브�
 npm install jsonwebtoken
 ```
 
-```jsx
+```javascript
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const app = express();
@@ -306,3 +305,21 @@ JWT 기반 인증은 서버 상태를 유지하지 않고 분산 서버 환경�
 ### **결론**
 
 JWT 기반 인증은 서버에서 세션을 유지하지 않는 무상태 인증 방식으로, 분산 시스템에 유리하며 확장성이 뛰어나다. Express.js에서 간단하게 구현할 수 있으며, 보안과 성능을 적절히 고려해 사용할 수 있다.
+
+---
+
+## 참고 : **리프레시 토큰과 액세스 토큰**
+
+JWT 기반 인증에서는 **액세스 토큰**과 **리프레시 토큰**을 함께 사용하여 인증 상태를 유지한다. 액세스 토큰은 짧은 유효 기간을 가지며, 만료되면 클라이언트는 리프레시 토큰을 사용해 새로운 액세스 토큰을 발급받을 수 있다.
+
+### **리프레시 토큰을 사용하는 이유**
+
+1. **보안성 강화**: 액세스 토큰의 유효 기간을 짧게 설정함으로써, 토큰이 탈취되더라도 짧은 시간 내에 사용할 수 없도록 제한할 수 있다. 리프레시 토큰은 더 긴 유효 기간을 가지며, 서버는 이를 통해 새로운 액세스 토큰을 발급한다.
+2. **사용자 경험 개선**: 사용자가 다시 로그인하지 않고도 인증 상태를 유지할 수 있어, 사용자 경험이 개선된다.
+
+### **리프레시 토큰 사용 흐름**
+
+1. 사용자가 로그인하면 서버는 액세스 토큰과 리프레시 토큰을 발급한다.
+2. 클라이언트는 액세스 토큰을 사용해 서버에 요청을 보낸다.
+3. 액세스 토큰이 만료되면 클라이언트는 리프레시 토큰을 사용해 새로운 액세스 토큰을 요청한다.
+4. 서버는 리프레시 토큰을 검증한 후 새로운 액세스 토큰을 발급한다.
