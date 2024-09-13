@@ -72,6 +72,7 @@
 - [js 자료구조](./learn/Javascript/data_structure_js.md)
 - [How_to_read_interpret_function_parameters.md](./learn/Javascript/How_to_read_interpret_function_parameters.md)
 - [you don't konw js](./learn/Javascript/you_don't_know.md)
+- [`this`에 관련 문제 해결](./learn/Javascript/this_error_handling.md)
 - [Node.js에서 프로세스 메모리 관리 방식](./learn/Javascript/memory_of_js.md)
 - [자바스크립트 디버깅 기억소](./learn/Javascript/js_troubleshooting.md)
 - [js 알고리즘 노하우](./learn/Javascript/algo_js.md)
