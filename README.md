@@ -92,7 +92,7 @@
 - [REST API란?](./learn/Web/restapi.md)
 - [timestamp.md](./learn/Web/timestamp.md)
 - [EJS와 Express 통합 사용법](./learn/Web/ejs.md)
-- [로그인 방법](./learn/Web/how_to_login.md)
+- [로그인 방법에 대한 이야기](./learn/Web/how_to_login.md)
 - [폰트를 활용한 웹 개발 가이드](./learn/Web/font_guide.md)
 - [AssemblyScript_test.md](./learn/Web/AssemblyScript_test.md)
 ## [cs](./learn/cs)
