@@ -32,6 +32,7 @@
 - [CI_CD_Jenkins_Study.md](./learn/CI_CD/CI_CD_Jenkins_Study.md)
 ## [디자인_패턴](./learn/디자인_패턴)
 - [생성 패턴 (Creational Patterns)](./learn/디자인_패턴/creational_patterns.md)
+- [플라이웨이트 (Flyweight Patterns)](./learn/디자인_패턴/flyweight.md)
 - [프로토타입 패턴(Prototype Pattern)](./learn/디자인_패턴/prototype_pattern.md)
 - [빌더 패턴(Builder Pattern)](./learn/디자인_패턴/builder_pattern.md)
 - [팩토리 메서드 패턴 (Factory Method Pattern)](./learn/디자인_패턴/factory_method.md)
