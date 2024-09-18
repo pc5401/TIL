@@ -59,6 +59,7 @@
 - [GitHub Actions 소개](./learn/GitHub/github_Actions.md)
 - [github 트러블슈팅](./learn/GitHub/troubleshooting.md)
 ## [Python](./learn/Python)
+- [타입 어노테이션(type annotation)](./learn/Python/type_annotation.md)
 - [Python_Class_Syntax_TIL.md](./learn/Python/Python_Class_Syntax_TIL.md)
 - [알고리듬을 위한 파이썬 모듈들](./learn/Python/python_modul_for_algo.md)
 - [OOP_in_Python_TIL.md](./learn/Python/OOP_in_Python_TIL.md)
