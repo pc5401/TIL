@@ -20,6 +20,7 @@
 - [기본적인 사용법](./learn/Typescript/basic.md)
 - [Narrowing & Assertion](./learn/Typescript/narrowing_assertion.md)
 - [tsconfig.json 파일 생성](./learn/Typescript/about_tsconfig.md)
+- [TypeScript를 이용한 HTML 조작](./learn/Typescript/ts_with_html.md)
 ## [Data_formats](./learn/Data_formats)
 - [Graphviz](./learn/Data_formats/graphviz.md)
 - [YAML 에 대해서](./learn/Data_formats/YAML.md)
