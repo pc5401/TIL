@@ -18,6 +18,7 @@
 - [연결리스트 (Linked List)](./learn/data_structure/linked_list.md)
 ## [Typescript](./learn/Typescript)
 - [기본적인 사용법](./learn/Typescript/basic.md)
+- [Narrowing & Assertion](./learn/Typescript/narrowing_assertion.md)
 - [tsconfig.json 파일 생성](./learn/Typescript/about_tsconfig.md)
 ## [Data_formats](./learn/Data_formats)
 - [Graphviz](./learn/Data_formats/graphviz.md)
