@@ -17,6 +17,7 @@
 - [memory_and_pointer.md](./learn/data_structure/memory_and_pointer.md)
 - [연결리스트 (Linked List)](./learn/data_structure/linked_list.md)
 ## [Typescript](./learn/Typescript)
+- [타입스크립트의 타입 import, export 하기](./learn/Typescript/type_export_and_import.md)
 - [기본적인 사용법](./learn/Typescript/basic.md)
 - [Class 타입 지정](./learn/Typescript/ts_with_class.md)
 - [Narrowing & Assertion](./learn/Typescript/narrowing_assertion.md)
