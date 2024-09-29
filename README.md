@@ -23,6 +23,7 @@
 - [기본적인 사용법](./learn/Typescript/basic.md)
 - [Class 타입 지정](./learn/Typescript/ts_with_class.md)
 - [Narrowing & Assertion](./learn/Typescript/narrowing_assertion.md)
+- [타입을 파라미터로 입력하는 Generic](./learn/Typescript/ts_generic.md)
 - [tsconfig.json 파일 생성](./learn/Typescript/about_tsconfig.md)
 - [TypeScript를 이용한 HTML 조작](./learn/Typescript/ts_with_html.md)
 ## [Data_formats](./learn/Data_formats)
