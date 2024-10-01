@@ -22,6 +22,7 @@
 - [타입스크립트의 타입 import, export 하기](./learn/Typescript/type_export_and_import.md)
 - [기본적인 사용법](./learn/Typescript/basic.md)
 - [Class 타입 지정](./learn/Typescript/ts_with_class.md)
+- [함수 타입 지정](./learn/Typescript/type_of_function.md)
 - [Narrowing & Assertion](./learn/Typescript/narrowing_assertion.md)
 - [타입을 파라미터로 입력하는 Generic](./learn/Typescript/ts_generic.md)
 - [tsconfig.json 파일 생성](./learn/Typescript/about_tsconfig.md)
