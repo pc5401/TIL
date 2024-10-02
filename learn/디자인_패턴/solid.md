@@ -100,7 +100,7 @@ class Sparrow(Bird):
 
 class Ostrich(Bird):
     def fly(self):
-        raise Exception("Ostriches can't fly")
+        print("Ostriches can't fly")
 
 def make_bird_fly(bird: Bird):
     bird.fly()
@@ -109,7 +109,7 @@ sparrow = Sparrow()
 make_bird_fly(sparrow)  # 정상 작동
 
 ostrich = Ostrich()
-make_bird_fly(ostrich)  # 예외 발생
+make_bird_fly(ostrich)  # "Ostriches can't fly" 출력
 ```
 
 ## 인터페이스 분리원칙(ISP, Interface segregation rinciple)
@@ -135,7 +135,7 @@ class Scanner(ABC):
     def scan(self, document):
         pass
 
-class MultiFunctionPrinter(Printer, Scanner):
+class MultiFunctionDevice(Printer, Scanner):
     def print(self, document):
         print(f"Printing: {document}")
 
@@ -150,9 +150,9 @@ class SimplePrinter(Printer):
 printer = SimplePrinter()
 printer.print("My Document")
 
-multi_function_printer = MultiFunctionPrinter()
-multi_function_printer.print("My Document")
-multi_function_printer.scan("My Document")
+multi_function_device = MultiFunctionDevice()
+multi_function_device.print("My Document")
+multi_function_device.scan("My Document")
 ```
 
 ## 의존관계 역전(DIP Dependency inversion Principle)
