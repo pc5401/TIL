@@ -68,7 +68,6 @@ jobs:
 
     - name: 테스트 실행
       run: npm test
-
 ```
 
 ### 배포 파이프라인 설정
@@ -99,8 +98,82 @@ jobs:
         remote-user: user
         server-ip: 192.168.1.1
         remote-path: /var/www/app
-
 ```
+
+## GitHub Actions의 고급 기능
+
+1. **캐시(Caching)**
+    - CI 작업에서 자주 발생하는 종속성 설치를 캐싱하여 빌드 속도를 크게 개선할 수 있다.
+    - 예를 들어, Node.js 프로젝트에서는 `npm ci` 명령으로 종속성을 설치할 때, 종속성 캐시를 사용하여 불필요한 네트워크 요청을 줄일 수 있다.
+    
+    ```yaml
+    - name: 종속성 캐시
+      uses: actions/cache@v3
+      with:
+        path: ~/.npm
+        key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+        restore-keys: |
+          ${{ runner.os }}-node
+    ```
+    
+2. **매트릭스 전략(Matrix Strategy)**
+    - 동일한 테스트 작업을 여러 환경에서 실행하기 위해 매트릭스 전략을 사용할 수 있다.
+    - 이를 통해 다양한 Node.js 버전에서 애플리케이션의 호환성을 테스트할 수 있다.
+    
+    ```yaml
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+        strategy:
+          matrix:
+            node-version: [12.x, 14.x, 16.x]
+    
+        steps:
+        - uses: actions/setup-node@v3
+          with:
+            node-version: ${{ matrix.node-version }}
+        - run: npm install
+        - run: npm test
+    ```
+    
+3. **컨디셔널 실행(Conditional Execution)**
+    - 특정 조건이 충족될 때만 단계 또는 작업을 실행하도록 할 수 있다.
+    - 예를 들어, 특정 파일이 변경된 경우에만 배포 작업을 실행하거나, 특정 브랜치에 푸시된 경우에만 작업을 수행하도록 설정할 수 있다.
+    
+    ```yaml
+    steps:
+    - name: 배포
+      run: ./deploy.sh
+      if: github.ref == 'refs/heads/main'
+    ```
+    
+4. **병렬 처리**
+    - GitHub Actions는 여러 작업을 병렬로 실행할 수 있어, 테스트 시간을 단축할 수 있다.
+    - 예를 들어, 프론트엔드와 백엔드 작업을 동시에 실행하도록 설정할 수 있다.
+    
+    ```yaml
+    jobs:
+      frontend:
+        runs-on: ubuntu-latest
+        steps:
+        - run: npm run test:frontend
+    
+      backend:
+        runs-on: ubuntu-latest
+        steps:
+        - run: npm run test:backend
+    ```
+    
+
+## GitHub Actions의 한계와 해결 방안
+
+1. **러너의 자원 제한**
+    - GitHub 호스팅 러너는 CPU, 메모리 등의 자원 제한이 있다. 이를 해결하기 위해 자체 호스팅 러너를 설정하여 자원을 확장할 수 있다.
+    - 또한, 워크플로우를 최적화하여 빌드 시간을 줄이는 것도 중요한 전략이다.
+2. **로그 관리의 복잡성**
+    - 워크플로우가 복잡해질수록 로그를 추적하고 디버깅하는 데 어려움이 발생할 수 있다. 이를 해결하기 위해 로그를 잘 관리하고, 오류 발생 시 Slack과 같은 툴과 통합하여 실시간 알림을 받을 수 있다.
+3. **비용 관리**
+    - 무료 제공 범위를 넘어서면 GitHub Actions의 사용 비용이 발생할 수 있다. 이를 방지하기 위해 워크플로우 실행을 최적화하거나, 자체 호스팅 러너를 이용하여 비용을 절감할 수 있다.
 
 ## 결론: GitHub Actions를 사용하는 이유
 
@@ -111,5 +184,3 @@ GitHub Actions는 개발 팀이 소프트웨어 개발 과정을 자동화하고
 - **커뮤니티 지원**: GitHub Marketplace에 다양한 커뮤니티 액션이 있어 문제 해결과 워크플로우 개선에 도움을 받을 수 있다.
 - **비용 효율성**: 기본 제공되는 호스팅 러너를 활용하거나 필요에 따라 자체 러너를 설정하여 비용을 절감할 수 있다.
 - **보안 강화**: 시크릿 관리와 권한 설정을 통해 안전한 자동화를 구현할 수 있다.
-
-GitHub Actions는 현대 소프트웨어 개발의 핵심 도구로 자리매김하고 있으며, 이를 통해 개발 팀은 더욱 신속하고 안정적으로 소프트웨어를 제공할 수 있다.
