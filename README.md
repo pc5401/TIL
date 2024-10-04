@@ -55,6 +55,7 @@
 - [AssemblyScript_test.md](./learn/Web/AssemblyScript_test.md)
 - [로그인 방법에 대한 이야기](./learn/Web/how_to_login.md)
 - [event_handling_summary.md](./learn/Web/event_handling_summary.md)
+- [Chrome 브라우저의 prerendering & prefetching](./learn/Web/web_prerendering.md)
 - [폰트를 활용한 웹 개발 가이드](./learn/Web/font_guide.md)
 ## [network](./learn/network)
 - [IP 주소 및 서브넷팅](./learn/network/ip_address.md)
