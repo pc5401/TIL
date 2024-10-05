@@ -77,6 +77,8 @@
 - [기본 명령어](./learn/Linux/basic_commands.md)
 - [wsl2(우분투)에서 node.js 로컬 환경 구축](./learn/Linux/wsl2_with_node.md)
 - [운영체제 프로세스 메모리 할당과 동작 방식 (리눅스 기준)](./learn/Linux/process_check.md)
+## [books](./learn/books)
+- [객체지향의 사실과 오해](./learn/books/the_essence_of_object_orientatioin.md)
 ## [Javascript](./learn/Javascript)
 - [you don't konw js](./learn/Javascript/you_don't_know.md)
 - [Node.js에서 프로세스 메모리 관리 방식](./learn/Javascript/memory_of_js.md)
