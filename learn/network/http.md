@@ -1782,3 +1782,276 @@ HTTPS와 SSL/TLS를 사용하여 웹 애플리케이션의 보안을 강화할 �
 - **중간 인증서 체인 확인:** 중간 인증서가 올바르게 설정되어 있는지 확인하여 인증서 체인의 무결성을 보장한다.
 - **정기적인 보안 감사:** SSL/TLS 설정과 인증서를 정기적으로 감사하여 취약점을 발견하고 수정한다.
 - **자동화된 인증서 갱신:** Let's Encrypt와 같은 서비스를 사용하여 인증서 갱신을 자동화함으로써 인증서 만료로 인한 서비스 중단을 방지한다.
+
+## 7. HTTP 쿠키
+
+HTTP 쿠키는 클라이언트와 서버 간의 상태 정보를 저장하고 관리하는 데 사용되는 작은 데이터 조각이다. 쿠키는 웹 애플리케이션에서 사용자 세션을 유지하고, 사용자 설정을 저장하며, 추적 목적으로 활용된다.
+
+### 7.1 쿠키란?
+
+- *쿠키(Cookie)**는 웹 서버가 클라이언트(주로 웹 브라우저)에 저장하는 작은 텍스트 파일이다. 쿠키는 사용자 식별, 세션 관리, 개인화된 설정 저장, 추적 등의 목적으로 사용된다.
+- **주요 특징:**
+    - **크기 제한:** 일반적으로 하나의 쿠키는 최대 4KB의 데이터를 저장할 수 있다.
+    - **유효 기간:** 쿠키는 세션 쿠키와 영구 쿠키로 구분되며, 세션 쿠키는 브라우저가 종료될 때 삭제되고, 영구 쿠키는 설정된 만료 날짜까지 유지된다.
+    - **도메인 및 경로 제한:** 쿠키는 특정 도메인과 경로에만 접근할 수 있어 보안이 강화된다.
+    - **보안 속성:** `Secure`, `HttpOnly`, `SameSite` 등의 속성을 설정하여 쿠키의 보안 수준을 높일 수 있다.
+- **사용 사례:**
+    - **사용자 인증:** 로그인 상태를 유지하기 위해 세션 ID를 쿠키에 저장.
+    - **개인화 설정:** 사용자 선호 테마, 언어 설정 등을 쿠키에 저장.
+    - **트래킹:** 사용자 행동을 추적하여 맞춤형 광고 제공.
+
+### 7.2 쿠키의 작동 방식
+
+쿠키는 클라이언트와 서버 간의 요청과 응답 과정에서 주고받으며, 다음과 같은 방식으로 작동한다.
+
+### **쿠키 설정 과정**
+
+1. **서버에서 쿠키 설정:**
+    - 서버는 응답 헤더에 `Set-Cookie` 헤더를 포함하여 클라이언트에게 쿠키를 설정하도록 지시한다.
+    - 예제:
+        
+        ```
+        HTTP/1.1 200 OK
+        Set-Cookie: sessionId=abc123; Path=/; HttpOnly; Secure; SameSite=Strict
+        Content-Type: text/html
+        Content-Length: 150
+        
+        <html>
+          <head><title>Welcome</title></head>
+          <body>...</body>
+        </html>
+        ```
+        
+2. **클라이언트에서 쿠키 저장:**
+    - 웹 브라우저는 `Set-Cookie` 헤더의 내용을 해석하여 쿠키를 저장한다.
+    - 저장된 쿠키는 지정된 도메인과 경로에 따라 관리된다.
+3. **클라이언트에서 쿠키 전송:**
+    - 클라이언트는 이후의 요청 시, 해당 도메인과 경로에 일치하는 쿠키를 `Cookie` 헤더에 포함하여 서버로 전송한다.
+    - 예제:
+        
+        ```
+        GET /dashboard HTTP/1.1
+        Host: www.example.com
+        Cookie: sessionId=abc123
+        Accept: text/html
+        ```
+        
+
+### **쿠키의 주요 속성**
+
+- **Name=Value:** 쿠키의 이름과 값.
+- **Expires/Max-Age:** 쿠키의 만료 날짜 또는 지속 시간.
+- **Domain:** 쿠키가 유효한 도메인.
+- **Path:** 쿠키가 유효한 경로.
+- **Secure:** HTTPS 연결에서만 쿠키를 전송.
+- **HttpOnly:** 클라이언트 측 스크립트에서 쿠키 접근을 제한.
+- **SameSite:** 크로스 사이트 요청 시 쿠키 전송 정책 (`Strict`, `Lax`, `None`).
+
+### **쿠키의 작동 흐름 예시**
+
+1. **사용자 로그인:**
+    - 사용자가 로그인 폼을 제출하면, 서버는 인증 정보를 확인한 후 `Set-Cookie` 헤더를 통해 세션 ID를 쿠키로 설정.
+2. **세션 유지:**
+    - 클라이언트는 이후의 요청 시마다 쿠키에 저장된 세션 ID를 서버로 전송하여 사용자의 인증 상태를 유지.
+3. **로그아웃:**
+    - 사용자가 로그아웃하면, 서버는 `Set-Cookie` 헤더를 사용하여 쿠키의 만료 날짜를 과거로 설정하거나 삭제 지시를 내려 쿠키를 제거.
+
+### 7.3 보안 고려사항
+
+쿠키는 사용자 정보를 저장하고 전송하는 중요한 역할을 하기 때문에 보안에 유의해야 한다. 다음은 쿠키 사용 시 고려해야 할 주요 보안 사항이다.
+
+### **1. HttpOnly 속성 사용**
+
+- **설명:** `HttpOnly` 속성을 설정하면 클라이언트 측 스크립트(예: JavaScript)에서 쿠키에 접근할 수 없게 된다.
+- **목적:** XSS(Cross-Site Scripting) 공격으로부터 쿠키를 보호.
+- **설정 예시:**
+    
+    ```
+    Set-Cookie: sessionId=abc123; HttpOnly
+    ```
+    
+
+### **2. Secure 속성 사용**
+
+- **설명:** `Secure` 속성을 설정하면 쿠키가 HTTPS 연결을 통해서만 전송된다.
+- **목적:** 쿠키가 평문으로 전송되는 것을 방지하여 중간자 공격(MITM)을 예방.
+- **설정 예시:**
+    
+    ```
+    Set-Cookie: sessionId=abc123; Secur
+    ```
+    
+
+### **3. SameSite 속성 설정**
+
+- **설명:** `SameSite` 속성을 설정하여 크로스 사이트 요청 시 쿠키 전송 여부를 제어.
+    - **Strict:** 동일한 사이트 내에서만 쿠키 전송.
+    - **Lax:** 일부 크로스 사이트 요청에서도 쿠키 전송(예: GET 요청).
+    - **None:** 모든 크로스 사이트 요청에서 쿠키 전송(단, `Secure` 속성 필요).
+- **목적:** CSRF(Cross-Site Request Forgery) 공격을 방지.
+- **설정 예시:**
+    
+    ```
+    Set-Cookie: sessionId=abc123; SameSite=Strict
+    ```
+    
+
+### **4. 쿠키 데이터 암호화**
+
+- **설명:** 쿠키에 민감한 데이터를 저장할 경우, 데이터를 암호화하여 저장.
+- **목적:** 쿠키 데이터가 탈취되더라도 내용을 해독할 수 없도록 보호.
+- **방법:** 서버 측에서 데이터를 암호화하여 쿠키에 저장하고, 필요 시 복호화하여 사용.
+
+### **5. 쿠키 만료 설정**
+
+- **설명:** 쿠키의 `Expires` 또는 `Max-Age` 속성을 적절히 설정하여 쿠키의 유효 기간을 제한.
+- **목적:** 오래된 쿠키가 남아있지 않도록 하여 보안 위험을 줄임.
+- **설정 예시:**
+    
+    ```
+    Set-Cookie: sessionId=abc123; Max-Age=3600
+    ```
+    
+
+### **6. 도메인 및 경로 제한**
+
+- **설명:** 쿠키의 `Domain`과 `Path` 속성을 설정하여 쿠키가 유효한 도메인과 경로를 제한.
+- **목적:** 쿠키가 불필요하게 넓은 범위에서 사용되지 않도록 하여 보안 강화.
+- **설정 예시:**
+    
+    ```
+    Set-Cookie: sessionId=abc123; Domain=www.example.com; Path=/secure
+    ```
+    
+
+### **7. 세션 관리**
+
+- **설명:** 세션 쿠키는 브라우저 세션이 종료되면 삭제되도록 설정.
+- **목적:** 세션 하이재킹을 방지.
+- **설정 예시:**
+    
+    ```
+    Set-Cookie: sessionId=abc123; Expires=Wed, 21 Oct 2025 07:28:00 GMT; Path=
+    ```
+    
+
+### 7.4 HTTP 쿠키 요약표
+
+| 헤더 종류 | 헤더 이름 | 역할 및 설명 | 사용 사례 |
+| --- | --- | --- | --- |
+| **요청 헤더** | Cookie | 서버에 저장된 쿠키 데이터 전송 | 세션 유지, 사용자 추적 |
+| **응답 헤더** | Set-Cookie | 클라이언트에 쿠키 설정 | 세션 관리, 사용자 설정 저장 |
+| **공통 헤더** | - | 쿠키 관련 공통 속성 설정 | 보안 강화, 데이터 무결성 유지 |
+
+### 7.5 HTTP 쿠키 활용 방법
+
+HTTP 쿠키를 올바르게 이해하고 사용하는 것은 웹 개발과 사용자 경험 개선에 중요하다. 각 쿠키의 역할과 보안 속성을 적절히 활용하여 안전하고 효율적인 웹 애플리케이션을 구축할 수 있다.
+
+- **클라이언트 측 활용:**
+    - **세션 유지:** `Cookie` 헤더를 사용하여 세션 ID를 서버로 전송하고, 사용자의 로그인 상태를 유지한다.
+    - **개인화 설정 저장:** 사용자의 선호 테마, 언어 설정 등을 쿠키에 저장하여 개인화된 경험을 제공.
+    - **트래킹 및 분석:** 사용자 행동을 추적하여 웹사이트 개선 및 맞춤형 광고 제공.
+- **서버 측 활용:**
+    - **세션 관리:** `Set-Cookie` 헤더를 사용하여 세션 ID를 클라이언트에 설정하고, 서버에서 세션 정보를 관리.
+    - **보안 강화:** `HttpOnly`, `Secure`, `SameSite` 속성을 설정하여 쿠키의 보안 수준을 높임.
+    - **캐싱 최적화:** 쿠키를 활용하여 사용자별로 캐시를 관리하고, 불필요한 데이터 전송을 줄임.
+    - **개인화된 응답 제공:** 쿠키에 저장된 정보를 기반으로 사용자에게 맞춤형 콘텐츠를 제공.
+
+### 7.6 HTTP 쿠키 처리 예제
+
+**예제 1: 사용자 로그인 및 세션 관리**
+
+- **요청:**
+    
+    ```
+    POST /login HTTP/1.1
+    Host: api.example.com
+    Content-Type: application/json
+    Accept: application/json
+    
+    {
+      "username": "alice",
+      "password": "securepassword"
+    }
+    ```
+    
+- **응답 (성공):**
+    
+    ```
+    HTTP/1.1 200 OK
+    Set-Cookie: sessionId=abc123; Path=/; HttpOnly; Secure; SameSite=Strict
+    Content-Type: application/json
+    Content-Length: 89
+    
+    {
+      "message": "Login successful",
+      "userId": 124
+    }
+    ```
+    
+- **클라이언트 요청 시 쿠키 전송:**
+    
+    ```
+    GET /dashboard HTTP/1.1
+    Host: api.example.com
+    Cookie: sessionId=abc123
+    Accept: application/json
+    ```
+    
+
+**예제 2: 사용자 로그아웃 및 쿠키 삭제**
+
+- **요청:**
+    
+    ```
+    POST /logout HTTP/1.1
+    Host: api.example.com
+    Cookie: sessionId=abc123
+    Accept: application/json
+    ```
+    
+- **응답 (성공):**
+    
+    ```
+    HTTP/1.1 200 OK
+    Set-Cookie: sessionId=abc123; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT
+    Content-Type: application/json
+    Content-Length: 78
+    
+    {
+      "message": "Logout successful",
+      "userId": 124
+    }
+    ```
+    
+
+**예제 3: 개인화 설정 저장**
+
+- **요청:**
+    
+    ```
+    POST /settings HTTP/1.1
+    Host: api.example.com
+    Content-Type: application/json
+    Cookie: sessionId=abc123
+    Accept: application/json
+    
+    {
+      "theme": "dark",
+      "language": "ko"
+    }
+    ```
+    
+- **응답 (성공):**
+    
+    ```
+    HTTP/1.1 200 OK
+    Set-Cookie: userSettings=theme=dark;language=ko; Path=/; HttpOnly
+    Content-Type: application/json
+    Content-Length: 85
+    
+    {
+      "message": "Settings updated successfully",
+      "userId": 124
+    }
+    ```
