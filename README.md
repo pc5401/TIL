@@ -4,6 +4,8 @@
 ## [algorithm_record](./learn/algorithm_record)
 - [알고리듬용 C++ STL 정리](./learn/algorithm_record/cpp_for_algo.md)
 - [cpp로 알고리듬 풀면서 배움점](./learn/algorithm_record/cpp_record.md)
+## [nestjs](./learn/nestjs)
+- [hello nestjs](./learn/nestjs/hello_nestjs.md)
 ## [DB](./learn/DB)
 - [MySQL 권한 관리 및 백업/복구](./learn/DB/mysql_admin.md)
 - [database 소개](./learn/DB/database_intro.md)
