@@ -60,7 +60,7 @@ NestJS는 기본적으로 HTTP 서버로 **Express**를 사용하지만, **Fasti
 | **타사 모듈 지원** | Express 기반으로 작성된 미들웨어를 바로 사용할 수 있다. | 일부 Express 미들웨어는 호환되지 않을 수 있다. |
 | **커뮤니티 규모** | 매우 큰 커뮤니티와 풍부한 자료가 존재한다. | 비교적 작은 커뮤니티지만 빠르게 성장하고 있다. |
 
-### 엔진 선택 및 사용 방법
+### 참고 : 엔진 선택 및 사용 방법
 
 - **Express 사용 시**:
     
@@ -107,8 +107,227 @@ NestJS는 기본적으로 HTTP 서버로 **Express**를 사용하지만, **Fasti
 | **타입스크립트 지원** | 추가 설정이 필요하다. | 기본적으로 타입스크립트를 사용한다. | 자바 기반으로 타입 안정성을 제공한다. |
 | **생태계** | 방대한 미들웨어와 플러그인이 있다. | 필요한 기능 대부분이 내장되어 있다. | 방대한 라이브러리와 프레임워크가 있다. |
 
-## 결론
+## 정리하면
 
 Nest.js는 현대적인 웹 애플리케이션 개발을 위한 강력한 도구이다. 타입스크립트와 모듈러 아키텍처를 통해 코드의 안정성과 유지보수성을 높일 수 있다. 
 
 프로젝트의 규모, 팀의 기술 스택, 성능 요구 사항 등에 따라 적절한 프레임워크와 엔진을 선택하는 것이 중요하다. Express.js는 간단하고 유연한 개발에, Fastify는 높은 성능이 필요한 경우에 적합하다.
+
+
+## NestJS 설치 및 프로젝트 설정
+
+### NestJS CLI 설치
+
+NestJS는 CLI(Command Line Interface)를 제공하여 프로젝트 생성과 관리가 용이하다. CLI를 설치하여 개발을 시작한다.
+
+```bash
+npm install -g @nestjs/cli
+```
+
+### 로컬 CLI 사용
+
+```bash
+npm install --save-dev @nestjs/cli
+```
+
+> 참고: 팀원과 함께 작업하는 경우, 전역 설치 대신 로컬 개발 의존성으로 설치하여 버전 일관성을 유지하는 것도 하나의 방법이다.
+> 
+
+### npx로 바로 사용(일회성 느낌)
+
+```jsx
+npx @nestjs/cli@latest
+```
+
+> `npx`를 사용하여 최신 버전의 `@nestjs/cli`를 즉석에서 다운로드하고 실행할 수 있다.(버전 불일치 조심)
+> 
+
+### 새로운 프로젝트 생성
+
+NestJS CLI를 사용하여 새로운 프로젝트를 생성한다.
+
+```bash
+nest new 프로젝트명
+```
+
+또는 로컬 설치한 경우:
+
+```bash
+npx nest new 프로젝트명
+```
+
+명령어를 실행하면 패키지 매니저(npm 또는 yarn)를 선택하라는 메시지가 나타난다. 원하는 패키지 매니저를 선택하면 프로젝트 생성과 함께 의존성 설치가 자동으로 진행된다.
+
+### 엔진 선택 및 설정
+
+NestJS는 기본적으로 Express 엔진을 사용하지만, Fastify를 선택하여 사용할 수도 있다.
+
+### Express 엔진 사용
+
+별도의 설정 없이 기본적으로 Express 엔진을 사용하여 개발을 시작할 수 있다.
+
+### Fastify 엔진 사용
+
+Fastify 엔진을 사용하려면 추가 패키지를 설치하고 설정을 변경해야 한다.
+
+### 개발 서버 실행
+
+프로젝트 디렉토리에서 다음 명령어를 실행하여 개발 서버를 시작한다.
+
+```bash
+npm run start
+```
+
+개발 모드로 실행하여 코드 변경 시 자동으로 재시작되도록 하려면 다음 명령어를 사용한다.
+
+```bash
+npm run start:dev
+```
+
+### 프로젝트 구조 이해
+
+NestJS는 모듈, 컨트롤러, 서비스 등의 구조로 구성되어 있다.
+
+- **모듈(Module)**: 관련된 기능을 묶는 단위로, 애플리케이션을 모듈화하여 관리한다.
+- **컨트롤러(Controller)**: 요청을 처리하고 응답을 반환하는 역할을 한다.
+- **서비스(Service)**: 비즈니스 로직을 처리하며, 컨트롤러에서 호출된다.
+
+### 추가 패키지 설치 및 설정
+
+프로젝트의 필요에 따라 추가적인 패키지를 설치하여 기능을 확장할 수 있다.
+
+### 예시: TypeORM과 MySQL 연동
+
+ORM(Object-Relational Mapping) 도구인 TypeORM을 사용하여 데이터베이스와 연동할 수 있다.
+
+1. 패키지 설치:
+    
+    ```bash
+    
+    npm install --save @nestjs/typeorm typeorm mysql2
+    ```
+    
+2. `app.module.ts` 파일에 TypeORM 모듈을 임포트하고 설정을 추가한다.
+    
+    ```tsx
+    import { Module } from '@nestjs/common';
+    import { TypeOrmModule } from '@nestjs/typeorm';
+    
+    @Module({
+      imports: [
+        TypeOrmModule.forRoot({
+          type: 'mysql',
+          host: 'localhost',
+          port: 3306,
+          username: '사용자명',
+          password: '비밀번호',
+          database: '데이터베이스명',
+          entities: [__dirname + '/**/*.entity{.ts,.js}'],
+          synchronize: true,
+        }),
+        // 다른 모듈들
+      ],
+      controllers: [],
+      providers: [],
+    })
+    export class AppModule {}
+    
+    ```
+    
+
+### 예시: 환경 변수 관리
+
+`@nestjs/config` 패키지를 사용하여 환경 변수를 관리할 수 있다.
+
+1. 패키지 설치:
+    
+    ```bash
+    npm install --save @nestjs/config
+    ```
+    
+2. `app.module.ts` 파일에 ConfigModule을 임포트하고 설정한다.
+    
+    ```tsx
+    import { Module } from '@nestjs/common';
+    import { ConfigModule } from '@nestjs/config';
+    
+    @Module({
+      imports: [
+        ConfigModule.forRoot({
+          isGlobal: true,
+        }),
+        // 다른 모듈들
+      ],
+      controllers: [],
+      providers: [],
+    })
+    export class AppModule {}
+    ```
+    
+3. 프로젝트 루트에 `.env` 파일을 생성하고 환경 변수를 정의한다.
+    
+    ```makefile
+    DATABASE_HOST=localhost
+    DATABASE_PORT=3306
+    ```
+    
+4. 코드에서 환경 변수를 사용하려면 `ConfigService`를 주입받아 사용한다.
+    
+    ```tsx
+    import { Injectable } from '@nestjs/common';
+    import { ConfigService } from '@nestjs/config';
+    
+    @Injectable()
+    export class SomeService {
+      constructor(private configService: ConfigService) {
+        const dbHost = this.configService.get<string>('DATABASE_HOST');
+      }
+    }
+    ```
+    
+
+### 스크립트 및 의존성 관리
+
+프로젝트의 `package.json` 파일에 스크립트를 추가하여 개발 편의성을 높일 수 있다.
+
+```json
+{
+  "scripts": {
+    "start": "nest start",
+    "start:dev": "nest start --watch",
+    "build": "nest build",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
+    "test": "jest"
+  }
+}
+```
+
+팀원들과의 협업 시에는 `package-lock.json` 또는 `yarn.lock` 파일을 버전 관리 시스템에 포함하여 의존성 버전을 일치시킨다.
+
+### Node.js 버전 관리
+
+프로젝트별로 Node.js 버전을 통일하기 위해 `.nvmrc` 파일을 생성할 수 있다.
+
+```
+// .nvmrc
+14
+```
+
+> 위와 같이 `.nvmrc` 파일에 숫자 `14`를 작성하면, nvm은 Node.js의 **최신 패치 버전**인 **14.x.x** 버전을 사용하게 된다.
+> 
+
+팀원들은 `nvm`을 사용하여 지정된 버전의 Node.js를 설치하고 사용할 수 있다.
+
+```bash
+nvm install 14
+nvm use 14
+```
+
+## 정리하면,
+
+NestJS는 강력하고 유연한 백엔드 개발 프레임워크로, 설치와 설정이 비교적 간단하다. 프로젝트의 요구 사항에 따라 다양한 엔진과 패키지를 활용하여 효율적인 개발이 가능하다. 모듈러 구조와 타입스크립트를 기반으로 한 NestJS를 통해 유지보수성과 확장성이 뛰어난 애플리케이션을 개발할 수 있다.
+
+팀원과의 협업을 위해 의존성 관리와 개발 환경 설정을 철저히 하고, 필요한 경우 로컬 개발 의존성으로 패키지를 설치하여 버전 일관성을 유지한다. 또한, Node.js 버전 관리 도구를 사용하여 동일한 개발 환경을 구축한다.
+
+이러한 설치 및 설정 과정을 통해 NestJS의 강력한 기능을 최대한 활용할 수 있으며, 현대적인 웹 애플리케이션 개발에 큰 도움이 된다.
