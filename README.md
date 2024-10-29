@@ -6,6 +6,7 @@
 - [cpp로 알고리듬 풀면서 배움점](./learn/algorithm_record/cpp_record.md)
 ## [nestjs](./learn/nestjs)
 - [hello nestjs](./learn/nestjs/hello_nestjs.md)
+- [프로바이더 (Providers)](./learn/nestjs/providers.md)
 - [NestJS 데코레이터 정리](./learn/nestjs/decorator.md)
 - [컨트롤러 (Controllers)](./learn/nestjs/controllers.md)
 ## [DB](./learn/DB)
