@@ -10,6 +10,7 @@
 - [프로바이더 (Providers)](./learn/nestjs/providers.md)
 - [미들웨어 (Middleware)](./learn/nestjs/middleware.md)
 - [NestJS 데코레이터 정리](./learn/nestjs/decorator.md)
+- [예외 필터 (Exception Filters)](./learn/nestjs/exception_filters.md)
 - [컨트롤러 (Controllers)](./learn/nestjs/controllers.md)
 ## [DB](./learn/DB)
 - [MySQL 권한 관리 및 백업/복구](./learn/DB/mysql_admin.md)
