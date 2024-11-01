@@ -17,7 +17,7 @@ NestJS는 기본적으로 `HttpException` 및 그 하위 클래스의 예외를 
 {
   "statusCode": 500,
   "message": "Internal server error"
-
+}
 ```
 
 ### 힌트
