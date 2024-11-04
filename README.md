@@ -85,6 +85,8 @@
 - [전송 계층(TCP, UDP)](./learn/network/transport_layer.md)
 - [네트워크 계층](./learn/network/network_layer.md)
 - [네트워크 통신 방식](./learn/network/network_switching.md)
+## [AWS](./learn/AWS)
+- [AWS VPC 학습 연습 노트](./learn/AWS/vpc.md)
 ## [정처기준비](./learn/정처기준비)
 ### [image](./learn/정처기준비/image)
 - [Unknown Title](./learn/정처기준비/image/usecase_bookstore.png)
