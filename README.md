@@ -7,6 +7,7 @@
 ## [nestjs](./learn/nestjs)
 - [hello nestjs](./learn/nestjs/hello_nestjs.md)
 - [파이프 (Pipes)](./learn/nestjs/pipes.md)
+- [1. 개요](./learn/nestjs/nestjs_config.md)
 - [모듈 (Modules)](./learn/nestjs/modules.md)
 - [가드 (Guards)](./learn/nestjs/guards.md)
 - [프로바이더 (Providers)](./learn/nestjs/providers.md)
