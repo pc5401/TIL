@@ -20,6 +20,7 @@
 - [database 소개](./learn/DB/database_intro.md)
 - [Express와 MySQL](./learn/DB/mysql_with_express_basic.md)
 - [mysql 학습](./learn/DB/mysql_basic.md)
+- [클라우드 프라이빗 서버에 MySQL 설정 및 퍼블릭 접근 구성하기](./learn/DB/make_mysql.md)
 - [고급 SQL 기능 및 트랜잭션](./learn/DB/mysql_advanced.md)
 - [MySQL 조회 및 집계 함수](./learn/DB/mysql_queries.md)
 ## [data_structure](./learn/data_structure)
