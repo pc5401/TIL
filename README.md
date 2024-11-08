@@ -47,7 +47,7 @@
 - [`this`에 관련 문제 해결](./learn/Javascript/this_error_handling.md)
 - [js 알고리즘 노하우](./learn/Javascript/algo_js.md)
 - [js 자료구조](./learn/Javascript/data_structure_js.md)
-- [CJW vs ESM](./learn/Javascript/CJWvsESM.md)
+- [CJS vs ESM](./learn/Javascript/CJWvsESM.md)
 ## [Web](./learn/Web)
 - [Chrome 브라우저의 prerendering & prefetching](./learn/Web/web_prerendering.md)
 - [event_handling_summary.md](./learn/Web/event_handling_summary.md)
