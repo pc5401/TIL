@@ -100,7 +100,7 @@
 ## [Python](./learn/Python)
 - [Python_Class_Syntax_TIL.md](./learn/Python/Python_Class_Syntax_TIL.md)
 - [타입 어노테이션(type annotation)](./learn/Python/type_annotation.md)
-- [OOP_in_Python_TIL.md](./learn/Python/OOP_in_Python_TIL.md)
+- [객체지향 프로그래밍 (OOP) in Python](./learn/Python/OOP_in_Python_TIL.md)
 - [함수형 기본 개념 정리](./learn/Python/functional.md)
 - [알고리듬을 위한 파이썬 모듈들](./learn/Python/python_modul_for_algo.md)
 ## [GitHub](./learn/GitHub)
