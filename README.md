@@ -72,6 +72,7 @@
 - [타입 애매할 때](./learn/Typescript/ambiguous_type.md)
 - [기본적인 사용법](./learn/Typescript/basic.md)
 - [TypeScript의 #을 사용한 private 필드 선언](./learn/Typescript/about_private.md)
+- [객체지향 프로그래밍 (OOP) in TypeScript](./learn/Typescript/OOP_in_Python_TIL.md)
 - [타입스크립트의 타입 import, export 하기](./learn/Typescript/type_export_and_import.md)
 - [타입을 파라미터로 입력하는 Generic](./learn/Typescript/ts_generic.md)
 - [`never` 타입](./learn/Typescript/naver_type.md)
