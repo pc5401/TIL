@@ -4,11 +4,11 @@
 
 ## 목차
 
-- [세션 기반 인증](https://www.notion.so/EC2-mysql-f93f6d80380e40aa9a7d3f22442f2dee?pvs=21)
-- [JWT 기반 인증](https://www.notion.so/EC2-mysql-f93f6d80380e40aa9a7d3f22442f2dee?pvs=21)
-- [세션과 JWT의 비교](https://www.notion.so/EC2-mysql-f93f6d80380e40aa9a7d3f22442f2dee?pvs=21)
-- [어떤 방식을 선택해야 할까?](https://www.notion.so/EC2-mysql-f93f6d80380e40aa9a7d3f22442f2dee?pvs=21)
-- [마무리하며](https://www.notion.so/EC2-mysql-f93f6d80380e40aa9a7d3f22442f2dee?pvs=21)
+- [세션 기반 인증](#세션-기반-인증)
+- [JWT 기반 인증](#jwt-json-web-token-기반-인증)
+- [세션과 JWT의 비교](#세션과-jwt의-비교)
+- [어떤 방식을 선택해야 할까?](#어떤-방식을-선택해야-할까)
+- [마무리하며](#마무리하며)
 
 ---
 
