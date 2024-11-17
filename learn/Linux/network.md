@@ -541,3 +541,123 @@ free -h                             # 사람이 읽기 쉬운 형식으로 메�
 free -m                             # MB 단위로 메모리 사용량 출력
 free -g                             # GB 단위로 메모리 사용량 출력
 ```
+
+# 파일 및 디렉토리 관리
+
+## cp : 파일 및 디렉토리 복사
+
+> 기본 형식: cp <옵션> <원본> <대상>
+> 
+
+### 옵션
+
+- `r` : 디렉토리 및 하위 디렉토리 재귀적 복사
+- `p` : 파일의 속성(권한, 소유자 등) 보존
+- `i` : 덮어쓰기 전에 확인
+- `v` : 복사 과정 상세 출력
+
+### 예시
+
+```bash
+cp file1.txt /backup/             # file1.txt를 /backup/으로 복사
+cp -r dir1 /backup/               # dir1 디렉토리를 /backup/으로 재귀적 복사
+cp -p file1.txt /backup/          # file1.txt를 속성 보존하여 /backup/으로 복사
+cp -i file1.txt /backup/          # 덮어쓰기 전에 확인
+cp -v file1.txt /backup/          # 복사 과정 상세 출
+```
+
+## mv : 파일 및 디렉토리 이동 또는 이름 변경
+
+> 기본 형식: mv <옵션> <원본> <대상>
+> 
+
+### 옵션
+
+- `i` : 덮어쓰기 전에 확인
+- `v` : 이동 과정 상세 출력
+
+### 예시
+
+```bash
+mv file1.txt /backup/             # file1.txt를 /backup/으로 이동
+mv file1.txt file2.txt            # file1.txt의 이름을 file2.txt로 변경
+mv -i file1.txt /backup/          # 덮어쓰기 전에 확인
+mv -v file1.txt /backup/          # 이동 과정 상세 출력
+```
+
+## rm : 파일 및 디렉토리 삭제
+
+> 기본 형식: rm <옵션> <파일/디렉토리>
+> 
+
+### 옵션
+
+- `r` : 디렉토리 및 하위 디렉토리 재귀적 삭제
+- `f` : 강제 삭제 (확인 없이)
+- `i` : 삭제 전에 확인
+- `v` : 삭제 과정 상세 출력
+
+### 예시
+
+```bash
+rm file1.txt                      # file1.txt 삭제
+rm -r dir1                        # dir1 디렉토리 및 하위 디렉토리 삭제
+rm -f file1.txt                   # file1.txt를 강제 삭제
+rm -i file1.txt                   # 삭제 전에 확인
+rm -rv dir1                        # dir1 디렉토리를 재귀적이고 상세하게 삭제
+```
+
+## mkdir : 디렉토리 생성
+
+> 기본 형식: mkdir <옵션> <디렉토리>
+> 
+
+### 옵션
+
+- `p` : 상위 디렉토리가 없으면 함께 생성
+- `v` : 생성 과정 상세 출력
+
+### 예시
+
+```bash
+mkdir newdir                       # newdir 디렉토리 생성
+mkdir -p /path/to/newdir           # /path/to/newdir 디렉토리 생성 (상위 디렉토리도 함께)
+mkdir -v newdir                    # newdir 디렉토리를 상세하게 생성
+```
+
+## rmdir : 빈 디렉토리 삭제
+
+> 기본 형식: rmdir <옵션> <디렉토리>
+> 
+
+### 옵션
+
+- `p` : 상위 디렉토리까지 빈 경우 함께 삭제
+
+### 예시
+
+```bash
+rmdir emptydir                    # emptydir 빈 디렉토리 삭제
+rmdir -p /path/to/emptydir        # /path/to/emptydir와 상위 디렉토리가 빈 경우 함께 삭제
+```
+
+## find : 파일 및 디렉토리 검색
+
+> 기본 형식: find <경로> <옵션> <동작>
+> 
+
+### 옵션
+
+- `name <패턴>` : 이름으로 검색
+- `type <타입>` : 파일 타입으로 검색 (f: 파일, d: 디렉토리 등)
+- `size <크기>` : 파일 크기로 검색
+- `mtime <날짜>` : 수정 날짜로 검색
+
+### 예시
+
+```bash
+find /home/user -name "*.txt"                # /home/user 내의 모든 .txt 파일 검색
+find /var/log -type f -size +10M             # /var/log 내의 크기가 10MB 초과인 파일 검색
+find / -mtime -7                              # 지난 7일 내에 수정된 모든 파일 검색
+find /home/user -type d -name "backup"        # /home/user 내의 backup 디렉토리 검색
+```
