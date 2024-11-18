@@ -661,3 +661,123 @@ find /var/log -type f -size +10M             # /var/log 내의 크기가 10MB �
 find / -mtime -7                              # 지난 7일 내에 수정된 모든 파일 검색
 find /home/user -type d -name "backup"        # /home/user 내의 backup 디렉토리 검색
 ```
+
+# 사용자 및 권한 관리
+
+## chmod : 파일 및 디렉토리 권한 변경
+
+> 기본 형식: chmod <옵션> <권한> <파일/디렉토리>
+> 
+
+### 권한 표현 방식
+
+- **숫자 방식**: `chmod 755 file`
+    - 읽기(r)=4, 쓰기(w)=2, 실행(x)=1
+    - 소유자: 7 (rwx), 그룹: 5 (r-x), 기타: 5 (r-x)
+- **기호 방식**: `chmod u+rwx,g+rx,o+rx file`
+
+### 옵션
+
+- `R` : 재귀적으로 권한 변경
+- `v` : 변경 과정 상세 출력
+
+### 예시
+
+```bash
+chmod 755 script.sh                 # script.sh의 권한을 rwxr-xr-x로 변경
+chmod u+rwx,g+rx,o+rx script.sh     # 소유자에게 rwx, 그룹과 기타에 r-x 권한 부여
+chmod -R 700 /secure/               # /secure/ 디렉토리 및 하위 디렉토리의 권한을 rwx------로 변경
+chmod -v 755 script.sh               # 변경 과정을 상세하게 출력
+```
+
+## chown : 파일 및 디렉토리 소유자 변경
+
+> 기본 형식: chown <옵션> <소유자>:<그룹> <파일/디렉토리>
+> 
+
+### 옵션
+
+- `R` : 재귀적으로 소유자 변경
+- `v` : 변경 과정 상세 출력
+
+### 예시
+
+```bash
+sudo chown user:group file.txt           # file.txt의 소유자를 user, 그룹을 group으로 변경
+sudo chown -R user:group /home/user      # /home/user 디렉토리 및 하위 디렉토리의 소유자와 그룹 변경
+sudo chown -v user:group file.txt        # 변경 과정을 상세하게 출력
+```
+
+## useradd : 사용자 추가
+
+> 기본 형식: useradd <옵션> <사용자명>
+> 
+
+### 옵션
+
+- `m` : 홈 디렉토리 생성
+- `d <디렉토리>` : 홈 디렉토리 경로 지정
+- `s <쉘>` : 기본 쉘 지정
+- `G <그룹>` : 추가 그룹 지정
+
+### 예시
+
+```bash
+sudo useradd -m newuser                     # newuser 사용자 추가 및 홈 디렉토리 생성
+sudo useradd -m -d /home/newuser -s /bin/bash newuser  # 사용자 추가 시 홈 디렉토리와 쉘 지정
+sudo useradd -m -G sudo newuser             # newuser 사용자를 sudo 그룹에 추가
+```
+
+## passwd : 사용자 비밀번호 설정 및 변경
+
+> 기본 형식: passwd <옵션> <사용자명>
+> 
+
+### 옵션
+
+- `-stdin` : 표준 입력으로 비밀번호 설정 (보안상 권장되지 않음)
+
+### 예시
+
+```bash
+sudo passwd newuser                         # newuser 사용자의 비밀번호 설정 또는 변경
+echo "newpassword" | sudo passwd --stdin newuser  # newuser 사용자의 비밀번호를 "newpassword"로 설정 (비권장)
+```
+
+## su : 사용자 전환
+
+> 기본 형식: su <옵션> <사용자명>
+> 
+
+### 옵션
+
+- `` : 로그인 쉘로 전환
+- `c <명령>` : 특정 명령 실행 후 종료
+
+### 예시
+
+```bash
+su -                                     # 루트 사용자로 전환하여 로그인 쉘 시작
+su -l newuser                            # newuser 사용자로 전환하여 로그인 쉘 시작
+su -c "ls /root"                         # 루트 사용자로 전환하여 /root 디렉토리 목록 표시 후 종
+```
+
+## sudo : 권한 상승 및 명령어 실행
+
+> 기본 형식: sudo <옵션> <명령어>
+> 
+
+### 옵션
+
+- `u <사용자>` : 지정한 사용자로 명령어 실행
+- `s` : 쉘을 루트 권한으로 실행
+- `i` : 로그인 쉘을 루트 권한으로 실행
+
+### 예시
+
+```bash
+sudo apt-get update                      # 루트 권한으로 패키지 목록 업데이트
+sudo -u newuser ls /home/newuser         # newuser 권한으로 /home/newuser 디렉토리 목록 표시
+sudo -s                                  # 루트 권한으로 쉘 실행
+sudo -i                                  # 루트 로그인 쉘 실행
+```
