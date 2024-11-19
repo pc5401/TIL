@@ -781,3 +781,27 @@ sudo -u newuser ls /home/newuser         # newuser 권한으로 /home/newuser �
 sudo -s                                  # 루트 권한으로 쉘 실행
 sudo -i                                  # 루트 로그인 쉘 실행
 ```
+
+# 네트워크 파일 전송 및 관리
+
+## scp : 안전한 파일 복사
+
+> 기본 형식: scp <옵션> <원본> <대상>
+> 
+
+### 옵션
+
+- `r` : 디렉토리 및 하위 디렉토리 재귀적 복사
+- `P <포트>` : SSH 포트 지정
+- `i <키 파일>` : SSH 키 파일 지정
+- `v` : 복사 과정 상세 출력
+
+### 예시
+
+```bash
+scp file1.txt user@remote:/backup/               # 로컬의 file1.txt를 원격 호스트의 /backup/으로 복사
+scp -r /local/dir user@remote:/backup/           # 로컬의 /local/dir 디렉토리를 원격 호스트의 /backup/으로 재귀적 복사
+scp -P 2222 file1.txt user@remote:/backup/       # SSH 포트 2222를 사용하여 file1.txt 복사
+scp -i ~/.ssh/id_rsa file1.txt user@remote:/backup/ # 특정 SSH 키를 사용하여 file1.txt 복사
+scp -v file1.txt user@remote:/backup/           # 복사 과정을 상세하게 출력
+```
