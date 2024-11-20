@@ -805,3 +805,25 @@ scp -P 2222 file1.txt user@remote:/backup/       # SSH 포트 2222를 사용하�
 scp -i ~/.ssh/id_rsa file1.txt user@remote:/backup/ # 특정 SSH 키를 사용하여 file1.txt 복사
 scp -v file1.txt user@remote:/backup/           # 복사 과정을 상세하게 출력
 ```
+
+## rsync : 효율적인 파일 동기화 및 복사
+
+> 기본 형식: rsync <옵션> <원본> <대상>
+> 
+
+### 옵션
+
+- `a` : 아카이브 모드 (재귀적 복사 및 속성 보존)
+- `v` : 상세 출력
+- `z` : 전송 데이터 압축
+- `P` : 진행 상태 표시 및 중단된 전송 재개
+- `-delete` : 대상에 없는 파일 삭제
+
+### 예시
+
+```bash
+rsync -av /local/dir/ /backup/                # /local/dir을 /backup/으로 아카이브 모드로 동기화
+rsync -avz /local/dir/ user@remote:/backup/   # 데이터 압축을 사용하여 원격 호스트로 동기화
+rsync -avP /local/dir/ /backup/               # 진행 상태를 표시하며 동기화
+rsync -av --delete /local/dir/ /backup/       # 대상에 없는 파일을 삭제하며 동기화
+```
