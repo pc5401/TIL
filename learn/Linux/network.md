@@ -827,3 +827,35 @@ rsync -avz /local/dir/ user@remote:/backup/   # 데이터 압축을 사용하여
 rsync -avP /local/dir/ /backup/               # 진행 상태를 표시하며 동기화
 rsync -av --delete /local/dir/ /backup/       # 대상에 없는 파일을 삭제하며 동기화
 ```
+## sftp : SSH 파일 전송 프로토콜
+
+> 기본 형식: sftp <옵션> <호스트>
+> 
+
+### 옵션
+
+- `P <포트>` : SSH 포트 지정
+- `i <키 파일>` : SSH 키 파일 지정
+
+### 예시
+
+```bash
+sftp user@remote                     # 원격 호스트에 SFTP 연결
+sftp -P 2222 user@remote             # SSH 포트 2222를 사용하여 SFTP 연결
+sftp -i ~/.ssh/id_rsa user@remote     # 특정 SSH 키를 사용하여 SFTP 연결
+```
+
+### SFTP 명령어 예시
+
+```bash
+bash
+코드 복사
+sftp> ls                               # 원격 호스트의 디렉토리 목록 표시
+sftp> cd /backup                       # 원격 호스트의 /backup 디렉토리로 이동
+sftp> get file1.txt                    # 원격 호스트의 file1.txt 다운로드
+sftp> put file2.txt                    # 로컬의 file2.txt 업로드
+sftp> mkdir newdir                     # 원격 호스트에 newdir 디렉토리 생성
+sftp> rm file1.txt                     # 원격 호스트의 file1.txt 삭제
+sftp> exit                             # SFTP 세션 종료
+
+```
