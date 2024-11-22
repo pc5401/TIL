@@ -848,8 +848,6 @@ sftp -i ~/.ssh/id_rsa user@remote     # 특정 SSH 키를 사용하여 SFTP 연�
 ### SFTP 명령어 예시
 
 ```bash
-bash
-코드 복사
 sftp> ls                               # 원격 호스트의 디렉토리 목록 표시
 sftp> cd /backup                       # 원격 호스트의 /backup 디렉토리로 이동
 sftp> get file1.txt                    # 원격 호스트의 file1.txt 다운로드
@@ -857,5 +855,4 @@ sftp> put file2.txt                    # 로컬의 file2.txt 업로드
 sftp> mkdir newdir                     # 원격 호스트에 newdir 디렉토리 생성
 sftp> rm file1.txt                     # 원격 호스트의 file1.txt 삭제
 sftp> exit                             # SFTP 세션 종료
-
 ```
