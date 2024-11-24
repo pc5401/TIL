@@ -110,7 +110,7 @@
 - [GitHub Personal Access Tokens 정리](./learn/GitHub/pats.md)
 - [github 트러블슈팅](./learn/GitHub/troubleshooting.md)
 ## [Data_formats](./learn/Data_formats)
-- [JSON 에 대해서](./learn/Data_formats/JSON.md)
+- [JSON에 대해서](./learn/Data_formats/JSON.md)
 - [ANSI 이스케이프 시퀀스 표준](./learn/Data_formats/ansi_escape.md)
 - [REST API 개념과 활용 방법](./learn/Data_formats/restAPI.md)
 - [YAML 에 대해서](./learn/Data_formats/YAML.md)
