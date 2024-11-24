@@ -50,7 +50,7 @@
 - [CJS vs ESM](./learn/Javascript/CJWvsESM.md)
 ## [Web](./learn/Web)
 - [Chrome 브라우저의 prerendering & prefetching](./learn/Web/web_prerendering.md)
-- [event_handling_summary.md](./learn/Web/event_handling_summary.md)
+- [이벤트 다루기](./learn/Web/event_handling_summary.md)
 - [로그인 방법에 대한 이야기](./learn/Web/how_to_login.md)
 - [timestamp.md](./learn/Web/timestamp.md)
 - [AssemblyScript_test.md](./learn/Web/AssemblyScript_test.md)
