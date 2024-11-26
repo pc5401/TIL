@@ -35,18 +35,52 @@ Jenkins Pipeline에는 두 가지 문법이 존재한다. **Declarative Pipeline
 
 # Pipeline 섹션의 상세 설명
 
-**Agent section**은 작업을 수행할 Jenkins 노드나 Docker 컨테이너를 지정하는 역할을 한다. 특정 작업이 어느 환경에서 실행될지를 정의할 수 있다.
-
-**Post section**은 각 단계 후 후속 작업을 정의하는 섹션이다. 작업 성공, 실패, 항상 실행 등 다양한 조건에 따라 후속 작업을 설정할 수 있다.
-
-**Stage section**은 작업을 카테고리로 구분하여 빌드, 테스트, 배포 등의 단계로 나누는 역할을 한다. 이를 통해 파이프라인의 각 단계를 명확하게 정의할 수 있다.
-
-**Steps section**은 각 스테이지 안에서의 구체적인 작업 단계를 정의한다. 이 섹션에서 스크립트나 쉘 명령어 등을 사용하여 세부적인 작업을 수행할 수 있다.
+- **Agent section**은 작업을 수행할 Jenkins 노드나 Docker 컨테이너를 지정하는 역할을 한다. 특정 작업이 어느 환경에서 실행될지를 정의할 수 있다.
+- **Post section**은 각 단계 후 후속 작업을 정의하는 섹션이다. 작업 성공, 실패, 항상 실행 등 다양한 조건에 따라 후속 작업을 설정할 수 있다.
+- **Stage section**은 작업을 카테고리로 구분하여 빌드, 테스트, 배포 등의 단계로 나누는 역할을 한다. 이를 통해 파이프라인의 각 단계를 명확하게 정의할 수 있다.
+- **Steps section**은 각 스테이지 안에서의 구체적인 작업 단계를 정의한다. 이 섹션에서 스크립트나 쉘 명령어 등을 사용하여 세부적인 작업을 수행할 수 있다.
 
 # Declarative 문법
 
 Declarative 문법은 Jenkins Pipeline에서 간결하고 이해하기 쉬운 구조로 파이프라인을 정의할 수 있게 한다. 주요 요소로는 **Environment**, **Stage**, **Options**, **Parameters**, **Triggers**, **When** 등이 있으며, 각 요소는 특정한 작업을 수행하거나 조건을 설정하는 데 사용된다. 이러한 요소들을 활용하여 각 스테이지에서 수행할 작업을 상세하게 정의할 수 있다.
 
+## Declarative Pipeline 예제
+
+```groovy
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                sh 'make build'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing...'
+                sh 'make test'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying...'
+                sh 'make deploy'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Pipeline succeeded!'
+        }
+        failure {
+            echo 'Pipeline failed.'
+        }
+    }
+}
+```
 # Jenkins 실습
 
 Jenkins를 설치하고, 기본적인 파이프라인 예제를 통해 CI/CD 파이프라인을 구축하는 과정은 Jenkins 사용의 첫 걸음이다. Jenkins 설치 후 간단한 파이프라인을 설정하여 빌드와 배포 과정을 자동화하는 실습을 통해 Jenkins의 강력한 기능을 직접 체험할 수 있다. 이러한 실습을 통해 CI/CD 파이프라인의 개념을 구체적으로 이해하고, 실무에 적용할 수 있는 역량을 키울 수 있다.
