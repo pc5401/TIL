@@ -23,7 +23,7 @@
 - IP(Internet Protocol) 주소를 사용하여 라우팅한다.
 - 패킷 포워딩, 경로 설정, 네트워크 혼잡 제어를 담당한다.
 - 라우터와 같은 네트워크 장치가 이 계층에서 작동한다.
-- 데이터는 패킷(Packet) 단위로 전송된다.
+- 데이터는 **패킷(Packet)** 단위로 전송된다.
 - 라우팅 프로토콜로 OSPF, RIP, BGP 등이 있다.
  
 4. [**전송 계층 (Transport Layer)**](transport_layer.md)
@@ -45,12 +45,14 @@
 - 데이터 압축, 인코딩, 디코딩을 수행한다.
 - 서로 다른 데이터 형식을 사용하는 시스템 간의 데이터 호환성을 보장한다.
 - 예를 들어, 문자 인코딩(ASCII, EBCDIC), 이미지 포맷(JPEG, GIF) 등을 처리한다.
+- SSL/TLS 프로토콜을 사용하여 데이터 암호화를 수행한다.
 
 7. **응용 계층 (Application Layer)**
 - 사용자가 네트워크에 접근하는 인터페이스를 제공한다.
 - HTTP, FTP, SMTP 등의 프로토콜을 포함한다.
 - 웹 브라우징, 파일 전송, 이메일 전송 등 다양한 네트워크 서비스를 제공한다.
 - 사용자 인터페이스와 직접 상호작용하며, 네트워크 요청을 처리한다.
+- DNS(Domain Name System), DHCP(Dynamic Host Configuration Protocol) 등의 프로토콜이 포함된다.
 
 
 ## TCP/IP 4계층
