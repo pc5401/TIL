@@ -63,11 +63,15 @@ TCP/IP 모델은 인터넷을 통해 데이터가 어떻게 전송되는지 설�
 - OSI 모델의 물리 계층과 데이터 링크 계층에 해당한다.
 - 네트워크 하드웨어 장치와 물리적 연결을 다루며, 데이터 프레임의 전송을 담당한다.
 - 이더넷, Wi-Fi 등의 기술을 사용하여 데이터를 물리적으로 전송한다.
+- MAC 주소를 사용하여 통신한다.
+
 2. **인터넷 계층 (Internet Layer)**
 - OSI 모델의 네트워크 계층에 해당한다.
 - 데이터 패킷의 주소 지정과 라우팅을 담당한다.
 - IP(Internet Protocol)를 사용하여 데이터 패킷을 목적지까지 전달한다.
 - 주요 프로토콜로는 IP, ICMP(Internet Control Message Protocol), ARP(Address Resolution Protocol)가 있다.
+- IP 주소를 사용하여 통신하며, IPv4와 IPv6를 지원한다.
+  
 3. [**전송 계층 (Transport Layer)**](./transport_layer.md)
 - OSI 모델의 전송 계층에 해당한다.
 - 데이터 전송의 신뢰성을 보장하고, 데이터 전송을 관리한다.
