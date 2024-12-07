@@ -103,3 +103,9 @@ TCP/IP 모델은 인터넷을 통해 데이터가 어떻게 전송되는지 설�
 - 네트워크 계층: 패킷(Packet)
 - 전송 계층: 세그먼트(Segment) 또는 데이터그램(Datagram)
 - 응용 계층: 메시지(Message)
+
+## 주요 프로토콜
+- 데이터 링크 계층: Ethernet, PPP(Point-to-Point Protocol), IEEE 802.11(Wi-Fi)
+- 네트워크 계층: IP, ICMP, IGMP(Internet Group Management Protocol)
+- 전송 계층: TCP, UDP
+- 응용 계층: HTTP, FTP, SMTP, DNS, Telnet, SSH, DHCP
