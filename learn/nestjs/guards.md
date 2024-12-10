@@ -16,8 +16,6 @@
 권한 부여는 가드의 주요 사용 사례이다. 특정 라우트는 충분한 권한을 가진 호출자(주로 특정 인증된 사용자)에게만 접근이 허용되어야 한다. 아래는 인증된 사용자를 가정하고 토큰을 추출 및 검증하여 요청을 진행할지 여부를 결정하는 `AuthGuard` 예제이다.
 
 ```tsx
-typescript
-코드 복사
 // auth.guard.ts
 import { Injectable, CanActivate, ExecutionContext } from '@nestjs/common';
 import { Observable } from 'rxjs';

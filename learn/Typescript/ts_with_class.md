@@ -5,8 +5,6 @@
 클래스 내부에는 모든 인스턴스에서 사용할 수 있는 속성을 정의할 수 있다. 예를 들어, 모든 `Person` 클래스의 인스턴스에 `data`라는 속성을 부여하려면 다음과 같이 작성한다.
 
 ```tsx
-typescript
-코드 복사
 class Person {
   data = 0;
 }
@@ -24,8 +22,6 @@ console.log(jane.data); // 출력: 0
 타입스크립트는 필드의 초기값을 기반으로 자동으로 타입을 추론한다. 예를 들어, `data` 필드의 초기값이 `0`이므로 `data`는 `number` 타입으로 간주된다. 그러나 명시적으로 타입을 지정할 수도 있다.
 
 ```tsx
-typescript
-코드 복사
 class Person {
   data: number = 0;
 }
@@ -42,8 +38,6 @@ john.data = '1'; // 에러 발생: Type 'string' is not assignable to type 'numb
 클래스는 객체를 생성하는 복사기 역할을 한다. 예를 들어, `{ name: 'Alice', age: 30 }`와 같은 객체를 생성하는 클래스를 만들려면 `constructor` 함수를 사용한다. ES6 문법에서는 `constructor` 함수를 통해 초기화를 진행한다.
 
 ```tsx
-typescript
-코드 복사
 class Person {
   name: string;
   age: number;
@@ -64,8 +58,6 @@ console.log(alice); // 출력: { name: 'Alice', age: 20 }
 또한, 기본 파라미터 값을 지정할 수 있다. 파라미터에 값을 입력하지 않으면 기본값이 할당된다.
 
 ```tsx
-typescript
-코드 복사
 class Person {
   name: string;
   age: number;
@@ -92,8 +84,6 @@ console.log(bob); // 출력: { name: 'Unknown', age: 20 }
 클래스 내부에는 함수를 메서드로 정의할 수 있다. 메서드도 함수와 마찬가지로 파라미터와 반환 타입을 지정할 수 있다.
 
 ```tsx
-typescript
-코드 복사
 class Person {
   name: string;
   age: number;
@@ -129,8 +119,6 @@ console.log(carol.incrementAge()); // 출력: 26
 **예제 구현:**
 
 ```tsx
-typescript
-코드 복사
 class Car {
   model: string;
   price: number;
@@ -162,8 +150,6 @@ console.log(car1.tax());  // 출력: 300
 **동작 예시:**
 
 ```tsx
-typescript
-코드 복사
 const obj = new Word('kim', 3, 5, 'park');
 console.log(obj.num); // 출력: [3, 5]
 console.log(obj.str); // 출력: ['kim', 'park']
@@ -173,8 +159,6 @@ console.log(obj.str); // 출력: ['kim', 'park']
 **예제 구현:**
 
 ```tsx
-typescript
-코드 복사
 class Word {
   num: number[];
   str: string[];
@@ -310,8 +294,6 @@ console.log(user1.getFullName()); // 출력: Alice Johnson
 `protected` 키워드는 `private`과 유사하지만, 상속받은 클래스에서는 접근이 가능하다. 이는 상속 관계에서만 접근을 허용하고, 클래스 외부에서는 접근을 제한하고자 할 때 유용하다.
 
 ```tsx
-typescript
-코드 복사
 class User {
   public name: string;
   protected age: number;
@@ -344,8 +326,6 @@ console.log(admin1.getAge()); // 출력: 30
 `static` 키워드를 클래스 속성이나 메서드 앞에 붙이면, 해당 속성이나 메서드는 클래스 자체에 속하게 된다. 즉, 클래스의 인스턴스가 아닌 클래스 자체에서 접근할 수 있다.
 
 ```tsx
-typescript
-코드 복사
 class User {
   static skill: string = 'JavaScript';
   public name: string;
@@ -380,8 +360,6 @@ console.log(user2.introduce()); // 출력: Bob은 Python 전문가입니다.
 - `private`, `protected`, `public`과 함께 사용할 수 있다.
 
 ```tsx
-typescript
-코드 복사
 class User {
   private static count: number = 0;
   public name: string;
@@ -406,8 +384,6 @@ console.log(User.count); // 에러: Property 'count' is private and only accessi
 ### `public`과 `private`의 결합 예제
 
 ```tsx
-typescript
-코드 복사
 class User {
   public name: string;
   private familyName: string;
@@ -438,8 +414,6 @@ user1.familyName = 'Williams'; // 에러: Property 'familyName' is private and o
 ### `protected`와 `static`의 결합 예제
 
 ```tsx
-typescript
-코드 복사
 class User {
   public name: string;
   protected age: number;
@@ -502,8 +476,6 @@ TypeScript의 `public`, `private`, `protected`, `static` 키워드를 활용하�
 **예제 구현:**
 
 ```tsx
-typescript
-코드 복사
 class Car {
   public model: string;
   public price: number;
@@ -535,8 +507,6 @@ console.log(car1.tax());  // 출력: 300
 **동작 예시:**
 
 ```tsx
-typescript
-코드 복사
 const obj = new Word('kim', 3, 5, 'park');
 console.log(obj.num); // 출력: [3, 5]
 console.log(obj.str); // 출력: ['kim', 'park']
@@ -546,8 +516,6 @@ console.log(obj.str); // 출력: ['kim', 'park']
 **예제 구현:**
 
 ```tsx
-typescript
-코드 복사
 class Word {
   public num: number[];
   public str: string[];

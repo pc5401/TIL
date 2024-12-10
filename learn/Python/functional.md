@@ -152,7 +152,6 @@ def add_entry(d, key, value):
 - 데이터 복사: 기존 데이터를 변경하지 않고, 새로운 데이터 구조를 생성하여 반환한다.
 
 ```python
-코드 복사
 original_set = frozenset([1, 2, 3])
 
 def add_element(s, element):

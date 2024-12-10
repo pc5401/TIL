@@ -128,7 +128,6 @@ int main() {
 `pop_back()` 메서드는 vector의 마지막 요소를 제거한다. 이 메서드는 마지막 요소를 제거하면서 vector의 크기를 1 줄인다.
 
 ``` cpp
-코드 복사
 #include <iostream>
 #include <vector>
 
@@ -160,7 +159,6 @@ int main() {
 - `erase(first, last)` : 지정된 범위 `[first, last)`의 요소를 제거
 
 ``` cpp
-코드 복사
 #include <iostream>
 #include <vector>
 

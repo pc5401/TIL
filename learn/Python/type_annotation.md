@@ -19,8 +19,6 @@
 파이썬의 기본 데이터 타입들인 `int`, `float`, `bool`, `str`에 대해 타입 어노테이션을 할 수 있다.
 
 ```python
-python
-코드 복사
 # 정수 타입
 나이: int = 25
 
@@ -40,8 +38,6 @@ python
 함수의 인자나 반환값에도 타입 어노테이션을 적용할 수 있다.
 
 ```python
-python
-코드 복사
 def 인사(이름: str) -> str:
     return "안녕하세요, " + 이름
 
@@ -54,8 +50,6 @@ def 인사(이름: str) -> str:
 리스트나 딕셔너리 같은 복합 데이터 구조에도 타입 어노테이션을 사용할 수 있다. 이때는 `typing` 모듈의 타입 힌트를 활용해야 한다.
 
 ```python
-python
-코드 복사
 from typing import List, Tuple, Dict, Set
 
 # 문자열 리스트
@@ -77,8 +71,6 @@ from typing import List, Tuple, Dict, Set
 함수와 클래스 메서드에서도 타입 어노테이션을 적용할 수 있다.
 
 ```python
-python
-코드 복사
 from typing import List, Tuple
 
 def 곱하기(a: int, b: int) -> int:
@@ -97,8 +89,6 @@ def 짝수_찾기(숫자들: List[int]) -> List[int]:
 클래스 메서드에서도 타입 어노테이션을 활용하면 객체의 속성과 메서드가 기대하는 타입을 더 명확히 정의할 수 있다.
 
 ```python
-python
-코드 복사
 from typing import List
 
 class 학생:
