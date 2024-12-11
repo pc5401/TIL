@@ -66,7 +66,7 @@
 - [네트워크 관리](./learn/Linux/network.md)
 - [기본 명령어](./learn/Linux/basic_commands.md)
 - [wsl2(우분투)에서 node.js 로컬 환경 구축](./learn/Linux/wsl2_with_node.md)
-- [파일 권한( 도대체 764 는 뭘까)](./learn/Linux/authority.md)
+- [파일 권한 이해하기: 도대체 764는 무슨 뜻일까?](./learn/Linux/authority.md)
 - [Linux 파일 시스템 정리](./learn/Linux/file_system.md)
 ## [Typescript](./learn/Typescript)
 - [타입 애매할 때](./learn/Typescript/ambiguous_type.md)
