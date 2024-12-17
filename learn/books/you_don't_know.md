@@ -35,8 +35,6 @@
 // 브라우저 환경 전용 예시 (표준 JS 아님)
 alert("Hello, JS!");
 console.log("이 출력은 콘솔이라는 환경 API를 활용한 것");
-
-
 ```
 
 #### 개발자 도구 콘솔 주의점
@@ -65,7 +63,6 @@ if (condition) {
     let x = 4;
     console.log(x);
 }
-
 ```
 
 ```js
@@ -78,10 +75,7 @@ if (!Promise.prototype.finally) {
         );
     };
 }
-
 ```
-
-
 
 #### JS의 실행 방식
 
@@ -119,3 +113,210 @@ function test() {
 - 트랜스파일링, 폴리필 등으로 최신 기능 적극 활용 가능
 - 환경별 API 제공으로 다양한 플랫폼 지원
 - 엄격 모드와 컴파일 단계를 통해 안정적이고 최적화된 코드 작성 가능하다.
+
+
+
+
+
+### ch.2 자바스크립트 조망하기
+
+#### 개요
+
+JS 학습의 핵심은 코드를 직접 작성하면서 언어의 동작 방식을 이해하는 것  
+2장은 JS 언어 요소들을 개괄적으로 살펴보는 장이며, 이후 심화 학습을 위한 토대 구축이 목적  
+단순 문법 나열이 아닌 개념적 지형 파악에 초점
+
+#### 각 파일이 하나의 프로그램
+
+- 전통적 상황에서 `.js` 파일 하나가 하나의 독립된 프로그램으로 취급된다
+- 여러 파일을 로드해도 각 파일은 개별 프로그램으로 파싱 및 실행된다
+- 하나의 애플리케이션은 다양한 JS 파일(프로그램)을 전역 범위(global scope)에서 상호 작용시키거나, ES6 모듈 방식을 통해 서로 import/export하며 협업한다
+
+#### 값(Values)
+
+- JS의 정보 기본 단위는 값(Value)
+- 원시값(primitive)과 객체(object)로 구분된다
+- 원시값: string, number, boolean, undefined, null, symbol, bigint
+- 문자열은 `" "`나 `' '`로 묶으며, `` ` ` `` 백틱을 사용하면 `${변수}` 형식으로 값 삽입(인터폴레이션) 가능
+- ```js
+  let firstName = "Kyle";
+  console.log(`My name is ${ firstName }.`);
+  
+  ```
+
+- 숫자는 정수, 실수, 큰 정수(bigint) 등 표현 가능
+- boolean은 `true` / `false`로 논리값 표현
+- `null` 과 `undefined`는 "값 없음"을 나타내는 특수한 값
+- symbol은 주로 내부적, 또는 고유한 키로 객체에 활용
+
+#### 배열(Array)와 객체(Object)
+
+- 배열: 순서가 있으며 인덱스로 접근하는 객체 형태
+- ```js
+  let names = [ "Frank", "Kyle", "Susan" ];
+  console.log(names[1]); // "Kyle"
+  
+  ```
+
+- 객체: 키-값 쌍의 집합, 순서 없음
+- ```js
+  let me = {
+    first: "Kyle",
+    last: "Simpson",
+    age: 39
+  };
+  console.log(me.first); // "Kyle"
+  
+  ```
+
+- typeof 연산자로 타입 확인
+- ```js
+  typeof 42; // "number"
+  typeof "abc"; // "string"
+  typeof null; // "object" (버그성 반환)
+  typeof [1,2,3]; // "object"
+  typeof function(){}; // "function" (특수 반환)
+  ```
+
+
+
+#### 변수 선언
+
+- `var`, `let`, `const` 키워드로 변수 선언
+- `var`는 함수 범위(function scope), `let`과 `const`는 블록 범위(block scope)
+- `const`는 재할당 불가. 단, 객체 참조 값은 바뀌지 않지만 내부 변경 가능
+- 파라미터나 `catch` 등의 구문에서도 변수 선언 발생
+
+```js
+var myName = "Kyle";
+let age = 39;
+const isBirthday = true;
+
+if (isBirthday) {
+  age = age + 1;
+  // isBirthday = false; // 에러 발생 (const 재할당 불가)
+}
+
+```
+
+#### 함수 (Function)
+
+- 코드의 재사용 가능한 블록
+- 입력(파라미터)을 받고, 처리 후 결과를 `return`으로 반환 가능
+- 함수는 값이며, 변수나 객체 프로퍼티로 할당 가능
+- 함수 선언: `function fnName(){}`
+- 함수 표현식: `var fn = function(){};`
+- 객체 메서드로도 정의 가능
+
+```js
+function greeting(myName) {
+  return `Hello, ${myName}!`;
+}
+
+let msg = greeting("Kyle");
+console.log(msg); // "Hello, Kyle!"
+
+```
+
+
+
+#### 비교 연산
+
+- `===`는 엄격 비교이지만 `NaN`과 `-0`에 대해 특수 동작: `NaN === NaN`은 false, `0 === -0`은 true
+- `Object.is()`를 통해 이러한 특수 케이스 제대로 비교 가능
+- `==`는 타입이 다르면 강제 변환(coercion) 수행 후 비교
+- 대소 비교 `<`, `>` 등도 타입 다르면 숫자로 변환하여 비교
+- 객체 비교 시 참조 동일성(identity)을 비교하고, 구조적 동등성은 기본적으로 지원하지 않음
+
+```js
+42 === "42"; // false
+42 == "42"; // true, "42"가 숫자로 변환되어 비교
+Object.is(NaN, NaN); // true
+Object.is(0, -0); // false
+```
+
+
+
+#### 클래스(Class)
+
+- 데이터와 동작을 하나로 묶는 전통적 객체지향 패턴
+- `class` 키워드로 정의하며 `new`로 인스턴스 생성
+- `extends`를 통한 상속(inheritance)과 `super`를 통한 부모 클래스 메서드 호출 가능
+
+```js
+class Publication {
+  constructor(title, author, pubDate) {
+    this.title = title;
+    this.author = author;
+    this.pubDate = pubDate;
+  }
+  print() {
+    console.log(`${this.title} by ${this.author} on ${this.pubDate}`);
+  }
+}
+
+class Book extends Publication {
+  constructor(details) {
+    super(details.title, details.author, details.publishedOn);
+    this.publisher = details.publisher;
+  }
+  print() {
+    super.print();
+    console.log(`Publisher: ${this.publisher}`);
+  }
+}
+
+let myBook = new Book({
+  title: "You Don't Know JS",
+  author: "Kyle Simpson",
+  publishedOn: "June 2014",
+  publisher: "O'Reilly"
+});
+myBook.print();
+
+```
+
+
+
+#### 모듈(Module)
+
+- 모듈은 데이터와 기능을 묶고 외부에 명시적으로 export하여 재사용하는 패턴
+- 전통적 방식: 함수로 감싸고 반환 객체로 public API 제공(클래식 모듈 패턴)
+- ES 모듈(ESM): 파일 단위의 모듈, `import` / `export` 구문 사용
+- ESM은 싱글 인스턴스. 필요한 경우 모듈에서 팩토리 함수 제공하여 다중 인스턴스 생성 가능
+
+```js
+// publication.js
+export function create(title,author,pubDate) {
+  return {
+    print() {
+      console.log(`${title} by ${author} on ${pubDate}`);
+    }
+  };
+}
+
+// blogpost.js
+import { create as createPub } from "./publication.js";
+export function create(title, author, pubDate, URL) {
+  let pub = createPub(title, author, pubDate);
+  return {
+    print() {
+      pub.print();
+      console.log(URL);
+    }
+  };
+}
+
+// main.js
+import { create as newBlogPost } from "./blogpost.js";
+let post = newBlogPost("Title", "Kyle", "Today", "http://example.com");
+post.print();
+
+```
+
+#### 정리
+
+- 2장은 JS 언어 요소를 폭넓게 살펴보는 개괄적 여정이었다.
+- 각 파일 단위 프로그램 인식, 원시값/객체, 변수 스코프, 함수, 비교, 클래스와 모듈 패턴까지 두루 훑음
+- 이후 심층적 학습 이전에 이 개념들을 재차 검토하고 익숙해지는 과정 필요
+- 모듈, 클래스, 비교 연산, 스코프 등 핵심 기초를 바탕으로 이후 내용을 더욱 깊이 이해할 수 있음
