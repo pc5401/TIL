@@ -438,3 +438,84 @@ JS 언어가 크게 3가지 축(스코프/클로저, 프로토타입, 타입/강
 - 군중심리나 기존 관행을 무비판적으로 따르기보다, JS 고유의 "결"(grain)을 이해하고 활용하자.
 - 스펙에 기반한 사실(팩트)와 저자의 의견(옵니언)을 구분하고, 자신의 의견으로 소화한 뒤 필요 시 논리적으로 방어할 수 있어야 함.
 - JS 고유 패턴과 문법적 특성을 수용하고, 자신의 팀 문화나 기존 코드베이스와 조화롭게 점진적 개선 추구
+
+## APPENDIX A 더 멀리 나가기
+### 1. 값(Values) vs. 참조(References)
+
+- **원시값(Primitives)**: 문자열, 숫자 등은 복사(copy)되어 전달
+    
+    ```jsx
+    let myName = "Kyle";
+    let yourName = myName; // 별도의 "Kyle" 생성
+    myName = "Frank";
+    console.log(yourName); // "Kyle" (영향 없음)
+    ```
+    
+- **객체값(Objects)**: 배열, 객체, 함수 등은 참조(reference)로 전달
+    
+    ```jsx
+    let myAddress = { street: "123 JS Blvd" };
+    let yourAddress = myAddress; // 참조 복사
+    myAddress.street = "456 TS Ave";
+    console.log(yourAddress.street); // "456 TS Ave"
+    ```
+    
+- JS는 값의 종류(원시 vs. 객체)에 따라 자동으로 복사/참조 여부 결정
+
+### 2. 다양한 함수 정의 방식 (So Many Function Forms)
+
+- **익명 함수 표현식(Anonymous Function Expression)**
+    
+    ```jsx
+    let fn = function(x) { return x * 2; };
+    ```
+    
+    - 할당 시 `fn.name`은 `"fn"`으로 추론되지만 실제 식별자는 없음
+- **명명된 함수 표현식(Named Function Expression)**
+    
+    ```jsx
+    let fn = function double(x) { return x * 2; };
+    ```
+    
+    - 함수 내부에서 `double()`로 재귀 호출, 디버깅 시 추적 가능
+- **다양한 선언/표현식**: 제너레이터(`function *`), async 함수(`async function`), 클래스 메서드, 화살표 함수(`=>`), IIFE 등
+- 화살표 함수(`=>`)는 **항상 익명**이며, `this`를 렉시컬 스코프로 바인딩
+
+### 3. 조건문에서의 강제 변환(Coercive Conditional Comparison)
+
+- `if (x) {...}` 등 조건식은 내부적으로 `Boolean(x)`로 강제 변환 후 판단
+    
+    ```jsx
+    let x = "hello";
+    if (x) { /* "hello" -> true로 변환, 블록 실행 */ }
+    ```
+    
+- `== true`와 `if(x)`는 동일하지 않음. 후자는 `Boolean(x)` 로 처리
+- JS에서 `if`, `while`, `for` 등 제어문의 조건은 항상 **부울(boolean) 변환**이 일어남
+
+### 4. 프로토타입 "클래스"(Prototypal "Classes")
+
+- ES6 이전에 **생성자 함수**와 `prototype` 객체로 사실상 ‘클래스 흉내’를 내던 방식
+    
+    ```jsx
+    function Classroom() {}
+    Classroom.prototype.welcome = function() {
+      console.log("Welcome!");
+    };
+    let mathClass = new Classroom();
+    mathClass.welcome(); // "Welcome!"
+    ```
+    
+- 현재는 ES6의 `class` 문법이 권장됨
+    
+    ```jsx
+    class Classroom {
+      welcome() {
+        console.log("Welcome!");
+      }
+    }
+    let mathClass = new Classroom();
+    mathClass.welcome(); // "Welcome!"
+    ```
+    
+- 프로토타입 체인 자체는 동일하나, 클래스 문법이 더 명확하고 직관적임
