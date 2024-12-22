@@ -519,3 +519,134 @@ JS 언어가 크게 3가지 축(스코프/클로저, 프로토타입, 타입/강
     ```
     
 - 프로토타입 체인 자체는 동일하나, 클래스 문법이 더 명확하고 직관적임
+
+## APPENDIX B 연습만이 살길입니다!
+
+## 1. Comparisons (타입, 강제 변환, 비교)
+
+### 문제 요약
+
+- **scheduleMeeting(startTime, durationMinutes)**
+    - `startTime`: "hh:mm" 형태(24시간 표기)의 문자열
+    - `durationMinutes`: 숫자 형태의 회의 진행 시간(분 단위)
+    - **반환값**: 전체 회의 시간이 `dayStart = "07:30"` ~ `dayEnd = "17:45"` 범위 안에 완전히 속하면 `true`, 그렇지 않으면 `false`
+
+```jsx
+const dayStart = "07:30";
+const dayEnd = "17:45";
+
+function scheduleMeeting(startTime,durationMinutes) {
+    // TODO
+}
+
+scheduleMeeting("7:00",15);     // false
+scheduleMeeting("07:15",30);    // false
+scheduleMeeting("7:30",30);     // true
+scheduleMeeting("11:30",60);    // true
+scheduleMeeting("17:00",45);    // true
+scheduleMeeting("17:30",30);    // false
+scheduleMeeting("18:00",15);    // false
+```
+
+**핵심 포인트**
+
+- 시간 비교 시 문자열(예: `"07:30"`) 간에 알파벳순으로 비교가 일어날 수 있음
+- `padStart(2, "0")`와 같은 방식을 활용해 `"07:30"`처럼 항상 2자리로 맞춰두면 문자열 비교로도 안전하게 대소 비교 가능
+- 혹은 숫자로 변환하거나, 정규식으로 시/분을 추출한 뒤, 분 단위로 환산하여 비교할 수도 있음
+
+### 해법 예시
+
+부록에 제시된 예시 코드에서는
+
+1. 정규식(`startTime.match(...)`)으로 시/분을 추출
+2. `durationMinutes`를 시/분으로 분할
+3. 최종 시작/종료 시간을 `hh:mm` 형태로 다시 문자열화한 뒤, `dayStart <= 시작시간 && 종료시간 <= dayEnd` 형태로 비교
+
+---
+
+## 2. Closure (클로저)
+
+### 문제 요약
+
+- **range(start, end)**
+    - 첫 번째 파라미터 `start`와 두 번째 파라미터 `end` 모두 숫자
+    - **두 번째 파라미터 `end`가 주어지지 않은 경우**, range 함수는 함수를 **반환**해야 하며, 그 내부에서 `end`를 받아 최종 결과 배열을 반환
+    - 반환되는 배열은 `[start, start+1, ..., end]` 형태 (start~end가 역순이면 빈 배열)
+
+```jsx
+function range(start,end) {
+    // TODO
+}
+
+range(3,3);    // [3]
+range(3,8);    // [3,4,5,6,7,8]
+range(3,0);    // []
+
+var start3 = range(3);
+start3(3);     // [3]
+start3(8);     // [3,4,5,6,7,8]
+start3(0);     // []
+```
+
+**핵심 포인트**
+
+- 파라미터 `end`가 누락된 경우 함수를 **커링**(curry) 형태로 반환
+- 내부에서 `getRange(start, end)` 같은 별도 함수를 만들어 `[start..end]` 배열을 생성
+- **클로저**가 생성되어 `start` 값이 보존됨
+
+### 해법 예시
+
+- `end`가 `undefined`면 함수를 반환하고, 그 내부에서 `end`를 받아 같은 로직 실행
+- 배열 생성 시, 간단히 `for (let i = start; i <= end; i++)` 구조 사용
+- `start/end`를 Number(...)로 변환해 기본값 0으로 처리
+
+---
+
+## 3. Prototypes (프로토타입)
+
+### 문제 요약
+
+- **슬롯머신(slotMachine)과 reel(릴) 객체**
+    - `reel` 객체: 내부 `symbols` 배열을 가지고, `spin()`과 `display()` 메서드가 있음
+    - `slotMachine` 객체: 3개의 `reels`(각각 `reel` 프로토타입을 이용하여 만들 것), `spin()`, `display()` 메서드
+    - `slotMachine.display()` 결과는 3줄을 출력하며, 각 줄에 3개의 심볼을 표시
+        - 각 reel에는 현재 `position`이 있고, 보여줘야 할 줄에 따라 `position-1`, `position`, `position+1` 위치의 심볼 표시
+
+```jsx
+var reel = {
+    symbols: [ "♠", "♥", "♦", "♣", "☺", "★", "☾", "☀" ],
+    spin() { /* ... */ },
+    display() { /* ... */ }
+};
+
+var slotMachine = {
+    reels: [
+        // Object.create(reel)
+    ],
+    spin() { /* ... */ },
+    display() { /* ... */ }
+};
+
+slotMachine.spin();
+slotMachine.display();
+// 예)
+// ☾ | ☀ | ★
+// ☀ | ♠ | ☾
+// ♠ | ♥ | ☀
+```
+
+**핵심 포인트**
+
+- `Object.create(reel)`을 통해 각 reel 객체 생성 (프로토타입 링크)
+- `spin()`은 `position` 조정
+- `display()`는 각 reel에서 `position-1`, `position`, `position+1` 3가지 심볼을 가져와서 3줄로 출력
+    - `(reel.position + linePos) % reel.symbols.length` 계산으로 위치 보정
+
+### 해법 예시
+
+1. `this.reels = [ Object.create(reel), Object.create(reel), Object.create(reel) ]`
+2. `spin()` 시 each reel에 대해 `reel.spin()` 호출
+3. `display()` 내부
+    - `for (linePos = -1; linePos <= 1; linePos++)` 반복
+    - 각 reel마다 `Object.create(reel)`을 생성하고, `position`을 `(reel.position + linePos) % length`로 설정
+    - 최종 `slot.display()` 호출 후 결과를 라인별로 합쳐 콘솔 출력
