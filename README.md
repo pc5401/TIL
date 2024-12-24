@@ -64,6 +64,7 @@
 ## [Linux](./learn/Linux)
 - [운영체제 프로세스 메모리 할당과 동작 방식 (리눅스 기준)](./learn/Linux/process_check.md)
 - [네트워크 관리](./learn/Linux/network.md)
+- [리눅스(Linux) 에 대해서](./learn/Linux/about_linux.md)
 - [기본 명령어](./learn/Linux/basic_commands.md)
 - [wsl2(우분투)에서 node.js 로컬 환경 구축](./learn/Linux/wsl2_with_node.md)
 - [파일 권한 이해하기: 도대체 764는 무슨 뜻일까?](./learn/Linux/authority.md)
