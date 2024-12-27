@@ -73,3 +73,96 @@ HTML은 웹 개발의 출발점이며, 구조와 의미 부여에 집중해야 �
 CSS, JavaScript와 함께 사용되어 현대 웹을 구성하는 핵심 요소가 된다
 
 반응형 디자인, 접근성, SEO 등을 고려하기 위해서는 HTML을 표준에 맞춰 정확히 작성하는 습관이 중요하다
+
+# HTML 문서 구조
+
+HTML 문서는 크게 **머리말(head)**과 **본문(body)** 부분으로 나뉜다
+
+시작하기 전에 반드시 `<!DOCTYPE html>`을 통해 HTML5 문서임을 선언한다
+
+## 문서의 기본 골격
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>문서 구조 예시</title>
+</head>
+<body>
+  <h1>HTML 문서 구조</h1>
+  <p>head와 body의 역할을 구분할 수 있다</p>
+</body>
+</html>
+```
+
+1. `<!DOCTYPE html>`: HTML5 문서임을 선언
+2. `<html lang="ko">`: 문서 최상위 태그이며, `lang="ko"`로 문서가 한국어임을 지정
+3. `<head>`: 문서의 정보를 담는 영역이다
+    - `<meta charset="UTF-8">`: 문자의 인코딩 방식을 지정한다
+    - `<title>`: 문서의 제목을 지정하며 브라우저 탭에 표시된다
+    - `<link>`나 `<script>` 등을 통해 외부 파일을 불러올 수 있다
+4. `<body>`: 실제 화면에 표시될 콘텐츠를 작성하는 영역이다
+    - 텍스트, 이미지, 링크, 폼 등의 모든 요소가 이 안에 들어간다
+
+## head 영역
+
+- 문서 자체의 정보(메타데이터)를 정의하는 곳이다
+- 검색엔진이나 소셜 미디어에서 문서를 인식하기 위한 정보가 주로 들어간다
+- `<meta>`, `<title>`, `<link>`, `<script>` 태그 등을 포함한다
+
+```html
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="HTML 문서 구조 정리">
+  <meta name="keywords" content="HTML, 문서 구조, 웹개발">
+  <meta name="author" content="홍길동">
+  <title>문서 구조 예시</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js"></script>
+</head>
+```
+
+## body 영역
+
+- 화면에 표시될 콘텐츠를 포함한다
+- 텍스트, 이미지, 하이퍼링크, 시맨틱 태그 등이 사용된다
+- `<header>`, `<main>`, `<footer>`와 같은 시맨틱 태그를 통해 구조를 명확히 할 수 있다
+
+```html
+<body>
+  <header>
+    <h1>HTML 문서 구조</h1>
+    <nav>
+      <ul>
+        <li><a href="#section1">섹션 1</a></li>
+        <li><a href="#section2">섹션 2</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="section1">
+      <h2>섹션 1</h2>
+      <p>첫 번째 섹션의 내용이다</p>
+    </section>
+
+    <section id="section2">
+      <h2>섹션 2</h2>
+      <p>두 번째 섹션의 내용이다</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>제작: 홍길동</p>
+  </footer>
+</body>
+```
+
+## 정리
+
+HTML 문서 구조는 웹페이지의 뼈대를 결정한다
+
+**head 영역**은 문서 정보를 정의하고, **body 영역**은 사용자에게 보이는 콘텐츠를 담는다
+
+시맨틱 태그를 활용해 구조를 명확히 구성하면, 검색엔진과 접근성 측면에서도 유리하다
