@@ -57,7 +57,7 @@
 - [EJS와 Express 통합 사용법](./learn/Web/ejs.md)
 - [폰트를 활용한 웹 개발 가이드](./learn/Web/font_guide.md)
 ## [HTML](./learn/HTML)
-- [HTML 개요](./learn/HTML/html_intro.md)
+- [HTML 정리](./learn/HTML/html_intro.md)
 ## [CI_CD](./learn/CI_CD)
 - [CI_CD_Jenkins_Study.md](./learn/CI_CD/CI_CD_Jenkins_Study.md)
 ## [books](./learn/books)
