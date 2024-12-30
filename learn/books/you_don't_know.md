@@ -34,7 +34,7 @@
 ```js
 // 브라우저 환경 전용 예시 (표준 JS 아님)
 alert("Hello, JS!");
-console.log("이 출력은 콘솔이라는 환경 API를 활용한 것");
+console.log("이 출력은 콘솔(console) === 환경 API 라는 것을 체크");
 ```
 
 #### 개발자 도구 콘솔 주의점
