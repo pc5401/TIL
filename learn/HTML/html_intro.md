@@ -367,3 +367,58 @@ HTML의 핵심 태그와 요소를 익히면 문서를 구조화하고 의미를
 6. **`<footer>`**
     - 문서나 섹션의 바닥글을 나타낸다
     - 보통 저작권 정보, 링크, 연락처 등을 포함한다
+
+## 3. 시맨틱 태그 예시
+
+```html
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>시맨틱 태그 예시</title>
+</head>
+<body>
+  <header>
+    <h1>사이트 제목</h1>
+    <nav>
+      <ul>
+        <li><a href="#section1">섹션 1</a></li>
+        <li><a href="#section2">섹션 2</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="section1">
+    <h2>섹션 1</h2>
+    <p>시맨틱 태그를 사용해 문서를 구조화한다</p>
+  </section>
+
+  <section id="section2">
+    <article>
+      <h3>아티클 예시</h3>
+      <p>독립적인 콘텐츠 단위이다</p>
+    </article>
+    <aside>
+      <p>추가 정보나 광고, 관련 링크를 여기에 배치한다</p>
+    </aside>
+  </section>
+
+  <footer>
+    <p>© 2024 My Website</p>
+  </footer>
+</body>
+</html>
+```
+
+1. `<header>`에서 문서의 머리말과 내비게이션이 들어간다
+2. `<section>`은 주제별로 묶는 큰 단위
+3. `<article>`은 독립적으로 재사용 가능한 콘텐츠 블록
+4. `<aside>`는 본문과 간접적으로 연관된 부가 정보를 제공
+5. `<footer>`는 바닥글로, 문서의 저작권 정보나 기타 링크 등을 포함
+
+## 4. 정리
+
+시맨틱 태그를 적절히 활용하면, 문서의 구조와 내용이 명확해지고 검색엔진과 보조기기에 더욱 친화적인 웹페이지를 만들 수 있다
+
+단순히 `<div>` 태그에 클래스를 부여하는 방식에서 벗어나, 각 영역이 가진 의미에 맞는 태그를 사용하는 습관을 기르자
