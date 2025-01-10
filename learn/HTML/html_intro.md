@@ -453,3 +453,37 @@ HTML5 `<audio>` 태그 덕분에 기본 플레이어 UI를 제공하며, 속성�
 1. `controls`: 재생·일시정지 버튼 등 기본 컨트롤을 표시
 2. `<source>`: 브라우저별 지원 코덱이 다를 수 있으므로 여러 형식을 제공할 수 있다
 3. `autoplay`, `loop`, `muted` 등의 속성을 활용해 자동재생, 반복재생, 음소거 등을 지정할 수 있다
+
+## 4) 비디오 삽입 (`<video>`)
+
+오디오와 마찬가지로 HTML5부터 `<video>` 태그가 표준으로 채택되어, 브라우저에서 직접 재생할 수 있다
+
+```html
+<video controls width="640" height="360" poster="poster.jpg">
+  <source src="video.mp4" type="video/mp4">
+  <source src="video.webm" type="video/webm">
+  지원하지 않는 브라우저에서는 대체 콘텐츠를 표시한다
+</video>
+```
+
+1. `controls`: 재생, 일시정지, 볼륨 조절 등의 플레이어 UI를 표시
+2. `width`, `height`: 동영상의 크기를 지정한다
+3. `poster`: 동영상 재생 전이나 로딩 중에 보여줄 이미지 경로
+4. `autoplay`, `loop`, `muted` 속성도 오디오와 비슷한 방식으로 사용 가능
+
+### 자막과 자막 파일(`.vtt`)
+
+멀티미디어의 접근성을 높이기 위해 자막을 제공할 수 있다
+
+`<track>` 태그를 이용하면 `.vtt`(WebVTT) 형식으로 자막을 작성하고 로드할 수 있다
+
+```html
+<video controls>
+  <source src="video.mp4" type="video/mp4">
+  <track kind="subtitles" src="subtitles.vtt" srclang="ko" label="Korean">
+</video>
+```
+
+- `kind="subtitles"`: 자막 형태를 지정
+- `srclang="ko"`: 자막 언어 설정
+- `label="Korean"`: 자막 선택 메뉴에서 노출될 언어명
