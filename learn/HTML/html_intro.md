@@ -537,3 +537,42 @@ HTML5 `<audio>` 태그 덕분에 기본 플레이어 UI를 제공하며, 속성�
 
 - 이동하려는 영역에 `id`를 부여하고, `href` 속성을 `#id명`으로 지정
 - 링크 클릭 시 해당 구역으로 스크롤되어 이동
+
+
+## 2) 내비게이션(`<nav>` 태그)
+
+시맨틱 태그 중 하나인 `<nav>`는 사이트 혹은 문서 내 **내비게이션**을 담당하는 구역을 나타낸다
+
+사용자가 페이지를 편리하게 탐색할 수 있도록, 주요 메뉴나 목차 등을 `<nav>` 안에 배치한다
+
+```html
+<nav>
+  <ul>
+    <li><a href="index.html">메인</a></li>
+    <li><a href="about.html">소개</a></li>
+    <li><a href="contact.html">연락처</a></li>
+  </ul>
+</nav>
+```
+
+1. `<ul>`·`<li>` 목록 태그와 함께 쓰이는 경우가 많다
+2. 내비게이션 메뉴는 사이트의 전체 구조나 문서 내 주요 섹션을 안내하는 역할을 한다
+
+### 내비게이션 배치 사례
+
+```html
+<header>
+  <h1>웹사이트 로고</h1>
+  <nav>
+    <ul>
+      <li><a href="index.html">홈</a></li>
+      <li><a href="services.html">서비스</a></li>
+      <li><a href="portfolio.html">포트폴리오</a></li>
+      <li><a href="contact.html">문의</a></li>
+    </ul>
+  </nav>
+</header>
+```
+
+- 주로 `<header>` 안에 `<nav>`를 배치하는 경우가 많다
+- 푸터(바닥글)나 사이드바 등에도 보조 내비게이션이 있을 수 있다
