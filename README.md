@@ -34,6 +34,7 @@
 ## [http](./learn/http)
 - [HTTP 정리](./learn/http/http.md)
 ## [algorithm_record](./learn/algorithm_record)
+- [BOJ 1528 금민수의 합](./learn/algorithm_record/boj_1528_python.md)
 - [알고리듬용 C++ STL 정리](./learn/algorithm_record/cpp_for_algo.md)
 - [cpp로 알고리듬 풀면서 배움점](./learn/algorithm_record/cpp_record.md)
 ## [정처기준비](./learn/정처기준비)
