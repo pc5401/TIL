@@ -47,6 +47,7 @@
 - [필기 : 01.소프트웨어 설계](./learn/정처기준비/01_Software_Design_Written_Test.md)
 ## [css](./learn/css)
 - [CSS 개요](./learn/css/css_intro.md)
+- [선택자(Selector)](./learn/css/css_selector.md)
 ## [디자인_패턴](./learn/디자인_패턴)
 - [플라이웨이트 (Flyweight Patterns)](./learn/디자인_패턴/flyweight.md)
 - [Singleton Pattern (싱글턴 패턴)](./learn/디자인_패턴/singleton.md)
