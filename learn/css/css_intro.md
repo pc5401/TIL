@@ -81,5 +81,33 @@ CSS(Cascading Style Sheets)는 웹 문서의 시각적 표현을 담당하는 �
 4. **마진(Margin)**  
    요소와 다른 요소 사이의 외부 여백이다.
 
-아래 그림은 박스 모델의 구조를 간단히 나타낸다.
 
+## box-sizing
+
+요소의 너비와 높이를 계산할 때, 패딩과 테두리를 포함할지 여부를 결정하는 속성이다.
+
+- `content-box`: 기본값이다. 요소의 총 크기를 계산할 때 패딩과 테두리는 제외한다.  
+- `border-box`: 요소의 총 크기에 패딩과 테두리를 포함한다. 레이아웃 계산에 편리하다.
+
+## 예시 코드
+
+```css
+.box-default {
+  width: 200px;
+  padding: 20px;
+  border: 5px solid #333;
+  margin: 10px;
+  box-sizing: content-box; /* 기본값 */
+}
+
+.box-border {
+  width: 200px;
+  padding: 20px;
+  border: 5px solid #333;
+  margin: 10px;
+  box-sizing: border-box;
+}
+```
+
+- .box-default는 content-box를 사용한다. 콘텐츠 영역만 200px로 계산되고, 패딩과 테두리는 별도로 계산된다.
+- .box-border는 border-box를 사용한다. 패딩과 테두리를 포함해 총 너비가 200px로 계산된다.
