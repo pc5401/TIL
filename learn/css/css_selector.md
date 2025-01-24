@@ -110,3 +110,88 @@ h2 + p {
 
 - 중간에 다른 요소가 여러 개 끼어 있어도, 같은 부모 내에서 `A` 뒤에 등장하면 모두 선택된다.
 - 여러 요소에 한 번에 스타일을 적용할 때 유용하다.
+
+## 속성 선택자(Attribute Selector)
+
+HTML 요소가 가진 **속성(attribute)과 그 값(value)**을 기반으로 선택한다. 폼 요소나 링크 등 특정 속성을 가진 요소만 골라 적용하기에 편리하다.
+
+### 1) 기본 속성 존재 여부: `[attr]`
+
+해당 속성이 존재하기만 하면 선택한다.
+
+```css
+/* disabled 속성이 있는 모든 요소 */
+[disabled] {
+  opacity: 0.6;
+}
+```
+
+### 2) 정확한 값 일치: `[attr="value"]`
+
+속성 값이 정확히 `value`와 일치하는 요소를 선택한다.
+
+```css
+/* type="submit"인 input 요소만 선택 */
+input[type="submit"] {
+  background-color: blue;
+  color: white;
+}
+```
+
+### 3) 공백으로 구분된 값 중 하나 포함: `[attr~=value]`
+
+속성 값이 **공백을 구분자로 하는 여러 단어** 중에 `value`를 포함하고 있으면 선택한다.
+
+```css
+/* class 속성에 "btn"이라는 단어가 포함되어 있으면 선택 */
+[class~=btn] {
+  padding: 10px 20px;
+  border-radius: 4px;
+}
+```
+
+### 4) 값의 시작 부분 일치: `[attr^=value]`
+
+속성 값이 `value`로 **시작**하면 선택한다.
+
+```css
+/* href가 "https://"로 시작하는 링크에만 스타일 적용 (SSL 페이지) */
+a[href^="https://"] {
+  color: green;
+}
+```
+
+### 5) 값의 끝부분 일치: `[attr$=value]`
+
+속성 값이 `value`로 **끝**나면 선택한다.
+
+```css
+/* 파일이 .png로 끝나는 이미지에만 스타일 적용 */
+img[src$=".png"] {
+  border: 1px solid #ccc;
+}
+```
+
+### 6) 값의 일부 포함: `[attr*=value]`
+
+속성 값 어딘가에 `value`가 **포함**되어 있으면 선택한다.
+
+```css
+/* data-info 속성에 'warning'이라는 단어가 포함된 요소 */
+[data-info*="warning"] {
+  background-color: yellow;
+}
+```
+
+### 7) 대쉬(-)로 구분된 패턴: `[attr|=value]`
+
+속성 값이 `value`와 정확히 일치하거나 `value-`로 시작하면 선택한다.
+
+```css
+/* lang 속성이 'en' 또는 'en-US', 'en-GB' 등으로 시작하면 선택 */
+[lang|="en"] {
+  font-family: "Arial", sans-serif;
+}
+```
+
+---
