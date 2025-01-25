@@ -193,5 +193,47 @@ img[src$=".png"] {
   font-family: "Arial", sans-serif;
 }
 ```
+## 의사 클래스(Pseudo-class)와 의사 요소(Pseudo-element)
 
+CSS에서 동적인 상태나 특정 부분을 가상으로 선택해서 스타일을 적용할 수 있다.
+
+### 1) 의사 클래스(Pseudo-class)
+
+`:hover`, `:focus`, `:active`, `:visited`, `:nth-child(n)`, `:nth-of-type(n)` 등이 대표적이다.
+
+```css
+/* 마우스 오버 상태 */
+button:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+/* 부모 안에서 3번째 자식 */
+.parent :nth-child(3) {
+  font-weight: bold;
+}
+```
+
+- 의사 클래스는 **사용자의 상호작용**(hover, focus)이나 문서 구조(nth-child 등)에 따라 동적으로 적용된다.
+
+### 2) 의사 요소(Pseudo-element)
+
+`::before`, `::after`, `::first-line`, `::selection` 등이 대표적이다. 요소의 특정 부분(텍스트 첫 줄, 선택 영역 등)이나, 존재하지 않던 내용(::before/::after)을 가상으로 만들어낼 때 사용한다.
+
+```css
+/* 요소의 시작 부분에 내용 추가 */
+.list-item::before {
+  content: "▶ ";
+  color: orange;
+}
+
+/* 첫 줄만 스타일 다르게 적용 */
+p::first-line {
+  font-size: 1.2em;
+  font-weight: bold;
+}
+```
+
+- `::before`와 `::after`는 `content` 프로퍼티를 통해 가상 요소를 생성한다.
+- 시각적인 장식을 추가하거나, 특정 텍스트를 강조하는 데 유용하다.
 ---
