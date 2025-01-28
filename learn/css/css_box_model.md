@@ -36,3 +36,45 @@ CSS에서 요소는 모두 **박스(box)** 형태로 표현되며, 이 박스를
     - 테두리 바깥쪽의 **바깥 여백**이다.
     - `margin` 속성으로 요소 간의 간격을 조절한다.
     - 인접한 박스(형제 요소)와의 거리를 결정하며, 배경색에는 영향을 주지 않는다.
+
+----
+
+## `box-sizing` 속성
+
+CSS에서는 기본적으로 **콘텐츠 영역**을 기준으로 `width`와 `height`가 계산되는 `content-box` 모델을 사용한다. 패딩이나 테두리를 포함하지 않기 때문에, 실제 요소의 전체 너비와 높이는 `width + padding + border`가 된다.
+
+```css
+/* 기본 설정 (content-box) */
+.box1 {
+  box-sizing: content-box; /* 생략 가능 */
+  width: 200px;
+  padding: 20px;
+  border: 2px solid #333;
+}
+```
+
+- `.box1`의 **실제 요소 너비** = `200px(콘텐츠) + 20px(패딩 양쪽 합계 40px) + 2px(테두리 양쪽 합계 4px)` = 244px.
+
+이를 명확하게 관리하고 싶다면 `box-sizing: border-box;`를 사용해 패딩과 테두리를 포함하여 `width`가 계산되도록 할 수 있다.
+
+```css
+/* border-box 모델 예시 */
+.box2 {
+  box-sizing: border-box;
+  width: 200px;
+  padding: 20px;
+  border: 2px solid #333;
+}
+```
+
+- `.box2`의 **실제 요소 너비** = `200px`(패딩, 테두리를 포함).
+- 결과적으로 콘텐츠 영역의 너비는 200px에서 `(테두리 + 패딩)`만큼 줄어든 크기가 된다.
+
+프로젝트 전체적으로 `border-box`를 적용하면 레이아웃 계산이 편해진다.
+
+```css
+/* 모든 요소에 border-box 적용 */
+* {
+  box-sizing: border-box;
+}
+```
