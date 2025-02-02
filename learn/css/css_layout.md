@@ -55,3 +55,83 @@ HTML 요소가 **어떻게 배치되는지**를 결정하는 가장 기본적인
 - `display: none`: 요소가 **화면에서 사라짐** (공간도 차지하지 않음).
 - `display: table`, `display: table-row`, `display: table-cell` 등: 테이블 레이아웃을 위한 속성.
 - **현대 레이아웃**에서는 `flex`, `grid`가 주로 사용된다. (이 부분은 따로 다뤄야 할듯)
+
+---
+
+## Position
+
+요소를 **정확한 위치**에 배치하기 위한 속성이다. 기본값은 `static`이며, `relative`, `absolute`, `fixed`, `sticky` 등이 자주 쓰인다.
+
+### 1) `position: static`
+
+- **기본 위치** 설정. 부모나 형제 요소의 배치 흐름에 따라 자동으로 배치된다.
+- `top`, `left` 등의 좌표 속성이 **무시**된다.
+
+```css
+.static-example {
+  position: static;
+}
+```
+
+### 2) `position: relative`
+
+- **자신의 원래 위치를 기준**으로 이동한다.
+- `top`, `right`, `bottom`, `left`로 **상대**적인 이동이 가능하며, 이동 후에도 **원래 자리 공간은 유지**한다.
+
+```css
+.relative-example {
+  position: relative;
+  top: 10px;
+  left: 20px;
+}
+```
+
+### 3) `position: absolute`
+
+- **부모 요소**(조상 중 가장 가까운 `position`이 지정된 요소)를 기준으로 이동한다.
+- 레이아웃 흐름에서 **제외**되어, 원래 있던 공간은 사라진다.
+- `z-index`를 사용하면 다른 요소와의 **쌓임 순서**(stack order)를 조절할 수 있다.
+
+```css
+.parent {
+  position: relative; /* 기준 요소가 될 수 있음 */
+}
+.absolute-example {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 50px;
+  background-color: gold;
+}
+```
+
+### 4) `position: fixed`
+
+- *브라우저 화면(Window)**를 기준으로 고정된다.
+- 스크롤해도 위치가 변하지 않는다.
+- 주로 상단 바, 하단 바, 공지 배너 등에 활용된다.
+
+```css
+.fixed-example {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+}
+```
+
+### 5) `position: sticky`
+
+- 스크롤 위치에 따라 **상대(relative)**→**고정(fixed)** 상태로 전환된다.
+- 스크롤이 특정 지점에 이르면 화면에 고정되고, 그 지점을 벗어나면 다시 상대 위치로 돌아간다.
+
+```css
+.sticky-example {
+  position: sticky;
+  top: 0;
+  background-color: lightblue;
+}
+```
