@@ -135,3 +135,53 @@ HTML 요소가 **어떻게 배치되는지**를 결정하는 가장 기본적인
   background-color: lightblue;
 }
 ```
+
+---
+
+## Float
+
+옛날 레이아웃 방식 중 하나로, 요소를 **왼쪽이나 오른쪽**으로 띄워서 배치한다.
+
+본문 텍스트를 이미지 주위로 흐르게 하는 등 특정 목적에 사용한다.
+
+### 1) 기본 사용법
+
+```css
+.float-left {
+  float: left;
+  width: 50%;
+  background-color: #fafafa;
+}
+
+.float-right {
+  float: right;
+  width: 50%;
+  background-color: #eee;
+}
+```
+
+- `.float-left` 요소는 왼쪽에 붙고, `.float-right` 요소는 오른쪽에 붙는다.
+- 주변 요소들은 부유한(floated) 요소의 **옆을 둘러싸** 배치된다.
+
+### 2) Clear
+
+`float`된 요소 다음에 오는 요소가 **겹치지 않게** 아래로 내려오도록 한다.
+
+```css
+.clear-both {
+  clear: both;
+}
+```
+
+- `clear: left`, `clear: right`로 왼쪽 또는 오른쪽만 피할 수도 있다.
+- 보통 `clearfix` 기법을 써서 부모 요소가 부유된 자식들을 감싸도록 한다.
+
+```css
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+```
+
+부모 요소에 `.clearfix` 클래스를 적용하면, 내부에 떠 있는(`float`) 자식 요소를 정리해준다.
