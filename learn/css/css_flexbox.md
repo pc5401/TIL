@@ -22,3 +22,34 @@ Flexbox는 1차원(가로 혹은 세로) 레이아웃을 손쉽게 구성할 수
 3. **주 축(Main Axis)과 교차 축(Cross Axis)**
     - **주 축**: `flex-direction`에 의해 결정되는 축. (기본값: 가로 축)
     - **교차 축**: 주 축에 **수직**인 축.
+
+## Flex Container 주요 속성
+
+### 1) `display: flex;`
+
+자식 요소들을 Flex Item으로 만든다.
+
+인라인 요소에 적용할 때는 `display: inline-flex;`를 사용한다.
+
+```css
+.container {
+  display: flex;
+  /* 또는 display: inline-flex; */
+}
+```
+
+### 2) `flex-direction`
+
+아이템들이 놓이는 **축의 방향**을 결정한다.
+
+- `row` (기본값): 왼쪽→오른쪽 (가로 정렬)
+- `row-reverse`: 오른쪽→왼쪽
+- `column`: 위→아래 (세로 정렬)
+- `column-reverse`: 아래→위
+
+```css
+.container {
+  display: flex;
+  flex-direction: row; /* 기본값 */
+}
+```
