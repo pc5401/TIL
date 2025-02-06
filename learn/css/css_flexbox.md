@@ -53,3 +53,35 @@ Flexbox는 1차원(가로 혹은 세로) 레이아웃을 손쉽게 구성할 수
   flex-direction: row; /* 기본값 */
 }
 ```
+
+### 3) `flex-wrap`
+
+한 줄에 아이템을 **강제로** 배치할지, 여러 줄로 **넘길지**를 결정한다.
+
+- `nowrap` (기본값): 모든 아이템을 한 줄에 배치
+- `wrap`: 공간이 부족하면 다음 줄로 넘어감
+- `wrap-reverse`: 줄바꿈 순서가 반대
+
+```css
+.container {
+  flex-wrap: wrap;
+}
+```
+
+### 4) `justify-content`
+
+**주 축(main axis)** 방향에서 아이템을 어떻게 정렬할지 결정한다.
+
+- `flex-start` (기본값): 시작점 정렬
+- `flex-end`: 끝점 정렬
+- `center`: 중앙 정렬
+- `space-between`: 아이템들 사이에 균등한 간격, 양 끝은 붙음
+- `space-around`: 아이템 양 옆에 동일 간격
+- `space-evenly`: 아이템 간 및 양 끝 모두 균등 간격
+
+```css
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+```
