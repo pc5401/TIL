@@ -85,3 +85,35 @@ Flexbox는 1차원(가로 혹은 세로) 레이아웃을 손쉽게 구성할 수
   justify-content: space-between;
 }
 ```
+
+### 5) `align-items`
+
+**교차 축(cross axis)** 방향에서 아이템을 어떻게 정렬할지 결정한다.
+
+- `stretch` (기본값): 컨테이너 높이(또는 폭)에 맞춰 늘어남
+- `flex-start`: 교차 축의 시작점 정렬
+- `flex-end`: 교차 축의 끝점 정렬
+- `center`: 교차 축 중앙 정렬
+- `baseline`: 아이템의 텍스트 베이스라인 기준 정렬
+
+```css
+.container {
+  display: flex;
+  align-items: center;
+}
+```
+
+### 6) `align-content`
+
+**여러 줄**이 생겼을 때(줄바꿈된 상황에서) 교차 축 방향으로 줄들을 정렬한다.
+
+`flex-wrap: wrap` 상태에서 여러 행이 존재할 때 적용된다.
+
+- `flex-start`, `flex-end`, `center`, `space-between`, `space-around`, `stretch` 등
+
+```
+.container {
+  flex-wrap: wrap;
+  align-content: space-around;
+}
+```
