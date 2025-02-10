@@ -146,3 +146,15 @@ Flexbox는 1차원(가로 혹은 세로) 레이아웃을 손쉽게 구성할 수
   flex-shrink: 0;
 }
 ```
+
+### 3) `flex-basis`
+
+아이템의 **기본 크기**를 설정한다.
+
+`width` 혹은 `height`(flex-direction에 따라 달라짐)를 대체하거나 우선시한다.
+
+```css
+.item {
+  flex-basis: 200px;
+}
+```
