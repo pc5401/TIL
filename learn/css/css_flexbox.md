@@ -158,3 +158,16 @@ Flexbox는 1차원(가로 혹은 세로) 레이아웃을 손쉽게 구성할 수
   flex-basis: 200px;
 }
 ```
+
+### 4) 단축 속성: `flex`
+
+`flex-grow`, `flex-shrink`, `flex-basis`를 **한꺼번에** 지정한다.
+
+자주 쓰는 예: `flex: 1;` → `flex-grow: 1; flex-shrink: 1; flex-basis: 0;` 
+
+```css
+.item {
+  flex: 1;
+  /* 남은 공간이 있으면 균등 분배 */
+}
+```
