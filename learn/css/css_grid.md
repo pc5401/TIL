@@ -48,3 +48,37 @@ CSS Grid는 2차원 레이아웃을 손쉽게 구성할 수 있게 해주는 강
 
 - `fr`(fraction)은 **남은 공간을 분배**하는 단위
 - `px`, `%`, `auto`, `minmax()`, `fit-content()` 등 다양한 방법으로 크기를 지정할 수 있다.
+
+### 3) `grid-template-areas`
+
+템플릿 형태로 **영역(Area)** 이름을 지정해서 레이아웃을 구성할 수 있다.
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  grid-template-rows: 100px 1fr 50px;
+  grid-template-areas:
+    "header  header"
+    "sidebar content"
+    "footer  footer";
+}
+```
+
+- 각 영역은 **문자열**로 표현되며, 행마다 동일한 갯수의 셀을 적어야 한다.
+- 이후 아이템에서 `grid-area` 속성으로 해당 영역 이름을 매칭한다.
+
+### 4) `gap` (또는 `row-gap`, `column-gap`)
+
+아이템들 사이의 **간격**을 지정한다. (이전에는 `grid-gap`으로 사용)
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px; /* 행과 열 간격 모두 10px */
+}
+```
+
+- `row-gap`, `column-gap`으로 행과 열 간격을 **개별** 설정 가능
+- `gap: 10px 20px;`처럼 **행, 열** 순서로 두 값 지정 가능
