@@ -82,3 +82,17 @@ CSS Grid는 2차원 레이아웃을 손쉽게 구성할 수 있게 해주는 강
 
 - `row-gap`, `column-gap`으로 행과 열 간격을 **개별** 설정 가능
 - `gap: 10px 20px;`처럼 **행, 열** 순서로 두 값 지정 가능
+
+### 5) `justify-items` / `align-items`
+
+각 **셀 내부**에서 아이템을 **가로(justify)** 또는 **세로(align)** 방향으로 어떻게 정렬할지 결정한다.
+
+- `start`, `end`, `center`, `stretch` 등을 사용할 수 있다.
+
+```css
+.container {
+  display: grid;
+  justify-items: center; /* 수평 중앙 정렬 */
+  align-items: center;   /* 수직 중앙 정렬 */
+}
+```
