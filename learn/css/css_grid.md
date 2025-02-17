@@ -96,3 +96,18 @@ CSS Grid는 2차원 레이아웃을 손쉽게 구성할 수 있게 해주는 강
   align-items: center;   /* 수직 중앙 정렬 */
 }
 ```
+
+### 6) `justify-content` / `align-content`
+
+그리드 전체가 컨테이너 안에서 **가로(justify)** 혹은 **세로(align)** 방향으로 어떻게 배치될지 정렬한다.
+
+```css
+.container {
+  display: grid;
+  justify-content: space-between; /* 그리드 전체를 수평 분배 */
+  align-content: center;          /* 그리드 전체를 수직 중앙 */
+}
+```
+
+- 아이템 **개별** 정렬은 `justify-items`, `align-items` (또는 아이템 자체 속성 사용)
+- **전체** 그리드 정렬은 `justify-content`, `align-content`
