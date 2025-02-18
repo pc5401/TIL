@@ -111,3 +111,34 @@ CSS Grid는 2차원 레이아웃을 손쉽게 구성할 수 있게 해주는 강
 
 - 아이템 **개별** 정렬은 `justify-items`, `align-items` (또는 아이템 자체 속성 사용)
 - **전체** 그리드 정렬은 `justify-content`, `align-content`
+
+---
+
+## 반복 구문: `repeat()`
+
+열이나 행을 동일한 패턴으로 반복하려면 `repeat()` 함수를 사용한다.
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 1fr 열을 4번 반복 */
+}
+```
+
+---
+
+## `auto-fit`, `auto-fill`, `minmax()`
+
+반응형 레이아웃을 좀 더 쉽게 구성하기 위해 사용한다.
+
+```css
+.container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 10px;
+}
+```
+
+- **`auto-fill`**: 가능한 한 많이 열을 생성(자동으로 채움)
+- **`auto-fit`**: 공간이 남아도, 실제로는 아이템 수에 맞춰 열을 생성하여 **여유 공간을 늘림**
+- **`minmax(min, max)`**: 최소 값과 최대 값 범위를 지정
