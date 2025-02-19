@@ -142,3 +142,108 @@ CSS Grid는 2차원 레이아웃을 손쉽게 구성할 수 있게 해주는 강
 - **`auto-fill`**: 가능한 한 많이 열을 생성(자동으로 채움)
 - **`auto-fit`**: 공간이 남아도, 실제로는 아이템 수에 맞춰 열을 생성하여 **여유 공간을 늘림**
 - **`minmax(min, max)`**: 최소 값과 최대 값 범위를 지정
+
+---
+
+## Grid Item 주요 속성
+
+### 1) `grid-column`, `grid-row`
+
+아이템이 **몇 번째 열**(column) 혹은 **몇 번째 행**(row)에서 시작하고 끝날지 지정한다.
+
+```css
+.item {
+  grid-column: 1 / 3; /* 1번째 열에서 시작, 3번째 열 이전까지 차지 */
+  grid-row: 2 / 4;    /* 2번째 행에서 시작, 4번째 행 이전까지 차지 */
+}
+```
+
+- `grid-column: 1 / span 2;`처럼 **span**을 사용하면 2칸을 차지함을 의미한다.
+- 시작선과 종료선을 숫자로 표현(각 열 또는 행의 선을 기준)
+
+### 2) `grid-area`
+
+1. `grid-template-areas`에서 지정한 영역 이름을 사용하거나,
+2. `grid-row`와 `grid-column`을 간단히 한 번에 지정할 수 있다.
+
+```css
+.item1 {
+  grid-area: header; /* template-areas에서 "header" 위치를 차지 */
+}
+
+.item2 {
+  grid-area: 2 / 1 / 4 / 3;
+  /* grid-row-start: 2, grid-column-start: 1,
+     grid-row-end: 4,   grid-column-end: 3 */
+}
+```
+
+---
+
+## 예시 코드
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .container {
+      display: grid;
+      grid-template-columns: 200px 1fr;
+      grid-template-rows: 100px 1fr 50px;
+      grid-template-areas:
+        "header  header"
+        "sidebar content"
+        "footer  footer";
+      gap: 10px;
+      height: 100vh;
+      background-color: #f0f0f0;
+    }
+    .header {
+      grid-area: header;
+      background-color: lightblue;
+    }
+    .sidebar {
+      grid-area: sidebar;
+      background-color: lightgray;
+    }
+    .content {
+      grid-area: content;
+      background-color: #fff;
+    }
+    .footer {
+      grid-area: footer;
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">Header</div>
+    <div class="sidebar">Sidebar</div>
+    <div class="content">Content</div>
+    <div class="footer">Footer</div>
+  </div>
+</body>
+</html>
+
+```
+
+위 예시에서는 다음과 같은 레이아웃을 구현할 수 있다.
+
+- 상단(Header), 왼쪽(Sidebar), 오른쪽(Content), 하단(Footer)
+- `grid-template-areas`를 통해 직관적으로 구역을 배치
+- `gap`으로 영역 간 간격을 10px 부여
+
+---
+
+## 정리
+
+CSS Grid는 **2차원** 레이아웃을 매우 유연하게 구성할 수 있는 강력한 방법이다.
+
+핵심 포인트는 다음과 같다.
+
+1. *행(row)**과 **열(column)**을 동시에 정의하여 복잡한 레이아웃을 단순화
+2. **반복 구문(`repeat()`)**, **`auto-fill`, `auto-fit`, `minmax()`*로 반응형 구성이 용이
+3. *`grid-template-areas`*를 통해 **시각적인 레이아웃**을 **선언형**으로 명확히 표현 가능
+4. 기존의 `float` 또는 `position` 기반 레이아웃보다 **가독성**, **유지보수**성 향상
