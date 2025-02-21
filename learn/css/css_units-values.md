@@ -115,3 +115,32 @@ CSS에서 스타일을 지정할 때 사용되는 **길이, 크기, 색상, 시�
   color: hsla(240, 100%, 50%, 0.3); /* 파랑 (투명도 0.3) */
 }
 ```
+---
+
+## 시간(Time) 단위
+
+애니메이션, 트랜지션에서 duration(지속 시간)을 지정할 때 사용한다.
+
+- **s** (초)
+- **ms** (밀리초)
+
+```css
+.transition-example {
+  transition: all 0.3s ease; /* 0.3초 동안 애니메이션 */
+}
+```
+
+---
+
+## 각도(Angle) 단위
+
+회전(transform: rotate) 등에서 사용하는 각도 단위다.
+
+- **deg (도)**
+- **rad (라디안)**, **turn (회전수)** 등도 존재하지만, 웹에서는 주로 `deg`를 많이 사용
+
+```css
+.rotate-example {
+  transform: rotate(45deg);
+}
+```
