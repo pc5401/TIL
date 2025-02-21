@@ -66,3 +66,52 @@ CSS에서 스타일을 지정할 때 사용되는 **길이, 크기, 색상, 시�
   font-size: 5vmin; /* 화면의 작은 쪽 5% */
 }
 ```
+
+---
+
+## 색상(Color) 표현 방법
+
+색상을 지정하는 일반적인 방법에는 **HEX**, **RGB/RGBA**, **HSL/HSLA** 등이 있다.
+
+### 1) HEX (16진수)
+
+- `#RRGGBB` 형태로, 각 자리(00~FF)는 빨강(R), 초록(G), 파랑(B)의 밝기 정도를 나타낸다.
+- `#ff0000` (빨강), `#00ff00` (초록), `#0000ff` (파랑) 등
+- 짧게 쓸 수 있는 `#f00` (빨강)도 가능하다.
+
+```css
+.color-hex {
+  color: #f00; /* = #ff0000 */
+}
+```
+
+### 2) RGB, RGBA
+
+- **RGB**(Red, Green, Blue)로 표현
+    - 각 채널을 **0~255** 범위의 정수값으로 지정
+- **RGBA**: 투명도(Alpha) 채널 추가, **0(투명)~1(불투명)** 범위
+
+```css
+.color-rgb {
+  background-color: rgb(255, 0, 0);    /* 빨강 */
+}
+.color-rgba {
+  background-color: rgba(0, 0, 255, 0.5); /* 파랑 반투명 */
+}
+```
+
+### 3) HSL, HSLA
+
+- **HSL**(Hue, Saturation, Lightness)
+    - 색상(색조, Hue)은 **0~360°**로 표현
+    - 채도(Saturation)와 밝기(Lightness)는 **0~100%** 범위
+- **HSLA**: 알파 채널(투명도) 추가
+
+```css
+.color-hsl {
+  color: hsl(120, 100%, 50%); /* 초록 (120도, 채도 100%, 밝기 50%) */
+}
+.color-hsla {
+  color: hsla(240, 100%, 50%, 0.3); /* 파랑 (투명도 0.3) */
+}
+```
