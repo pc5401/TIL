@@ -144,3 +144,35 @@ CSS에서 스타일을 지정할 때 사용되는 **길이, 크기, 색상, 시�
   transform: rotate(45deg);
 }
 ```
+
+---
+
+## 함수(Function)와 계산
+
+### 1) `calc()`
+
+다양한 단위를 **연산**할 수 있게 해준다.
+
+`+`, `-`, `*`, `/` 연산자 사용 가능
+
+```css
+.calc-example {
+  width: calc(100% - 50px);
+  height: calc(100vh - 100px);
+}
+```
+
+### 2) `var()`
+
+**CSS 변수**(Custom Properties)를 사용할 수 있다.
+
+```css
+:root {
+  --main-color: #3498db;
+  --spacing: 16px;
+}
+.example-var {
+  background-color: var(--main-color);
+  padding: var(--spacing);
+}
+```
