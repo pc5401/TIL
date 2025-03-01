@@ -84,3 +84,31 @@ p {
   letter-spacing: 0.05em;
 }
 ```
+
+---
+
+## 텍스트 정렬 및 장식
+
+### 1) `text-align`
+
+수평 정렬을 결정한다.
+
+`left`, `right`, `center`, `justify` 등이 있다.
+
+```css
+h1 {
+  text-align: center;
+}
+```
+
+### 2) `text-decoration`
+
+글자에 밑줄, 취소선, 윗줄 등을 표시한다.
+
+`none`, `underline`, `line-through`, `overline` 등이 있다.
+
+```css
+a {
+  text-decoration: none;
+}
+```
