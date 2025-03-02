@@ -112,3 +112,15 @@ a {
   text-decoration: none;
 }
 ```
+
+### 3) `text-transform`
+
+글자를 대문자·소문자 등으로 변환한다.
+
+`uppercase`, `lowercase`, `capitalize` 등이 있다.
+
+```css
+.uppercase-text {
+  text-transform: uppercase;
+}
+```
