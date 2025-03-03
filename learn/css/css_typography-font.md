@@ -124,3 +124,14 @@ a {
   text-transform: uppercase;
 }
 ```
+### 4) `white-space`
+
+여백(공백, 줄바꿈 등)을 어떻게 처리할지 결정한다.
+
+`normal`, `pre`, `nowrap`, `pre-wrap`, `pre-line` 등을 통해, HTML의 공백을 유지하거나 줄바꿈 처리를 제어한다.
+
+```css
+.pre-line {
+  white-space: pre-line;
+}
+```
