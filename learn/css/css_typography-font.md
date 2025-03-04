@@ -135,3 +135,27 @@ a {
   white-space: pre-line;
 }
 ```
+
+---
+
+## 웹 폰트(Web Fonts) 사용
+
+### 1) `@font-face`
+
+원하는 폰트를 직접 호스팅하고 사용할 수 있다.
+
+폰트 파일(.woff, .woff2, .ttf 등)을 프로젝트에 포함해야 한다.
+
+```css
+@font-face {
+  font-family: "MyCustomFont";
+  src: url("/fonts/MyCustomFont.woff2") format("woff2"),
+       url("/fonts/MyCustomFont.woff") format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  font-family: "MyCustomFont", sans-serif;
+}
+```
