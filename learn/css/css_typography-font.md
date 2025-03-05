@@ -159,3 +159,20 @@ body {
   font-family: "MyCustomFont", sans-serif;
 }
 ```
+
+### 2) Google Fonts 등 외부 서비스
+
+`<link>` 태그로 외부 스타일을 불러와 간단히 웹 폰트를 적용할 수 있다.
+
+```html
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" />
+```
+
+```css
+body {
+  font-family: "Noto Sans KR", sans-serif;
+}
+```
+
+- 외부에 의존하므로 인터넷 연결 상태나 폰트 로딩 지연을 고려해야 한다.
+- 크로스 브라우징 이슈는 대개 해결되어 있지만, 폰트 라이센스를 반드시 확인해야 한다.
