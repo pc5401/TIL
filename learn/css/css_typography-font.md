@@ -191,3 +191,69 @@ body {
     - 모바일, 태블릿, 데스크톱 등 각 뷰포트에 맞춰 유연하게 글자 크기와 줄간격을 조절한다.
 5. **로드 성능**:
     - 과도한 폰트 파일(굵기·스타일별 다수)은 페이지 로딩에 영향을 준다. 필요한 폰트만 선택 사용.
+
+---
+
+## 예시 코드
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* 전역으로 기본 타이포 세팅 */
+    html {
+      font-size: 16px; /* 루트 폰트 크기 */
+    }
+    body {
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      margin: 20px;
+    }
+
+    /* 제목 스타일 */
+    h1, h2, h3 {
+      font-weight: bold;
+      margin: 1rem 0 0.5rem;
+    }
+
+    /* 본문 스타일 */
+    p {
+      margin-bottom: 1rem;
+    }
+
+    .highlight {
+      font-weight: 700;
+      color: #c0392b;
+    }
+
+    .small-text {
+      font-size: 0.875rem; /* = 14px */
+    }
+  </style>
+</head>
+<body>
+  <h1>타이포그래피 예시</h1>
+  <p>CSS에서 폰트를 어떻게 설정하는지가 전체적인 가독성과 분위기에 큰 영향을 준다.</p>
+  <p class="highlight">글자 굵기나 색상으로 중요한 정보를 강조할 수 있다.</p>
+  <p class="small-text">작은 글자로 푸터나 각주 같은 보조 정보를 표시한다.</p>
+</body>
+</html>
+
+```
+
+---
+
+## 결론
+
+타이포그래피는 **단순히 폰트를 고르는 것**을 넘어, **정보를 효과적으로 전달**하고 **사용자의 읽기 경험**을 최적화하는 작업이다.
+
+다음 사항을 유의하자.
+
+- **기본 속성**(font-family, size, weight, line-height 등)을 잘 이해하고 균형 있게 사용
+- **웹 폰트**(Google Fonts, @font-face 등) 적용 시 로딩 성능과 라이센스 고려
+- **반응형 타이포그래피**로 다양한 화면 크기에서도 일관된 가독성 유지
+- **시인성, 대비(Contrast)** 등 접근성 측면도 함께 고민
+
+적절한 폰트 선택과 세심한 스타일링은 페이지 전체의 **완성도**를 높이고, 사용자 경험을 풍부하게 만들어줄 것
