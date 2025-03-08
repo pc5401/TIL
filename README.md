@@ -140,6 +140,7 @@
 - [CSS Grid](./learn/css/css_grid.md)
 - [CSS 개요](./learn/css/css_intro.md)
 - [단위(Units)와 값(Values)](./learn/css/css_units-values.md)
+- [색상(Color)와 배경(Background)](./learn/css/css_color-background.md)
 - [선택자(Selector)](./learn/css/css_selector.md)
 - [박스 모델(Box Model)](./learn/css/css_box_model.md)
 - [Flexbox](./learn/css/css_flexbox.md)
