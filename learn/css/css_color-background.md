@@ -20,3 +20,17 @@
 
 - `color: red;`처럼 이름 지정, `rgb(255, 0, 0)`, `rgba(255, 0, 0, 0.5)`, `hsl()`, `hsla()` 등 다양한 표현 가능
 - **가독성**을 위해 배경색과 충분한 대비를 주는 것이 좋다.
+
+## 배경(Background)
+
+### 1) `background-color`
+
+요소의 **배경색**을 지정한다.
+
+```css
+.bg-color-example {
+  background-color: #f0f0f0;
+}
+```
+
+- 투명도(알파 채널)를 포함하는 RGBA(`rgba(0, 0, 0, 0.3)`) 등도 사용 가능
