@@ -34,3 +34,16 @@
 ```
 
 - 투명도(알파 채널)를 포함하는 RGBA(`rgba(0, 0, 0, 0.3)`) 등도 사용 가능
+
+### 2) `background-image`
+
+요소의 **배경 이미지**를 지정한다.
+
+```css
+.bg-image-example {
+  background-image: url("images/bg-pattern.png");
+}
+```
+
+- 경로(`url()`)에 외부 이미지나 로컬 파일을 삽입
+- **그라디언트**(`linear-gradient()`, `radial-gradient()`) 등 가상 배경도 지정 가능
