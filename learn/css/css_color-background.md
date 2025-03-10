@@ -47,3 +47,19 @@
 
 - 경로(`url()`)에 외부 이미지나 로컬 파일을 삽입
 - **그라디언트**(`linear-gradient()`, `radial-gradient()`) 등 가상 배경도 지정 가능
+
+### 3) `background-repeat`
+
+배경 이미지를 어떻게 **반복**할지 결정한다.
+
+- `repeat` (기본값): x, y축으로 반복
+- `repeat-x`: x축(가로)으로만 반복
+- `repeat-y`: y축(세로)로만 반복
+- `no-repeat`: 반복 없이 한 번만 표시
+
+```css
+.bg-repeat-example {
+  background-image: url("pattern.png");
+  background-repeat: repeat-x;
+}
+```
