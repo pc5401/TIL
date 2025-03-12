@@ -63,3 +63,18 @@
   background-repeat: repeat-x;
 }
 ```
+
+### 4) `background-position`
+
+배경 이미지를 요소 내에서 **어디에 배치**할지 결정한다.
+
+- 값: `left top`, `center center`, `right bottom` 등 (키워드 사용)
+- px, %, 기타 단위도 가능
+
+```css
+.bg-position-example {
+  background-image: url("logo.png");
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+```
