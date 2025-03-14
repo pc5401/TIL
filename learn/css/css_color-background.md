@@ -78,3 +78,34 @@
   background-position: center center;
 }
 ```
+
+### 5) `background-size`
+
+배경 이미지의 **크기**를 조절한다.
+
+- `auto`: 원본 크기
+- `cover`: 요소를 가득 메우도록 확대·축소 (비율 유지)
+- `contain`: 전체가 보이도록 크기를 맞춤 (비율 유지)
+- px, %, 등 구체값으로 조절도 가능
+
+```css
+.bg-size-example {
+  background-image: url("hero.jpg");
+  background-size: cover;
+}
+```
+### 6) `background-attachment`
+
+배경 이미지를 **스크롤** 시 어떻게 처리할지 결정한다.
+
+- `scroll`: 스크롤에 따라 배경 이미지도 같이 움직임 (기본값)
+- `fixed`: 화면에 고정되어 움직이지 않음
+- `local`: 요소의 스크롤에 맞춰 움직임
+
+```css
+.bg-attachment-example {
+  background-image: url("fixed-bg.png");
+  background-attachment: fixed;
+  background-size: cover;
+}
+```
