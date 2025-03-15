@@ -109,3 +109,23 @@
   background-size: cover;
 }
 ```
+
+### 7) 단축 속성: `background`
+
+여러 배경 속성을 **한 번에** 지정할 수 있다. 순서가 중요하지는 않지만, 보통 아래 순서로 나열한다.
+
+1. `background-color`
+2. `background-image`
+3. `background-repeat`
+4. `background-position`
+5. `background-size`
+6. `background-attachment`
+
+```css
+.bg-shorthand-example {
+  background: #fff url("pattern.png") no-repeat center/50px auto fixed;
+}
+```
+
+- `center/50px auto`는 `background-position: center; background-size: 50px auto;`와 동일
+- 쉼표로 구분해 **여러 개의 배경**을 쌓을 수도 있다 (멀티 배경)
