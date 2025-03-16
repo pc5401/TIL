@@ -129,3 +129,21 @@
 
 - `center/50px auto`는 `background-position: center; background-size: 50px auto;`와 동일
 - 쉼표로 구분해 **여러 개의 배경**을 쌓을 수도 있다 (멀티 배경)
+
+## 그라디언트(Gradient)
+
+**배경 이미지**로 간주되어 `background-image` 속성에 함수 형태로 지정한다.
+
+### 1) 선형 그라디언트(Linear Gradient)
+
+```css
+.linear-gradient-example {
+  background-image: linear-gradient(to right, #ff0000, #0000ff);
+}
+```
+
+- `to right`: 왼쪽에서 오른쪽으로 색 변화
+- 방향을 `to top`, 각도(`45deg`) 등으로도 지정 가능
+- 색상은 여러 단계로 추가 가능: `linear-gradient(to bottom, red, yellow, green)`
+
+###
