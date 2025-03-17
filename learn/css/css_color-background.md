@@ -146,4 +146,15 @@
 - 방향을 `to top`, 각도(`45deg`) 등으로도 지정 가능
 - 색상은 여러 단계로 추가 가능: `linear-gradient(to bottom, red, yellow, green)`
 
-###
+### 2) 방사형 그라디언트(Radial Gradient)
+
+```css
+.radial-gradient-example {
+  background-image: radial-gradient(circle, #fff, #ccc, #999);
+}
+```
+
+- `circle`, `ellipse` 등 형태 지정
+- 중심부터 바깥쪽으로 색을 분산
+
+그라디언트 자체는 **가상 이미지**이므로 `background-repeat`, `background-position` 등 다른 속성들과 함께 사용 가능하다.
