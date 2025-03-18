@@ -158,3 +158,80 @@
 - 중심부터 바깥쪽으로 색을 분산
 
 그라디언트 자체는 **가상 이미지**이므로 `background-repeat`, `background-position` 등 다른 속성들과 함께 사용 가능하다.
+
+---
+
+## 예시 코드
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      color: #333;
+    }
+
+    .banner {
+      /* 그라디언트 + 이미지 혼합 예시 */
+      background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.2)
+      ),
+      url("hero.jpg") no-repeat center / cover;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+    }
+
+    .banner h1 {
+      font-size: 2rem;
+    }
+
+    .highlight-section {
+      background-color: #fffbcc;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .footer {
+      background: #333;
+      color: #fff;
+      padding: 10px;
+      text-align: right;
+    }
+  </style>
+</head>
+<body>
+  <div class="banner">
+    <h1>배경 예시</h1>
+  </div>
+  <div class="highlight-section">
+    <p>배경색을 이용해 강조 구역을 표현한 예시</p>
+  </div>
+  <div class="footer">
+    <p>저작권 정보 © 2025</p>
+  </div>
+</body>
+</html>
+
+```
+
+---
+
+## 정리
+
+색상과 배경 관련 CSS 속성은 **간단한 설정**부터 **그라디언트**나 **복수 배경**을 활용한 **복합 효과**까지 다양하다.
+
+웹 페이지의 **분위기**와 **가독성**을 결정하는 핵심 요소이므로 다음에 유의한다.
+
+1. **텍스트 색상**과 **배경색** 간 **대비**를 충분히 줘서 시인성을 확보한다.
+2. 배경 이미지를 사용할 때는 **반응형**(크기, 위치)과 **성능(용량)**을 고려한다.
+3. **그라디언트**는 이미지 리소스 없이도 시각적 효과를 연출할 수 있어 강력하다.
+4. 단축 속성(`background`)을 숙지해 **한 번**에 여러 설정을 직관적으로 작성한다.
