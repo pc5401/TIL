@@ -27,3 +27,28 @@
     - 모바일 장치에서 사이트가 제대로 축소·확대 없이 보이도록 하는 설정
     - `width=device-width`는 기기 화면의 **논리적 픽셀 폭**에 맞춤
     - `initial-scale=1.0`은 초기 확대비율을 100%로 설정
+
+## 미디어 쿼리(Media Queries)
+
+CSS에서 뷰포트(화면)의 속성(너비, 높이, 해상도 등)에 따라 **조건부 스타일**을 적용하는 기술이다.
+
+1. **기본 문법**
+    
+    ```css
+    @media (조건) {
+      /* 조건을 만족할 때 적용할 CSS */
+    }
+    ```
+    
+    - 조건은 보통 `screen`(화면), `print`(인쇄) 등 **미디어 타입**과 `(min-width: 768px)` 같은 **특성**의 조합이다.
+2. **주요 속성(Feature) 예시**
+    - `width`, `min-width`, `max-width`
+    - `height`, `min-height`, `max-height`
+    - `orientation` (가로: landscape, 세로: portrait)
+    - `resolution` (dpi, dppx) 등
+    - 예: `@media screen and (min-width: 768px) { ... }`
+    - 예: `@media print { ... }` (인쇄 전용 스타일)
+3. **Breakpoints(중단점)**
+    - 일반적으로 화면 너비에 따라 **중단점**을 설정
+    - 예: 576px(모바일), 768px(태블릿), 992px(작은 데스크톱), 1200px(일반 데스크톱) 등
+    - 프레임워크(Bootstrap 등)에서도 비슷한 기준을 사용
