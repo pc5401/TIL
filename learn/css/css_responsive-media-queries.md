@@ -52,3 +52,40 @@ CSS에서 뷰포트(화면)의 속성(너비, 높이, 해상도 등)에 따라 *
     - 일반적으로 화면 너비에 따라 **중단점**을 설정
     - 예: 576px(모바일), 768px(태블릿), 992px(작은 데스크톱), 1200px(일반 데스크톱) 등
     - 프레임워크(Bootstrap 등)에서도 비슷한 기준을 사용
+
+**사용 예시**
+
+```css
+/* 모바일(최대 767px) 이하일 때 */
+@media (max-width: 767px) {
+  .header {
+    font-size: 14px;
+  }
+  .nav {
+    display: none;
+  }
+}
+
+/* 태블릿(768px 이상 991px 이하) 범위 */
+@media (min-width: 768px) and (max-width: 991px) {
+  .header {
+    font-size: 16px;
+  }
+  .nav {
+    display: block;
+  }
+}
+
+/* 데스크톱(992px 이상) */
+@media (min-width: 992px) {
+  .header {
+    font-size: 18px;
+  }
+  .nav {
+    float: right;
+  }
+}
+
+```
+
+- 가령 `.header`, `.nav` 등의 스타일을 뷰포트 너비에 따라 다르게 적용
