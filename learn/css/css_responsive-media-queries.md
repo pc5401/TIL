@@ -109,3 +109,90 @@ CSS에서 뷰포트(화면)의 속성(너비, 높이, 해상도 등)에 따라 *
 5. **테스트**
     - 실제 기기(또는 DevTools)에서 반드시 화면 회전, 다른 OS/브라우저 환경 등을 테스트
     - 경계값(브레이크포인트) 근처에서 레이아웃이 깨지지 않는지 검사
+
+## 예시 코드
+
+아래 예시는 간단한 **헤더/본문/푸터** 레이아웃을 반응형으로 구성한 것이다.
+
+```html
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>반응형 웹 예시</title>
+  <style>
+    /* 기본 스타일 */
+    body {
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    header, main, footer {
+      padding: 20px;
+      text-align: center;
+    }
+
+    header {
+      background-color: #333;
+      color: #fff;
+    }
+
+    main {
+      background-color: #f0f0f0;
+    }
+
+    footer {
+      background-color: #ccc;
+    }
+
+    /* 작은 화면 (모바일)에서는 전체 너비에 맞춰 하나의 열(컬럼)로 레이아웃 */
+    @media (max-width: 767px) {
+      main {
+        font-size: 14px;
+      }
+      .responsive-image {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    /* 중간 화면 (태블릿) 이상에서는 폰트 키우고, 이미지 크기 조절 */
+    @media (min-width: 768px) {
+      main {
+        font-size: 16px;
+      }
+      .responsive-image {
+        width: 50%;
+        height: auto;
+      }
+    }
+
+    /* 큰 화면 (데스크톱)에서 헤더/본문/푸터 레이아웃 조정 */
+    @media (min-width: 992px) {
+      header, main, footer {
+        text-align: left;
+        padding: 40px;
+      }
+      main {
+        max-width: 960px;
+        margin: 0 auto;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>반응형 웹 예시</h1>
+  </header>
+  <main>
+    <p>이 예시는 화면 크기에 따라 글자 크기와 레이아웃이 달라진다.</p>
+    <img src="https://via.placeholder.com/800x400" alt="예시 이미지" class="responsive-image" />
+  </main>
+  <footer>
+    <p>Footer 영역</p>
+  </footer>
+</body>
+</html>
+
+```
