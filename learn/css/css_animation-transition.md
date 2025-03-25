@@ -34,3 +34,20 @@
 ```
 
 위 예시에서 `.box`에 마우스를 올리면 **배경색**이 0.3초간 천천히 바뀌고, **너비**는 0.5초간 변경된다.
+
+### 2) 짧은 예시
+
+```css
+.button {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  transition: background-color 0.3s, transform 0.2s;
+}
+.button:hover {
+  background-color: #555;
+  transform: scale(1.05);
+}
+```
+
+- 호버 시, 배경색이 부드럽게 바뀌고 약간 확대(`scale`)된다.
