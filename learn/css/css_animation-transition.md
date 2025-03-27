@@ -86,3 +86,33 @@
 ```
 
 - `translateY(-20px)`처럼 위로 튕겼다가 원래 위치로 돌아오는 등 **바운스** 효과
+
+### 2) 애니메이션 속성
+
+- `animation-name`: 적용할 `@keyframes` 이름
+- `animation-duration`: 애니메이션이 한 번 재생되는 데 걸리는 시간
+- `animation-timing-function`: 트랜지션과 동일하게 가속도(가감속) 곡선 지정
+- `animation-delay`: 시작 지연 시간
+- `animation-iteration-count`: 재생 횟수 (숫자 또는 `infinite`)
+- `animation-direction`: 정방향(`normal`), 역방향(`reverse`), 왕복(`alternate`) 등
+- `animation-fill-mode`: 애니메이션 전후 상태 유지 여부 (`none`, `forwards`, `backwards`, `both`)
+- `animation-play-state`: 재생/일시정지(`running`, `paused`)
+
+### 예시
+
+```css
+.fade-box {
+  opacity: 0;
+  animation-name: fadeIn;
+  animation-duration: 2s;
+  animation-timing-function: ease;
+  animation-fill-mode: forwards; /* 애니메이션 끝난 후 최종 상태 유지 */
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+```
+
+- `.fade-box`는 페이지 로드 시 2초 동안 서서히 나타남
+- 끝나면 `opacity:1` 상태 유지
