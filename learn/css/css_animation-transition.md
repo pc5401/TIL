@@ -134,3 +134,57 @@
 
 - 순서: `animation-name duration timing-function delay iteration-count direction fill-mode play-state`
 - 일부는 생략 가능
+
+---
+
+## 트랜지션 vs. 애니메이션
+
+1. **트랜지션**
+    - 속성이 **어떤 이벤트**(hover, focus, 클릭, 자바스크립트로 클래스 추가 등)로 바뀔 때, 그 변화 과정을 부드럽게 처리
+    - “상태 A → 상태 B” **단일 전환**에 간단하게 사용
+2. **애니메이션**
+    - **독립적으로 여러 상태**(키프레임)를 정의하고, 시간 축에 따라 자동 재생
+    - 반복, 왕복, 복잡한 모션 시 **유연하고 세밀하게 제어**
+
+---
+
+## 예시 코드
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .transition-button {
+      background-color: #3498db;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      transition: background-color 0.3s ease;
+      cursor: pointer;
+    }
+    .transition-button:hover {
+      background-color: #1d6fa5;
+    }
+
+    .animation-box {
+      width: 100px;
+      height: 100px;
+      background-color: coral;
+      animation: scaling 2s infinite alternate;
+    }
+    @keyframes scaling {
+      from { transform: scale(1); }
+      to   { transform: scale(1.2); }
+    }
+  </style>
+</head>
+<body>
+  <button class="transition-button">Hover me</button>
+  <div class="animation-box"></div>
+</body>
+</html>
+```
+
+- 첫 버튼은 호버 시 배경색 변화가 **트랜지션**으로 부드럽게 일어남
+- `.animation-box`는 2초 주기로 **커졌다 → 돌아왔다**를 반복(애니메이션)
