@@ -116,3 +116,21 @@
 
 - `.fade-box`는 페이지 로드 시 2초 동안 서서히 나타남
 - 끝나면 `opacity:1` 상태 유지한다.
+
+### 3) 단축 속성: `animation`
+
+`animation` 속성 하나로 여러 속성을 일괄 지정할 수 있다.
+
+```css
+.bounce-box {
+  animation: bounce 1s ease-in-out 0s infinite alternate;
+}
+@keyframes bounce {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-30px); }
+  100% { transform: translateY(0); }
+}
+```
+
+- 순서: `animation-name duration timing-function delay iteration-count direction fill-mode play-state`
+- 일부는 생략 가능
