@@ -22,3 +22,53 @@ CSS 전처리기는 코드를 더 **유지보수하기 쉽고 재사용성** 있
 - **함수/연산**: 색상 연산, 수치 계산 등 프로그래밍적 로직 활용
 - **임포트**: 여러 파일로 분리해 모듈화하고, 최종 빌드시 하나의 CSS로 합침
 - 결국 **코드 가독성**, **생산성**, **유지보수성**을 향상
+
+---
+
+## 1) Sass(SCSS)
+
+- **Sass**는 “Syntactically Awesome Style Sheets”의 약자
+- 두 가지 문법:
+    1. **`.sass`** (중괄호와 세미콜론 없이, 들여쓰기 기반)
+    2. **`.scss`** (CSS와 유사한 문법, 중괄호와 세미콜론 사용)
+- 가장 인기 있고, 많은 라이브러리(Compass 등)가 Sass 기반으로 제공
+
+### 기본 예시 (SCSS 문법)
+
+```scss
+$primary-color: #3498db;  // 변수 정의
+
+body {
+  font-family: "Helvetica", sans-serif;
+  background-color: $primary-color;
+
+  // 중첩
+  header {
+    padding: 10px;
+    h1 {
+      color: white;
+    }
+  }
+}
+
+// 믹스인
+@mixin center-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// 사용(include)
+.container {
+  @include center-flex;
+  height: 200px;
+  background-color: darken($primary-color, 10%);
+}
+```
+
+- *변수 `$primary-color`*로 배경색 관리
+- **중첩**으로 구조화 (`header h1` 부분 등)
+- *`@mixin`*과 **`@include`*로 재사용 (flexbox 센터 정렬)
+- 색상 함수 `darken()`로 색상 어둡게 변환
+
+Sass/SCSS 파일(`.scss`)을 빌드하면 **일반 CSS**로 변환된 파일(`.css`)이 생성된다.
