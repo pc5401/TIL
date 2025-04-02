@@ -72,3 +72,49 @@ body {
 - 색상 함수 `darken()`로 색상 어둡게 변환
 
 Sass/SCSS 파일(`.scss`)을 빌드하면 **일반 CSS**로 변환된 파일(`.css`)이 생성된다.
+
+---
+
+## 2) Less
+
+- “Leaner CSS”의 약자로, Sass와 유사한 전처리기
+- **JavaScript 기반**으로 동작하며, Node.js 환경 또는 브라우저에서도 실시간 변환 가능
+- 변수 선언 시 `@`를 사용
+
+### 기본 예시
+
+```less
+@primary-color: #3498db;
+
+body {
+  font-family: "Helvetica", sans-serif;
+  background-color: @primary-color;
+
+  header {
+    padding: 10px;
+    h1 {
+      color: white;
+    }
+  }
+}
+
+// 믹스인
+.center-flex() {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// 사용
+.container {
+  .center-flex();
+  height: 200px;
+  background-color: darken(@primary-color, 10%);
+}
+```
+
+- Less 역시 **중첩**, **변수**, **믹스인**을 지원
+- 함수 형태는 Less 기본 제공 또는 플러그인 통해 확장 가능
+- Less는 **JS로 컴파일**이 가능해, 브라우저에서 `<link rel="stylesheet/less" ...>`로 실시간 변환하는 방식도 있었다(프로덕션에서는 미리 컴파일된 CSS를 사용 권장).
+
+---
