@@ -118,3 +118,39 @@ body {
 - Less는 **JS로 컴파일**이 가능해, 브라우저에서 `<link rel="stylesheet/less" ...>`로 실시간 변환하는 방식도 있었다(프로덕션에서는 미리 컴파일된 CSS를 사용 권장).
 
 ---
+
+## 3) Stylus
+
+- 매우 **유연한 문법**을 가진 전처리기. 세미콜론, 중괄호조차도 선택적으로 사용 가능
+- Node.js 기반으로 동작
+- 다른 전처리기들과 유사하게 **변수**, **중첩**, **믹스인**, **함수** 등을 지원
+
+### 기본 예시 (중괄호와 콜론 생략한 문법)
+
+```
+primary-color = #3498db
+
+body
+  font-family "Helvetica", sans-serif
+  background-color primary-color
+
+  header
+    padding 10px
+    h1
+      color white
+
+// 믹스인
+center-flex()
+  display flex
+  justify-content center
+  align-items center
+
+.container
+  center-flex()
+  height 200px
+  background-color darken(primary-color, 10%)
+```
+
+- 탭이나 공백 들여쓰기를 통해 **구조**를 나타냄
+- `=`로 변수 선언, 함수 호출시 `()` 가능
+- 다양한 **단축 문법**을 제공 (만약 CSS와 유사하게 중괄호, 세미콜론을 쓰고 싶다면 쓸 수도 있음)
