@@ -189,3 +189,43 @@ center-flex()
 > 
 > 다만 **프로젝트나 팀의 기존 코드**, **개발자 선호**, **특정 라이브러리 의존** 등에 따라 선택이 달라질 수 있다.
 >
+
+## 예시 코드 (Sass)
+
+```scss
+// variables.scss
+$base-font-size: 16px;
+$base-color: #3498db;
+```
+
+```scss
+// mixins.scss
+@mixin btn($bg-color, $font-color: #fff) {
+  display: inline-block;
+  background-color: $bg-color;
+  color: $font-color;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  text-decoration: none;
+  &:hover {
+    background-color: darken($bg-color, 10%);
+  }
+}
+```
+
+```scss
+// main.scss
+@import "variables";
+@import "mixins";
+
+body {
+  font-size: $base-font-size;
+  color: darken($base-color, 20%);
+}
+
+a.button {
+  @include btn($base-color);
+}
+```
+
+위와 같이 여러 SCSS 파일로 나눈 뒤 컴파일하면 **최종 CSS** 한 파일이 생성된다.
