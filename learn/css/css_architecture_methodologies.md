@@ -74,3 +74,29 @@
     - 박스 모델, 레이아웃 등 구조적 속성과, 색상·배경 등의 시각적 스타일을 분리해 재사용성 향상
 2. **컨테이너에서 독립적인 블록**
     - 요소가 배치될 **컨테이너(부모 요소)**에 관계없이 **독립적**으로 동작해야 한다.
+
+### 예시
+
+```css
+/* 구조: padding, border, float 등 */
+.card {
+  padding: 20px;
+  border: 1px solid #ccc;
+  float: left;
+  width: 200px;
+}
+
+/* 스킨: 색상, 배경, 폰트 등 */
+.card-default {
+  background-color: #fff;
+  color: #333;
+}
+.card-primary {
+  background-color: #3498db;
+  color: #fff;
+}
+
+```
+
+- `.card`는 레이아웃을 정의, `.card-default`나 `.card-primary`는 **시각적 스킨**만 변경
+- HTML에서 `<div class="card card-primary">...</div>`처럼 **조합** 가능
