@@ -100,3 +100,24 @@
 
 - `.card`는 레이아웃을 정의, `.card-default`나 `.card-primary`는 **시각적 스킨**만 변경
 - HTML에서 `<div class="card card-primary">...</div>`처럼 **조합** 가능
+
+## 3. SMACSS (Scalable and Modular Architecture for CSS)
+
+**SMACSS**는 Jonathan Snook가 제안한 방법론으로, CSS를 다섯 가지 범주로 나눈다.
+
+1. **Base**
+    - HTML 태그에 대한 **기본 스타일**(초기화, 타이포그래피 기본값 등)
+    - 예: `html, body { margin: 0; padding: 0; }`, `a { text-decoration: none; }`
+2. **Layout**
+    - 페이지 주요 **레이아웃 구성** 요소 (header, footer, sidebar, main 등)
+    - 예: `.l-header`, `.l-footer` 등
+3. **Module**
+    - 재사용 가능 **모듈** 단위 (navbar, card, form, widget 등)
+    - 프로젝트에서 가장 많이 생기는 부분
+4. **State**
+    - *상태(visible, hidden, active 등)**를 나타내는 클래스
+    - 예: `.is-active`, `.is-hidden` 등
+    - 자바스크립트로 토글되는 상태를 표현
+5. **Theme**
+    - 사이트의 스킨, 테마 관련 스타일 (색상, 폰트, 브랜딩 등)
+    - 예: `.theme-dark`, `.theme-light`
