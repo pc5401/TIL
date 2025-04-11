@@ -121,3 +121,27 @@
 5. **Theme**
     - 사이트의 스킨, 테마 관련 스타일 (색상, 폰트, 브랜딩 등)
     - 예: `.theme-dark`, `.theme-light`
+
+### 예시 구조
+
+```
+/css
+  /base
+    _reset.css
+    _typography.css
+  /layout
+    _header.css
+    _footer.css
+    _grid.css
+  /modules
+    _card.css
+    _nav.css
+  /state
+    _states.css
+  /theme
+    _dark-theme.css
+main.css
+```
+
+- 이렇게 파일을 **역할별**로 분할하고, 최종 빌드시 하나로 합침
+- 클래스 네이밍에서 `l-`, `m-`, `is-` 등을 접두어로 사용해 구분하기도 함
