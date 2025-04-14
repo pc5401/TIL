@@ -169,3 +169,56 @@ main.css
 4. **선택**
     - 팀 규모, 프로젝트 성격, 개발 문화 등에 따라 방법론을 선택하거나 **조합**해서 사용
     - 최근에는 **BEM + SMACSS** 조합, 혹은 **유틸리티 퍼스트 프레임워크(TailwindCSS)** 같이 다른 접근 방식을 취하기도 함
+
+---
+
+## 실제 적용 예시
+
+**BEM + SMACSS** 혼합 예시:
+
+```css
+/* base/_reset.css (SMACSS Base) */
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+/* layout/_header.css (SMACSS Layout) */
+.l-header {
+  background: #333;
+  color: #fff;
+}
+
+/* modules/_menu.scss (SMACSS Module + BEM) */
+.menu {
+  &__list {
+    display: flex;
+  }
+  &__item {
+    margin-right: 1rem;
+  }
+  &__link {
+    color: #fff;
+    text-decoration: none;
+  }
+  &__item_active .menu__link {
+    font-weight: bold;
+  }
+}
+
+/* state/_states.css (SMACSS State) */
+.is-hidden {
+  display: none;
+}
+
+/* theme/_dark.css (SMACSS Theme) */
+body.dark-theme {
+  background-color: #222;
+  color: #ccc;
+}
+
+```
+
+- 디렉터리 구조를 SMACSS로 조직
+- 클래스 네이밍은 BEM 사용
+- 결과: 정돈된 구조, 용도별 분리, 협업 시 파편화 줄어듦
