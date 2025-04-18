@@ -1,205 +1,122 @@
-# 레이아웃(Layout) 방식 (Display, Position, Float 등)
+# 레이아웃 (Layout) 방식 — 확장판 🗺️  
 
-레이아웃은 웹 페이지의 구성 요소들을 화면에 배치하는 방법이다. 주요 속성으로는 `display`, `position`, `float`가 있으며, 더 근래에는 `flex`, `grid` 같은 기술이 많이 쓰인다.
-
----
-
-## Display
-
-HTML 요소가 **어떻게 배치되는지**를 결정하는 가장 기본적인 속성이다.
-
-### 1) `display: block`
-
-- **블록(block)** 요소로 배치한다.
-- 줄바꿈이 자동으로 일어나고, 너비는 부모 요소에 맞춰 **전체 가로 폭**을 차지한다.
-- 대표적인 예로 `<div>`, `<p>`, `<h1>~<h6>` 등이 있다.
-
-```css
-.block-example {
-  display: block;
-  width: 100%;
-  background-color: lightgray;
-}
-```
-
-### 2) `display: inline`
-
-- **인라인(inline)** 요소로 배치한다.
-- 줄바꿈이 일어나지 않고, 콘텐츠의 크기만큼 가로 폭을 차지한다.
-- 너비나 높이 설정이 불가능하거나 제한적이며, 수직 방향의 여백(margin, padding)도 제한적
-- 대표적으로 `<span>`, `<a>`, `<strong>` 등이 인라인 요소이다.
-
-```css
-.inline-example {
-  display: inline;
-  color: blue;
-}
-```
-
-### 3) `display: inline-block`
-
-- 인라인처럼 **옆으로 배치**되면서도, **블록 요소**처럼 너비와 높이를 설정할 수 있다.
-- 수직 마진과 패딩도 자유롭게 설정 가능하다.
-
-```css
-.inline-block-example {
-  display: inline-block;
-  width: 100px;
-  height: 50px;
-  background-color: coral;
-}
-```
-
-### 4) 기타 Display 값
-
-- `display: none`: 요소가 **화면에서 사라짐** (공간도 차지하지 않음).
-- `display: table`, `display: table-row`, `display: table-cell` 등: 테이블 레이아웃을 위한 속성.
-- **현대 레이아웃**에서는 `flex`, `grid`가 주로 사용된다. (이 부분은 따로 다뤄야 할듯)
+웹 페이지는 **요소를 어떻게 쌓고(Flow) 어떻게 겹칠지(Stacking)** 결정해야 한다. 여기서는 전통적 속성인 `display` · `position` · `float`를 **필수 개념·주의점·실전 팁**과 함께 정리한다.  
 
 ---
 
-## Position
+## 1. `display` — “이 박스는 어떤 성격인가?”
 
-요소를 **정확한 위치**에 배치하기 위한 속성이다. 기본값은 `static`이며, `relative`, `absolute`, `fixed`, `sticky` 등이 자주 쓰인다.
+### 1) block / inline / inline‑block 핵심만
 
-### 1) `position: static`
+| 값 | 줄바꿈 | 크기 지정 | 수직 여백 | 대표 태그 |
+| --- | --- | --- | --- | --- |
+| `block` | 한다 | 가능 | 적용 | `div`, `p`, `h1` |
+| `inline` | 안 한다 | 사실상 불가 | 위아래 *무시* | `span`, `a` |
+| `inline‑block` | 안 한다 | 가능 | 적용 | `img`, `button` |
 
-- **기본 위치** 설정. 부모나 형제 요소의 배치 흐름에 따라 자동으로 배치된다.
-- `top`, `left` 등의 좌표 속성이 **무시**된다.
+> **Tip** 인라인 요소의 가로 간격은 **HTML 소스의 공백**도 포함한다. 연달아 쓸 때는 `<!-- -->`로 공백을 지우거나 `letter‑spacing:0`을 잠시 줘서 해결한다.
 
-```css
-.static-example {
-  position: static;
-}
-```
+### 2) 기타 display
 
-### 2) `position: relative`
-
-- **자신의 원래 위치를 기준**으로 이동한다.
-- `top`, `right`, `bottom`, `left`로 **상대**적인 이동이 가능하며, 이동 후에도 **원래 자리 공간은 유지**한다.
-
-```css
-.relative-example {
-  position: relative;
-  top: 10px;
-  left: 20px;
-}
-```
-
-### 3) `position: absolute`
-
-- **부모 요소**(조상 중 가장 가까운 `position`이 지정된 요소)를 기준으로 이동한다.
-- 레이아웃 흐름에서 **제외**되어, 원래 있던 공간은 사라진다.
-- `z-index`를 사용하면 다른 요소와의 **쌓임 순서**(stack order)를 조절할 수 있다.
-
-```css
-.parent {
-  position: relative; /* 기준 요소가 될 수 있음 */
-}
-.absolute-example {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100px;
-  height: 50px;
-  background-color: gold;
-}
-```
-
-### 4) `position: fixed`
-
-- *브라우저 화면(Window)**를 기준으로 고정된다.
-- 스크롤해도 위치가 변하지 않는다.
-- 주로 상단 바, 하단 바, 공지 배너 등에 활용된다.
-
-```css
-.fixed-example {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #333;
-  color: #fff;
-}
-```
-
-### 5) `position: sticky`
-
-- 스크롤 위치에 따라 **상대(relative)**→**고정(fixed)** 상태로 전환된다.
-- 스크롤이 특정 지점에 이르면 화면에 고정되고, 그 지점을 벗어나면 다시 상대 위치로 돌아간다.
-
-```css
-.sticky-example {
-  position: sticky;
-  top: 0;
-  background-color: lightblue;
-}
-```
+* `display:none` ― 렌더 트리에서 요소 자체가 사라진다. `visibility:hidden`은 *공간은 남긴다*.
+* `display:table-*` ― 옛 IE 호환·SEO 목적에서 드물게 사용.
+* 현대 레이아웃 **1순위는 `flex` · `grid`**다. (별도 노트에서 자세히.)
 
 ---
 
-## Float
+## 2. `position` — “좌표계를 바꾼다”
 
-옛날 레이아웃 방식 중 하나로, 요소를 **왼쪽이나 오른쪽**으로 띄워서 배치한다.
+> **기본 흐름(static flow)에서 빼거나, 새로운 ‘기준점(containing block)’을 만든다.**
 
-본문 텍스트를 이미지 주위로 흐르게 하는 등 특정 목적에 사용한다.
+### 1) 껍데기(static → relative) vs. 내용물(absolute)
 
-### 1) 기본 사용법
-
-```css
-.float-left {
-  float: left;
-  width: 50%;
-  background-color: #fafafa;
-}
-
-.float-right {
-  float: right;
-  width: 50%;
-  background-color: #eee;
-}
+```html
+<div class="card">
+  <span class="badge">NEW</span>
+  …
+</div>
 ```
 
-- `.float-left` 요소는 왼쪽에 붙고, `.float-right` 요소는 오른쪽에 붙는다.
-- 주변 요소들은 부유한(floated) 요소의 **옆을 둘러싸** 배치된다.
-
-### 2) Clear
-
-`float`된 요소 다음에 오는 요소가 **겹치지 않게** 아래로 내려오도록 한다.
-
 ```css
-.clear-both {
-  clear: both;
-}
+.card  { position: relative;      } /* 기준 */
+.badge { position: absolute; top:8px; right:8px; }
 ```
 
-- `clear: left`, `clear: right`로 왼쪽 또는 오른쪽만 피할 수도 있다.
-- 보통 `clearfix` 기법을 써서 부모 요소가 부유된 자식들을 감싸도록 한다.
+* `.card`는 원래 자리에서 움직이지 않고 **기준만 제공**한다.  
+* `.badge`는 레이아웃 흐름에서 빠지고, 좌표는 `.card`의 padding box를 기준.
+
+### 2) fixed & sticky 차이
+
+| 값 | 기준 | 스크롤 시 |
+| --- | --- | -------- |
+| `fixed` | `viewport` | 절대 고정 |
+| `sticky` | **자신의 스크롤 컨테이너** | 임계 지점(`top`, `left`)에 닿으면 고정, 벗어나면 해제 |
+
+> **함정** `position:sticky`가 동작하려면 **부모에 `overflow:visible`**이어야 한다.
+
+### 3) stacking context & `z-index`
+
+* 새로운 컨텍스트를 만드는 조건  
+  `position:absolute|relative|fixed|sticky` + `z-index != auto`, `opacity<1`, `transform`, `filter` 등.
+* 같은 컨텍스트 안에서는 `z-index` 숫자 순으로 쌓인다.  
+* **디자인 컴포넌트 단위**로 컨텍스트를 자주 끊어 두면 예상치 못한 겹침 버그가 줄어든다.
+
+---
+
+## 3. `float` — 퇴역했지만 여전히 쓰인다
+
+### 1) 이미지 랩핑용 최소 패턴
+
+```html
+<img src="cat.jpg" class="float-l">
+<p>텍스트가 이미지 옆으로 감싸 흐른다…</p>
+```
+
+```css
+.float-l { float:left; margin:0 1rem 1rem 0; }
+```
+
+### 2) 부모 깔끔하게 씻기(clearfix)
 
 ```css
 .clearfix::after {
-  content: "";
-  display: block;
-  clear: both;
+  content:"";
+  display:block;
+  clear:both;
 }
 ```
 
-부모 요소에 `.clearfix` 클래스를 적용하면, 내부에 떠 있는(`float`) 자식 요소를 정리해준다.
+> **Tip** Flex · Grid 환경에서는 굳이 `float`를 쓸 일이 없다. 그러나 **리치 텍스트 CMS**처럼 사용자가 본문에 이미지를 삽입하는 경우 float 랩핑이 가장 간단하다.
 
-## 정리
+---
 
-레이아웃을 구성하는 주요 방식은 크게 다음과 같다.
+## 4. 레이아웃 기초 “흐름 → 좌표 → 정렬” 3단계 사고법
 
-1. **Display**
-    - 블록, 인라인, 인라인 블록, 테이블 등
-    - 현대적으로는 `flex`, `grid`가 많이 사용된다.
-2. **Position**
-    - `relative`, `absolute`, `fixed`, `sticky` 등의 특성을 활용해 구체적인 위치를 지정한다.
-    - 레이아웃 흐름에서 제거될 수 있으므로 신중하게 사용한다.
-3. **Float**
-    - 오래된 레이아웃 기법.
-    - 이미지나 텍스트를 어긋나게 배치할 때 주로 쓴다.
-    - 모던 CSS 레이아웃에서는 `float` 대신 `flex`나 `grid`를 권장한다.
+1. **흐름(Flow)** — `display`로 요소 유형 결정  
+2. **좌표(Coordinate)** — `position`으로 박스를 흐름 밖에 둘지, 고정할지 결정  
+3. **정렬(Align / Justify)** — 주로 Flex · Grid에서 요소를 축과 교차축으로 배치  
 
-다양한 속성을 적절히 이해하고 적용하면 **유연하고 구조적인 레이아웃**을 잡을 수 있다.
-특히 **`position`**과 **`float`**는 각각의 작동 방식을 명확히 파악해야 의도치 않은 겹침이나 흐름 깨짐을 방지할 수 있다.
+---
+
+## 5. DevTools 실전 디버깅
+
+| 탭 | 활용 포인트 |
+| --- | ---------- |
+| **Elements → Layout** (Chrome) | `position` · `z-index`와 새 스택 컨텍스트 여부를 바로 확인 |
+| **Contrast Checker** | fixed 헤더·푸터의 텍스트 가독성까지 테스트 |
+| **Toggle device toolbar** | sticky header가 모바일 브라우저에서 의도대로 동작하는지 스크롤해 본다 |
+
+---
+
+## 6. 베스트 프랙티스 한눈에
+
+* **컴포넌트 기준**으로 `position:relative`를 주고, 내부 데코레이션은 `absolute`로 배치해 **재사용성**을 높인다.  
+* 전체 레이아웃은 **Flex → Grid** 순서로 고려하고, `float`와 무조건적인 `absolute` 배치는 마지막 수단으로 남긴다.  
+* 스택 컨텍스트가 얽히면 `translateZ(0)` 해보기 전에 **구조를 먼저 의심**한다.  
+* `fixed` 요소는 iOS 사파리와 안드로이드 웹뷰에서 **온갖 버그**가 많다. 가능하면 스크롤 내부 컨테이너에 `sticky`로 대체한다.  
+
+---
+
+## 7. 한 줄 정리
+
+> “`display`로 성격을 정하고, `position`으로 좌표계를 바꾸고, 필요할 때만 `float`로 흐름을 뒤트는 것이 현대 CSS 레이아웃의 기본이다.”
