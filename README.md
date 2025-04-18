@@ -135,7 +135,7 @@
 - [Chrome 브라우저의 prerendering & prefetching](./learn/Web/web_prerendering.md)
 - [REST API란?](./learn/Web/restapi.md)
 ## [css](./learn/css)
-- [레이아웃(Layout) 방식 (Display, Position, Float 등)](./learn/css/css_layout.md)
+- [레이아웃 (Layout) 방식 — 확장판 🗺️](./learn/css/css_layout.md)
 - [타이포그래피(Typography)와 폰트(Font)](./learn/css/css_typography-font.md)
 - [CSS Grid](./learn/css/css_grid.md)
 - [애니메이션(Animation)과 트랜지션(Transition)](./learn/css/css_animation-transition.md)
