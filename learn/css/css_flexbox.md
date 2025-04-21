@@ -130,6 +130,7 @@ Flexbox는 **가로·세로 한 축**의 배치·정렬·공간 분배를 브라
 .card{
   flex:1 1 clamp(240px,25%,320px);   /* 최소 240, 최대 320 */
 }
+.nav{ margin-left:auto; } /* 💡 auto margin 밀기 */
 ```
 
 ### 5‑4 헤더(로고 + 메뉴 + 유틸)
