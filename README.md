@@ -137,7 +137,7 @@
 ## [css](./learn/css)
 - [레이아웃 (Layout) 방식 🗺️](./learn/css/css_layout.md)
 - [타이포그래피(Typography)와 폰트(Font)](./learn/css/css_typography-font.md)
-- [CSS Grid](./learn/css/css_grid.md)
+- [🌐 CSS Grid 완벽 가이드](./learn/css/css_grid.md)
 - [애니메이션(Animation)과 트랜지션(Transition)](./learn/css/css_animation-transition.md)
 - [CSS 구조화 방법론](./learn/css/css_architecture_methodologies.md)
 - [CSS 개요](./learn/css/css_intro.md)
