@@ -143,7 +143,7 @@
 - [CSS 개요](./learn/css/css_intro.md)
 - [반응형 웹(Responsive Web)과 미디어 쿼리(Media Queries)](./learn/css/css_responsive-media-queries.md)
 - [단위(Units)와 값(Values)](./learn/css/css_units-values.md)
-- [색상(Color)와 배경(Background)](./learn/css/css_color-background.md)
+- [🎨 색상 (Color) & 배경 (Background) 총정리](./learn/css/css_color-background.md)
 - [선택자(Selector)](./learn/css/css_selector.md)
 - [박스 모델(Box Model) 🌐](./learn/css/css_box_model.md)
 - [css_flexbox.md](./learn/css/css_flexbox.md)
