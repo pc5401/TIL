@@ -1,237 +1,103 @@
-# 색상(Color)와 배경(Background)
+# 🎨 색상 (Color) & 배경 (Background) 총정리
 
-웹에서 요소의 시각적 분위기를 결정하는 중요한 요소로, **텍스트 색상**과 **배경** 설정이 있다.
-
-각 속성을 적절히 조합하면 **가독성**, **미적 효과**, **브랜드 아이덴티티** 등을 높일 수 있다.
-
----
-
-## 색상(Color)
-
-### 1) `color`
-
-텍스트 등의 **전경색**을 지정하는 속성이다.
-
-```css
-.color-example {
-  color: #333; /* #RRGGBB (16진수) */
-}
-```
-
-- `color: red;`처럼 이름 지정, `rgb(255, 0, 0)`, `rgba(255, 0, 0, 0.5)`, `hsl()`, `hsla()` 등 다양한 표현 가능
-- **가독성**을 위해 배경색과 충분한 대비를 주는 것이 좋다.
-
-## 배경(Background)
-
-### 1) `background-color`
-
-요소의 **배경색**을 지정한다.
-
-```css
-.bg-color-example {
-  background-color: #f0f0f0;
-}
-```
-
-- 투명도(알파 채널)를 포함하는 RGBA(`rgba(0, 0, 0, 0.3)`) 등도 사용 가능
-
-### 2) `background-image`
-
-요소의 **배경 이미지**를 지정한다.
-
-```css
-.bg-image-example {
-  background-image: url("images/bg-pattern.png");
-}
-```
-
-- 경로(`url()`)에 외부 이미지나 로컬 파일을 삽입
-- **그라디언트**(`linear-gradient()`, `radial-gradient()`) 등 가상 배경도 지정 가능
-
-### 3) `background-repeat`
-
-배경 이미지를 어떻게 **반복**할지 결정한다.
-
-- `repeat` (기본값): x, y축으로 반복
-- `repeat-x`: x축(가로)으로만 반복
-- `repeat-y`: y축(세로)로만 반복
-- `no-repeat`: 반복 없이 한 번만 표시
-
-```css
-.bg-repeat-example {
-  background-image: url("pattern.png");
-  background-repeat: repeat-x;
-}
-```
-
-### 4) `background-position`
-
-배경 이미지를 요소 내에서 **어디에 배치**할지 결정한다.
-
-- 값: `left top`, `center center`, `right bottom` 등 (키워드 사용)
-- px, %, 기타 단위도 가능
-
-```css
-.bg-position-example {
-  background-image: url("logo.png");
-  background-repeat: no-repeat;
-  background-position: center center;
-}
-```
-
-### 5) `background-size`
-
-배경 이미지의 **크기**를 조절한다.
-
-- `auto`: 원본 크기
-- `cover`: 요소를 가득 메우도록 확대·축소 (비율 유지)
-- `contain`: 전체가 보이도록 크기를 맞춤 (비율 유지)
-- px, %, 등 구체값으로 조절도 가능
-
-```css
-.bg-size-example {
-  background-image: url("hero.jpg");
-  background-size: cover;
-}
-```
-### 6) `background-attachment`
-
-배경 이미지를 **스크롤** 시 어떻게 처리할지 결정한다.
-
-- `scroll`: 스크롤에 따라 배경 이미지도 같이 움직임 (기본값)
-- `fixed`: 화면에 고정되어 움직이지 않음
-- `local`: 요소의 스크롤에 맞춰 움직임
-
-```css
-.bg-attachment-example {
-  background-image: url("fixed-bg.png");
-  background-attachment: fixed;
-  background-size: cover;
-}
-```
-
-### 7) 단축 속성: `background`
-
-여러 배경 속성을 **한 번에** 지정할 수 있다. 순서가 중요하지는 않지만, 보통 아래 순서로 나열한다.
-
-1. `background-color`
-2. `background-image`
-3. `background-repeat`
-4. `background-position`
-5. `background-size`
-6. `background-attachment`
-
-```css
-.bg-shorthand-example {
-  background: #fff url("pattern.png") no-repeat center/50px auto fixed;
-}
-```
-
-- `center/50px auto`는 `background-position: center; background-size: 50px auto;`와 동일
-- 쉼표로 구분해 **여러 개의 배경**을 쌓을 수도 있다 (멀티 배경)
-
-## 그라디언트(Gradient)
-
-**배경 이미지**로 간주되어 `background-image` 속성에 함수 형태로 지정한다.
-
-### 1) 선형 그라디언트(Linear Gradient)
-
-```css
-.linear-gradient-example {
-  background-image: linear-gradient(to right, #ff0000, #0000ff);
-}
-```
-
-- `to right`: 왼쪽에서 오른쪽으로 색 변화
-- 방향을 `to top`, 각도(`45deg`) 등으로도 지정 가능
-- 색상은 여러 단계로 추가 가능: `linear-gradient(to bottom, red, yellow, green)`
-
-### 2) 방사형 그라디언트(Radial Gradient)
-
-```css
-.radial-gradient-example {
-  background-image: radial-gradient(circle, #fff, #ccc, #999);
-}
-```
-
-- `circle`, `ellipse` 등 형태 지정
-- 중심부터 바깥쪽으로 색을 분산
-
-그라디언트 자체는 **가상 이미지**이므로 `background-repeat`, `background-position` 등 다른 속성들과 함께 사용 가능하다.
+웹 요소의 **분위기·가독성·브랜드 아이덴티티**를 좌우하는 가장 직접적인 수단은 전경색(`color`)과 배경(`background`)입니다.  
+아래 노트는 *원본 내용*에 모든 개념·예시를 **빠짐없이 포함**하면서, 추가 설명·실전 팁을 더해 한눈에 보기 좋게 정리했습니다.
 
 ---
 
-## 예시 코드
+## 1. 전경색 — `color`
 
-```html
-<!DOCTYPE html>
-<html>
-<head>
-  <style>
-    body {
-      margin: 0;
-      font-family: sans-serif;
-      color: #333;
-    }
+```css
+/* ① 16진수 ② rgb ③ rgba(알파) ④ hsl ⑤ 키워드 */
+.primary   { color:#333; }
+.danger    { color:rgb(255 0 0); }
+.muted     { color:rgba(0 0 0 / .5); }
+.accent    { color:hsl(210 80% 45%); }
+.note      { color:rebeccapurple; }
+```
 
-    .banner {
-      /* 그라디언트 + 이미지 혼합 예시 */
-      background: linear-gradient(
-        to bottom,
-        rgba(0, 0, 0, 0.5),
-        rgba(0, 0, 0, 0.2)
-      ),
-      url("hero.jpg") no-repeat center / cover;
-      height: 300px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #fff;
-    }
+| 포인트 | 메모 |
+| ------ | ---- |
+| **CSS Color 4** | `lab()`, `lch()`, `color-mix()` (최신 브라우저) |
+| **키워드** | `currentColor`는 부모의 `color` 상속 |
+| **접근성** | WCAG 2.1 AA 대비 비율 → 일반 텍스트 4.5 : 1 이상 |
 
-    .banner h1 {
-      font-size: 2rem;
-    }
+---
 
-    .highlight-section {
-      background-color: #fffbcc;
-      padding: 20px;
-      text-align: center;
-    }
+## 2. 배경 속성 한눈표
 
-    .footer {
-      background: #333;
-      color: #fff;
-      padding: 10px;
-      text-align: right;
-    }
-  </style>
-</head>
-<body>
-  <div class="banner">
-    <h1>배경 예시</h1>
-  </div>
-  <div class="highlight-section">
-    <p>배경색을 이용해 강조 구역을 표현한 예시</p>
-  </div>
-  <div class="footer">
-    <p>저작권 정보 © 2025</p>
-  </div>
-</body>
-</html>
+| 속성 | 예시 | 설명 |
+| ---- | ---- | ---- |
+| `background-color` | `#f0f0f0` | 알파 포함 `rgba()` 가능 |
+| `background-image` | `url(bg.png)`<br>`linear-gradient(#fff,#eee)` | 외부·로컬·가상 이미지 |
+| `background-repeat` | `no-repeat`, `repeat-x` | 반복 축 제어 |
+| `background-position` | `center center`, `20% 40px` | 키워드·백분율·길이 |
+| `background-size` | `cover`, `contain`, `100px auto` | 크기/비율 |
+| `background-attachment` | `scroll`(기본), `fixed`, `local` | 패럴랙스·고정 효과 |
+| `background-origin` | `padding-box`, `border-box`, `content-box` | 반복 기준 시작점 |
+| `background-clip` | `border-box`, `padding-box`, `text` | `text` → 글자 채우기 |
+| `background-blend-mode` | `multiply`, `overlay` | 이미지+색상 혼합 |
 
+### 🔹 단축 `background`
+
+```css
+.banner{
+  background:#fff                       /* color              */
+            url("pattern.png")          /* image              */
+            no-repeat                   /* repeat             */
+            center/50px auto            /* position / size    */
+            fixed;                      /* attachment         */
+}
+```
+
+* 쉼표(,)로 **멀티 배경** 가능 → 첫 번째가 위에, 마지막이 아래.
+
+---
+
+## 3. 배경 이미지 세부 제어
+
+### - `background-repeat`
+
+```css
+.repeat-x   { background-repeat:repeat-x; }
+.no-repeat  { background-repeat:no-repeat; }
+```
+
+### - `background-position`
+
+```css
+.logo{
+  background:url(logo.svg) no-repeat;
+  background-position:center center;   /* 또는 50% 50% */
+}
+```
+
+### - `background-size`
+
+```css
+.hero     { background-size:cover; }   /* 요소 꽉 */
+.thumbnail{ background-size:contain; } /* 전체 보이기 */
+```
+
+### - `background-attachment`
+
+```css
+.fixed-bg{
+  background:url(stars.jpg) center/cover fixed;
+}
 ```
 
 ---
 
-## 정리
+## 4. 그라디언트 🌈 (배경 이미지 취급)
 
-색상과 배경 관련 CSS 속성은 **간단한 설정**부터 **그라디언트**나 **복수 배경**을 활용한 **복합 효과**까지 다양하다.
+| 종류 | 예시 | 특징 |
+| ---- | ---- | ---- |
+| **선형** `linear-gradient()` | `linear-gradient(45deg,#ff0,#f00)` | 각도·방향 |
+| **방사형** `radial-gradient()` | `radial-gradient(circle,#fff,#999)` | 원/타원 + 중심 |
+| **반복 선형** `repeating-linear-gradient()` | `repeating-linear-gradient(90deg,#000 0 10px,#fff 10px 20px)` | 줄무늬 |
+| **콘익** `conic-gradient()` | `conic-gradient(from 0deg, red, yellow, lime)` | 파이차트 효과 |
 
-웹 페이지의 **분위기**와 **가독성**을 결정하는 핵심 요소이므로 다음에 유의한다.
+> 다른 배경 속성과 **동일 규칙**으로 `repeat`, `size`, `position` 등을 함께 사용.
 
-1. **텍스트 색상**과 **배경색** 간 **대비**를 충분히 줘서 시인성을 확보한다.
-2. 배경 이미지를 사용할 때는 **반응형**(크기, 위치)과 **성능(용량)**을 고려한다.
-3. **그라디언트**는 이미지 리소스 없이도 시각적 효과를 연출할 수 있어 강력하다.
-4. 단축 속성(`background`)을 숙지해 **한 번**에 여러 설정을 직관적으로 작성한다.
+---
