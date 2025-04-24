@@ -1,4 +1,4 @@
-# 🎨 색상 (Color) & 배경 (Background) 총정리
+# 🎨 색상 (Color) & 배경 (Background)
 
 웹 요소의 **분위기·가독성·브랜드 아이덴티티**를 좌우하는 가장 직접적인 수단은 전경색(`color`)과 배경(`background`)입니다.  
 아래 노트는 *원본 내용*에 모든 개념·예시를 **빠짐없이 포함**하면서, 추가 설명·실전 팁을 더해 한눈에 보기 좋게 정리했습니다.
@@ -101,3 +101,111 @@
 > 다른 배경 속성과 **동일 규칙**으로 `repeat`, `size`, `position` 등을 함께 사용.
 
 ---
+
+## 5. 실전 예시
+
+### 5-1. 텍스트에 그라디언트 채우기 ✨
+
+```css
+.heading{
+  font-size:3rem;
+  background:linear-gradient(90deg,#ff512f,#dd2476);
+  -webkit-background-clip:text;  /* Safari */
+  background-clip:text;
+  color:transparent;
+}
+```
+
+### 5-2. 패럴랙스 히어로 배너
+
+```css
+.hero{
+  height:300px;
+  background:
+    linear-gradient(to bottom,rgba(0,0,0,.5),rgba(0,0,0,.2)),
+    url("hero.jpg") center/cover fixed;
+  display:flex; align-items:center; justify-content:center;
+  color:#fff; text-align:center;
+}
+```
+
+### 5-3. 배경 + 그라디언트 멀티 레이어
+
+```css
+.card{
+  background:
+    url(icon.svg) no-repeat 1rem 1rem / 32px,
+    radial-gradient(circle at top right,#ffecd2,#fcb69f);
+}
+```
+
+---
+
+## 6. 반응형 / 다크 모드
+
+```css
+:root{
+  --bg:#fff; --fg:#333;
+}
+@media (prefers-color-scheme:dark){
+  :root{ --bg:#111; --fg:#f5f5f5; }
+}
+body{
+  background:var(--bg);
+  color:var(--fg);
+}
+```
+
+* 이미지도 `image-set(url(light.jpg) 1x, url(dark.jpg) 1x type("image/jpeg") light)`로 조건적 로딩 가능(초안).
+
+---
+
+## 7. 접근성 & 퍼포먼스 체크리스트 ✅
+
+1. **대비**: DevTools → *Accessibility → Contrast* 확인(최소 AA).  
+2. **용량**: 큰 배경 이미지는 **압축 + 적절한 해상도**.  
+3. **Lazy Load**: fold 아래 배경은 JS IntersectionObserver or `content-visibility:auto`.  
+4. **인쇄 모드**: `@media print{ *{ background:none !important; } }`.  
+5. **시맨틱 색 변수**: `--c-primary`, `--c-on-primary` 구조로 테마/다크모드 대응.
+
+---
+
+## 8. 예제 페이지 (원본 예시 유지)
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+body{
+  margin:0; font-family:sans-serif; color:#333;
+}
+.banner{
+  background:
+    linear-gradient(to bottom,rgba(0,0,0,.5),rgba(0,0,0,.2)),
+    url("hero.jpg") no-repeat center/cover;
+  height:300px; display:flex; align-items:center; justify-content:center;
+  color:#fff; text-align:center;
+}
+.banner h1{ font-size:2rem; }
+.highlight-section{
+  background-color:#fffbcc; padding:20px; text-align:center;
+}
+.footer{
+  background:#333; color:#fff; padding:10px; text-align:right;
+}
+</style>
+</head>
+<body>
+  <div class="banner"><h1>배경 예시</h1></div>
+  <div class="highlight-section"><p>배경색을 이용해 강조 구역을 표현한 예시</p></div>
+  <div class="footer"><p>저작권 정보 © 2025</p></div>
+</body>
+</html>
+```
+
+---
+
+## 9. 한 줄 정리
+
+> **“충분한 대비 + 의도 있는 레이어”**만 지키면 색상·배경으로도 UX, 브랜드, 성능을 모두 잡을 수 있다. 🚀
