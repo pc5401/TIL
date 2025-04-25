@@ -138,6 +138,7 @@
 - [로그인 방법에 대한 이야기](./learn/Web/how_to_login.md)
 - [폰트를 활용한 웹 개발 가이드](./learn/Web/font_guide.md)
 - [이벤트 다루기](./learn/Web/event_handling_summary.md)
+- [WCAG (Web Content Accessibility Guidelines) 한눈에 보기](./learn/Web/wcag.md)
 - [EJS와 Express 통합 사용법](./learn/Web/ejs.md)
 - [REST API란?](./learn/Web/restapi.md)
 ## [Typescript](./learn/Typescript)
