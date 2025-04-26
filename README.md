@@ -133,7 +133,7 @@
 - [그래프 이론의 기초](./learn/data_structure/graph.md)
 ## [Web](./learn/Web)
 - [Chrome 브라우저의 prerendering & prefetching](./learn/Web/web_prerendering.md)
-- [timestamp.md](./learn/Web/timestamp.md)
+- [TIL: 타임스탬프(Timestamp) 정리 ⏱️](./learn/Web/timestamp.md)
 - [AssemblyScript_test.md](./learn/Web/AssemblyScript_test.md)
 - [로그인 방법에 대한 이야기](./learn/Web/how_to_login.md)
 - [폰트를 활용한 웹 개발 가이드](./learn/Web/font_guide.md)
