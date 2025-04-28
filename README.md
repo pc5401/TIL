@@ -122,6 +122,7 @@
 - [필기 : 01.소프트웨어 설계](./learn/정처기준비/01_Software_Design_Written_Test.md)
 - [필기 : 04.프로그래밍 언어 활용](./learn/정처기준비/04_Programming_Language_Utilization_Written_Test.md)
 - [필기 : 03.데이터베이스 활용](./learn/정처기준비/03_Database_Utilization_Written_Test.md)
+- [IP 주소와 서브넷팅 정리 🌐](./learn/정처기준비/network_ip.md)
 ## [data_structure](./learn/data_structure)
 - [연결리스트 (Linked List)](./learn/data_structure/linked_list.md)
 - [Set (셋)](./learn/data_structure/set.md)
