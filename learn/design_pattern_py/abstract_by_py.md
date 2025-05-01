@@ -37,3 +37,114 @@
 └────────────────┘
 ```
 
+---
+
+## 3. Python 구현 예시
+
+```python
+from __future__ import annotations
+from abc import ABC, abstractmethod
+
+
+# ===== 1) Abstract Products =====
+class Button(ABC):
+    @abstractmethod
+    def click(self) -> str: ...
+
+
+class Checkbox(ABC):
+    @abstractmethod
+    def check(self) -> str: ...
+
+
+# ===== 2) Concrete Products =====
+class WinButton(Button):
+    def click(self) -> str:
+        return "✅  Windows 버튼 클릭"
+
+
+class MacButton(Button):
+    def click(self) -> str:
+        return "🍎  Mac 버튼 클릭"
+
+
+class WinCheckbox(Checkbox):
+    def check(self) -> str:
+        return "☑️   Windows 체크"
+
+
+class MacCheckbox(Checkbox):
+    def check(self) -> str:
+        return "🔘  Mac 체크"
+
+
+# ===== 3) Abstract Factory =====
+class GUIFactory(ABC):
+    @abstractmethod
+    def create_button(self) -> Button: ...
+    @abstractmethod
+    def create_checkbox(self) -> Checkbox: ...
+
+
+# ===== 4) Concrete Factories =====
+class WindowsFactory(GUIFactory):
+    def create_button(self) -> Button:
+        return WinButton()
+
+    def create_checkbox(self) -> Checkbox:
+        return WinCheckbox()
+
+
+class MacFactory(GUIFactory):
+    def create_button(self) -> Button:
+        return MacButton()
+
+    def create_checkbox(self) -> Checkbox:
+        return MacCheckbox()
+
+
+# ===== 5) Client Code =====
+def render_gui(factory: GUIFactory) -> None:
+    btn = factory.create_button()
+    chk = factory.create_checkbox()
+    print(btn.click())
+    print(chk.check())
+
+
+if __name__ == "__main__":
+    # 플랫폼이 Windows일 때
+    render_gui(WindowsFactory())
+    # 플랫폼이 MacOS일 때
+    render_gui(MacFactory())
+```
+
+**실행 결과**
+
+```
+✅  Windows 버튼 클릭
+☑️   Windows 체크
+🍎  Mac 버튼 클릭
+🔘  Mac 체크
+```
+
+---
+
+### 제품군 대응표
+
+| 제품군 | Button 클래스 | Checkbox 클래스 |
+| ------ | ------------- | --------------- |
+| Windows | `WinButton` | `WinCheckbox` |
+| macOS | `MacButton` | `MacCheckbox` |
+
+---
+
+## 4. 패턴 적용 시나리오
+
+| 도메인 | 적용 이유 |
+| --- | --- |
+| **다중-플랫폼 UI** | 데스크톱·웹·모바일 각각의 위젯 세트를 교체 |
+| **DB 연결 드라이버** | MySQL, PostgreSQL, SQLite 커넥터를 동일 인터페이스로 생성 |
+| **클라우드 SDK** | AWS vs Azure 객체 스토리지 클라이언트를 환경에 맞춰 주입 |
+| **게임 엔진 스킨** | 다양한 테마(판타지, SF) UI 셋을 런타임에 스위칭 |
+
+---
