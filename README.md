@@ -134,7 +134,7 @@
 - [배열](./learn/data_structure/array.md)
 - [그래프 이론의 기초](./learn/data_structure/graph.md)
 ## [design_pattern_py](./learn/design_pattern_py)
-- [🏭 추상 팩토리 패턴 (Abstract Factory) — Python 버전 노트](./learn/design_pattern_py/abstract_by_py.md)
+- [abstract_by_py.md](./learn/design_pattern_py/abstract_by_py.md)
 ## [Web](./learn/Web)
 - [Chrome 브라우저의 prerendering & prefetching](./learn/Web/web_prerendering.md)
 - [TIL: 타임스탬프(Timestamp) 정리 ⏱️](./learn/Web/timestamp.md)
