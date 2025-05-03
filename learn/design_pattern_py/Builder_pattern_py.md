@@ -1,6 +1,3 @@
-4초 동안 생각함
-
-
 # 🏗️ 빌더 패턴 (Builder Pattern) — Python 버전 노트
 
 > **목적** : “**복잡한 객체**를 **단계별**로 조립하고, 같은 절차에서 **다른 구성**을 얻도록 분리한다.”
@@ -109,5 +106,23 @@ if __name__ == "__main__":
     print(gaming_pc.spec())
     # → CPU=Intel i9, RAM=32GB DDR5, STORAGE=2TB NVMe
 ```
+
+---
+
+## 3. 플루언트 빌더(Director 없이)
+
+```python
+db_url = (
+    QueryBuilder()
+      .host("localhost")
+      .port(5432)
+      .database("app")
+      .user("dev")
+      .password("secret")
+      .to_uri()
+)
+```
+
+*하나의 빌더 객체가 체이닝으로 스스로 Director 역할을 수행.*
 
 ---
