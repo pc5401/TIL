@@ -135,6 +135,7 @@
 - [그래프 이론의 기초](./learn/data_structure/graph.md)
 ## [design_pattern_py](./learn/design_pattern_py)
 - [🏭 추상 팩토리 패턴 (Abstract Factory) — Python 버전 노트](./learn/design_pattern_py/abstract_by_py.md)
+- [🛠️ 팩토리 메서드 패턴 (Factory Method Pattern) — Python 위주 노트](./learn/design_pattern_py/factory_method_pattern_py.md)
 - [🏗️ 빌더 패턴 (Builder Pattern) — Python 버전 노트](./learn/design_pattern_py/Builder_pattern_py.md)
 ## [Web](./learn/Web)
 - [Chrome 브라우저의 prerendering & prefetching](./learn/Web/web_prerendering.md)
