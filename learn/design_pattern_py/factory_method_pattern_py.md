@@ -25,3 +25,60 @@ Client ──▶ ConcreteCreatorA ──▶ factory_method() ──▶ ConcreteP
 ```
 
 ---
+
+## 2. Python 예제 📄
+
+```python
+from abc import ABC, abstractmethod
+
+
+# --- 1) Product 계층 -----------------------------
+class Transport(ABC):                 # Product
+    @abstractmethod
+    def deliver(self) -> str: ...
+
+
+class Truck(Transport):               # ConcreteProduct
+    def deliver(self) -> str:
+        return "도로로 화물 배송"
+
+
+class Ship(Transport):
+    def deliver(self) -> str:
+        return "해상으로 화물 배송"
+
+
+# --- 2) Creator 계층 -----------------------------
+class Logistics(ABC):                 # Creator
+    @abstractmethod
+    def factory_method(self) -> Transport: ...
+
+    def plan_delivery(self) -> str:   # 공통 로직
+        vehicle = self.factory_method()
+        return f"[계획] {vehicle.deliver()}"
+
+
+class RoadLogistics(Logistics):       # ConcreteCreator
+    def factory_method(self) -> Transport:
+        return Truck()
+
+
+class SeaLogistics(Logistics):
+    def factory_method(self) -> Transport:
+        return Ship()
+
+
+# --- 3) Client 코드 ------------------------------
+def client_code(creator: Logistics):
+    print(creator.plan_delivery())
+
+
+if __name__ == "__main__":
+    client_code(RoadLogistics())      # [계획] 도로로 화물 배송
+    client_code(SeaLogistics())       # [계획] 해상으로 화물 배송
+```
+
+\*Creator는 \*\*배송 절차(plan\_delivery)\**만 알고
+실제 운송 수단(Truck/Ship)은 **서브클래스가 주입**.*
+
+---
