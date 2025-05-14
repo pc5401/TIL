@@ -138,6 +138,7 @@
 - [🛠️ 팩토리 메서드 패턴 (Factory Method Pattern) — Python 위주 노트](./learn/design_pattern_py/factory_method_pattern_py.md)
 - [🦋 Flyweight Pattern 노트](./learn/design_pattern_py/flyweight_py.md)
 - [🏗️ 빌더 패턴 (Builder Pattern) — Python 버전 노트](./learn/design_pattern_py/Builder_pattern_py.md)
+- [🐑 Prototype Pattern (프로토타입) 노트 — Python 예제 중심](./learn/design_pattern_py/prototype_pattern_py.md)
 ## [Web](./learn/Web)
 - [Chrome 브라우저의 prerendering & prefetching](./learn/Web/web_prerendering.md)
 - [TIL: 타임스탬프(Timestamp) 정리 ⏱️](./learn/Web/timestamp.md)
