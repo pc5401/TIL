@@ -15,3 +15,27 @@
 | **캐시/레지스트리**       | 자주 복제하는 프로토타입을 **저장소**에 보관해 빠르게 꺼낸다.         |
 
 ---
+
+## 2. Python 구현 예제
+
+### 단순 값 객체 (얕은 복사)
+
+```python
+from __future__ import annotations
+import copy
+from typing import Protocol
+
+class Prototype(Protocol):
+    def clone(self) -> "Prototype": ...
+
+class BasicDocument:
+    def __init__(self, title: str, content: str) -> None:
+        self.title, self.content = title, content
+
+    def clone(self) -> "BasicDocument":
+        # 값만 복사 ⇒ 얕은 복사 OK
+        return copy.copy(self)
+
+    def __str__(self) -> str:
+        return f"<Doc '{self.title}' : {self.content[:15]}…>"
+```
