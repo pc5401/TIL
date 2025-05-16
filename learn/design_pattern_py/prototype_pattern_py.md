@@ -18,7 +18,7 @@
 
 ## 2. Python 구현 예제
 
-### 단순 값 객체 (얕은 복사)
+### 2-1) 단순 값 객체 (얕은 복사)
 
 ```python
 from __future__ import annotations
@@ -38,4 +38,23 @@ class BasicDocument:
 
     def __str__(self) -> str:
         return f"<Doc '{self.title}' : {self.content[:15]}…>"
+```
+
+### 2-2) 복합 객체 (깊은 복사)
+
+```python
+class ComplexDoc:
+    def __init__(self, metadata: dict, pages: list[str]) -> None:
+        self.metadata = metadata        # 가변 객체
+        self.pages = pages
+
+    def clone(self) -> "ComplexDoc":
+        # 내부 리스트·딕셔너리까지 재귀 복제
+        return copy.deepcopy(self)
+
+    def add_page(self, text: str):      # 상태 변경 메서드
+        self.pages.append(text)
+
+    def __str__(self) -> str:
+        return f"{self.metadata['title']}({len(self.pages)} pages)"
 ```
