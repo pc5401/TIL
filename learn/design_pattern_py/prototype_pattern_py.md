@@ -58,3 +58,35 @@ class ComplexDoc:
     def __str__(self) -> str:
         return f"{self.metadata['title']}({len(self.pages)} pages)"
 ```
+
+### 2-3) 프로토타입 레지스트리 & 사용
+
+```python
+class PrototypeRegistry:
+    _registry: dict[str, Prototype] = {}
+
+    @classmethod
+    def register(cls, name: str, proto: Prototype):
+        cls._registry[name] = proto
+
+    @classmethod
+    def create(cls, name: str) -> Prototype:
+        return cls._registry[name].clone()
+
+
+# ---- 초기 등록 ----
+doc_proto = ComplexDoc({"title": "Template"}, ["Cover", "Intro"])
+PrototypeRegistry.register("doc", doc_proto)
+
+# ---- 클라이언트 복제 ----
+new_doc = PrototypeRegistry.create("doc")
+new_doc.metadata["title"] = "Project Plan"
+new_doc.add_page("Timeline")
+
+print(doc_proto)   # Template(2 pages)
+print(new_doc)     # Project Plan(3 pages)
+```
+
+> 원형과 복제본은 **독립** — 원형 수정 없이 새 상태를 빠르게 생성.
+
+---
