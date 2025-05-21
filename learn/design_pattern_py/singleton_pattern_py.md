@@ -15,3 +15,49 @@
 | **게임 엔진 : 이벤트 버스** | 전역 메시지 큐 하나로 컴포넌트 연결            |
 
 ---
+
+## 1. Python 구현 여러 가지
+
+### 1-1. 가장 단순 — *“한 번만 생성”* 방법
+
+```python
+class SingletonSimple:
+    _instance = None
+
+    def __new__(cls, *args, **kwargs):
+        if cls._instance is None:
+            cls._instance = super().__new__(cls)
+        return cls._instance
+
+    def __init__(self, value: str) -> None:
+        self.value = value
+```
+
+```python
+a = SingletonSimple("A")
+b = SingletonSimple("B")
+print(a is b, a.value, b.value)   # True B B  (두 객체는 동일, 마지막 인자만 반영)
+```
+
+> 초기화가 **두 번 호출**될 수 있다는 점은 단점. (`__init__`은 호출마다 실행됨)
+
+---
+
+### 1-2. 모듈 자체를 싱글톤처럼
+
+```python
+# config.py
+import json, pathlib
+_cfg = json.loads(pathlib.Path("config.json").read_text())
+
+def get(key: str):            # 전역 getter
+    return _cfg[key]
+```
+
+```python
+# anywhere.py
+from config import get
+print(get("DB_HOST"))
+```
+
+> 파이썬 모듈은 **최초 import 1회만 로드**되므로 사실상 싱글톤.
