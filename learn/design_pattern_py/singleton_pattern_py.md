@@ -61,3 +61,30 @@ print(get("DB_HOST"))
 ```
 
 > 파이썬 모듈은 **최초 import 1회만 로드**되므로 사실상 싱글톤.
+
+---
+
+### 1-3. 데코레이터 버전 (thread-safe)
+
+```python
+from functools import wraps
+from threading import Lock
+
+def singleton(cls):
+    instances, lock = {}, Lock()
+
+    @wraps(cls)
+    def wrapper(*args, **kwargs):
+        if cls not in instances:
+            with lock:                       # 이중 체크
+                if cls not in instances:
+                    instances[cls] = cls(*args, **kwargs)
+        return instances[cls]
+    return wrapper
+
+
+@singleton
+class Settings:
+    def __init__(self):
+        print("read heavy config file…")
+```
