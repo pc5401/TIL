@@ -88,3 +88,48 @@ class Settings:
     def __init__(self):
         print("read heavy config file…")
 ```
+
+---
+
+### 1-4. 메타클래스 정석
+
+```python
+class SingletonMeta(type):
+    _inst = None
+    def __call__(cls, *a, **kw):
+        if cls._inst is None:
+            cls._inst = super().__call__(*a, **kw)
+        return cls._inst
+
+class Logger(metaclass=SingletonMeta):
+    pass
+```
+
+---
+
+### 1-5. Borg 패턴 (모든 인스턴스가 **상태 공유**)
+
+```python
+class Borg:
+    _shared_state = {}
+    def __init__(self):
+        self.__dict__ = self._shared_state
+```
+
+> 객체는 여러 개지만 `__dict__`를 공유 → **동일 상태** = 사실상 싱글톤.
+
+---
+
+## 2. 장·단점 정리
+
+| 👍 장점                         | ⚠️ 단점 / 주의                   |
+| ----------------------------- | ---------------------------- |
+| 여러 곳에서 동일 인스턴스 사용 → **자원 절약** | **숨은 전역**이라 의존성 파악 어려움       |
+| 초기화 비용 1회로 끝                  | 멀티스레드 환경에서 **동시 생성** 주의      |
+| 상태 일관성 보장                     | 테스트 시 **mock 교체** 힘듦 (전역 상태) |
+| DI 없는 코드에서도 손쉽게 사용            | 다른 모듈 먼저 import 시 초기화 순서 문제  |
+
+> 조직 내 코드 리뷰 룰
+> “싱글톤 쓰려면 → *정말 단 하나* 여야 하고, **DI 컨테이너** 못 쓰는 상황만 OK”
+
+---
