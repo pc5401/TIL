@@ -110,7 +110,7 @@
 ## [design_pattern_py](./learn/design_pattern_py)
 - [🐑 Prototype Pattern (프로토타입) 노트 — Python 예제 중심](./learn/design_pattern_py/prototype_pattern_py.md)
 - [🏗️ 빌더 패턴 (Builder Pattern) — Python 버전 노트](./learn/design_pattern_py/Builder_pattern_py.md)
-- [☝️ 싱글톤 패턴 (Singleton) — *주니어 개발자의 꼼꼼 노트*](./learn/design_pattern_py/singleton_pattern_py.md)
+- [☝️ 싱글톤 패턴 (Singleton)](./learn/design_pattern_py/singleton_pattern_py.md)
 - [🦋 Flyweight Pattern 노트](./learn/design_pattern_py/flyweight_py.md)
 - [🛠️ 팩토리 메서드 패턴 (Factory Method Pattern) — Python 위주 노트](./learn/design_pattern_py/factory_method_pattern_py.md)
 - [🏭 추상 팩토리 패턴 (Abstract Factory) — Python 버전 노트](./learn/design_pattern_py/abstract_by_py.md)
