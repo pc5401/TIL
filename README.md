@@ -114,6 +114,7 @@
 - [🦋 Flyweight Pattern 노트](./learn/design_pattern_py/flyweight_py.md)
 - [🛠️ 팩토리 메서드 패턴 (Factory Method Pattern) — Python 위주 노트](./learn/design_pattern_py/factory_method_pattern_py.md)
 - [🏭 추상 팩토리 패턴 (Abstract Factory) — Python 버전 노트](./learn/design_pattern_py/abstract_by_py.md)
+- [🎯 Strategy Pattern — “행동을 갈아끼우는” 디자인 패턴 노트](./learn/design_pattern_py/strategy_pattern_py.md)
 ## [Linux](./learn/Linux)
 - [기본 명령어](./learn/Linux/basic_commands.md)
 - [운영체제 프로세스 메모리 할당과 동작 방식 (리눅스 기준)](./learn/Linux/process_check.md)
