@@ -15,3 +15,18 @@
 | AI 게임 – 초보/중급/프로 AI   | 난이도별 로직이 서로 뒤엉킴               |
 
 전략 패턴으로 **동일 인터페이스 + 교체 가능한 객체**로 분리한다.
+
+---
+
+## 2. 구조
+
+```
+Context (Payment) ── has ──▶ Strategy (PayStrategy)
+                               ▲            ▲
+                               │            │
+                     ConcreteStrategyA  ConcreteStrategyB
+```
+
+* **Context** : 전략 **객체를 보유**해 필요 시 호출.
+* **Strategy** : 행동(알고리즘) 인터페이스.
+* **ConcreteStrategy** : 실제 구현 A, B, C …
