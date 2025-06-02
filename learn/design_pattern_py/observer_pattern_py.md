@@ -14,3 +14,20 @@
 | 멀티플레이 게임 → 상태 동기화         | 플레이어 객체끼리 강결합            | EventBus에 상태 변경 발행                   |
 
 ---
+
+## 2. 패턴 구조
+
+```
+Subject
+ ├─ attach(observer)
+ ├─ detach(observer)
+ └─ notify()
+
+Observer (인터페이스)
+ └─ update(subject)
+```
+
+* **Subject** : 상태 보유 + 변화 시 `notify`
+* **Observer** : `update` 구현, 등록/해제 가능
+
+---
