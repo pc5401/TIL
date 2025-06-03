@@ -1,4 +1,4 @@
-# 👀 Observer Pattern — 이벤트를 “구독” · “발행”
+# 👀 Observer Pattern — 이벤트를 “구독” · “발행”하는 디자인 패턴 노트
 
 > **핵심 한 줄**
 > “*변화를 감지* 해서 **여러 객체**에게 **자동 알림**을 보내고 싶을 때.”
@@ -31,3 +31,69 @@ Observer (인터페이스)
 * **Observer** : `update` 구현, 등록/해제 가능
 
 ---
+
+## 3. Python 예제 — **주식 가격 알림**
+
+```python
+from __future__ import annotations
+from typing import Protocol, List
+
+
+# ---------- Observer 인터페이스 ----------
+class Observer(Protocol):
+    def update(self, subject: "Stock") -> None: ...
+
+
+# ---------- Subject ----------
+class Stock:
+    def __init__(self, symbol: str, price: float) -> None:
+        self.symbol, self._price = symbol, price
+        self._observers: List[Observer] = []
+
+    # 구독 관리
+    def attach(self, obs: Observer) -> None:
+        self._observers.append(obs)
+
+    def detach(self, obs: Observer) -> None:
+        self._observers.remove(obs)
+
+    # 상태 변화
+    @property
+    def price(self) -> float:
+        return self._price
+
+    @price.setter
+    def price(self, new: float) -> None:
+        if new != self._price:
+            self._price = new
+            self.notify()
+
+    # 알림
+    def notify(self) -> None:
+        for obs in self._observers:
+            obs.update(self)
+
+
+# ---------- Concrete Observers ----------
+class EmailAlert:
+    def update(self, stock: Stock) -> None:
+        print(f"[Email] {stock.symbol} price -> {stock.price}")
+
+class SMSAlert:
+    def update(self, stock: Stock) -> None:
+        print(f"[SMS] {stock.symbol} price -> {stock.price}")
+
+
+# ---------- Client ----------
+if __name__ == "__main__":
+    apple = Stock("AAPL", 150.0)
+    email = EmailAlert()
+    sms   = SMSAlert()
+
+    apple.attach(email)
+    apple.attach(sms)
+
+    apple.price = 151.5   # 두 알림 모두 동작
+    apple.detach(email)
+    apple.price = 149.8   # SMS만 동작
+```
