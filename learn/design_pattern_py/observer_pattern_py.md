@@ -107,3 +107,17 @@ if __name__ == "__main__":
 | **저결합** — Subject/Observer 서로 타입 모름 | 관찰자 수 ↑ → notify 비용 ↑               |
 | 런타임 동적 구독·해제                        | 순환 참조 → 메모리 누수 주의                   |
 | 동일 이벤트에 다양한 행동 추가                   | 복잡 이벤트, 순서 요구 시 더 고도화 필요 (EventBus) |
+
+---
+
+## 5. 실전 사용처
+
+| 분야                 | 라이브러리 / API                                                             |
+| ------------------ | ----------------------------------------------------------------------- |
+| **GUI**            | PyQt `QObject/pyqtSignal`, Tkinter `trace`, Java Swing `ActionListener` |
+| **Reactive 프로그래밍** | RxPy `Observable`, asyncio `Event`                                      |
+| **Django ORM**     | `signals.post_save` / `pre_delete`                                      |
+| **Redis Pub/Sub**  | 분산 Observer 구현                                                          |
+| **Game Engine**    | Unity `C# event delegate`, Godot `Signal`                               |
+
+---
