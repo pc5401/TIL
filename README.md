@@ -113,7 +113,7 @@
 - [☝️ 싱글톤 패턴 (Singleton)](./learn/design_pattern_py/singleton_pattern_py.md)
 - [🦋 Flyweight Pattern 노트](./learn/design_pattern_py/flyweight_py.md)
 - [🛠️ 팩토리 메서드 패턴 (Factory Method Pattern) — Python 위주 노트](./learn/design_pattern_py/factory_method_pattern_py.md)
-- [👀 Observer Pattern — 이벤트를 “구독” · “발행”하는 디자인 패턴](./learn/design_pattern_py/observer_pattern_py.md)
+- [👀 Observer Pattern — 이벤트를 “구독” · “발행”하는 디자인 패턴S](./learn/design_pattern_py/observer_pattern_py.md)
 - [🏭 추상 팩토리 패턴 (Abstract Factory) — Python 버전 노트](./learn/design_pattern_py/abstract_by_py.md)
 - [🎯 Strategy Pattern — “행동을 갈아끼우는” 디자인 패턴 노트](./learn/design_pattern_py/strategy_pattern_py.md)
 ## [Linux](./learn/Linux)
