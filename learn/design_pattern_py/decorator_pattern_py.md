@@ -36,3 +36,46 @@ Client → ConcreteComponent
 * **ConcreteDecorator** : 실제 부가기능 구현 (로깅, 캐싱, 권한 체크…)
 
 ---
+
+## 2. Python 예제 — **파일 I/O 기능 확장**
+
+```python
+from __future__ import annotations
+from abc import ABC, abstractmethod
+import gzip, logging, functools
+
+
+# 1) Component
+class DataSource(ABC):
+    @abstractmethod
+    def write(self, data: bytes) -> None: ...
+    @abstractmethod
+    def read(self) -> bytes: ...
+
+
+# 2) ConcreteComponent
+class FileDataSource(DataSource):
+    def __init__(self, filename: str):
+        self._filename = filename
+
+    def write(self, data: bytes) -> None:
+        with open(self._filename, "wb") as f:
+            f.write(data)
+
+    def read(self) -> bytes:
+        with open(self._filename, "rb") as f:
+            return f.read()
+
+
+# 3) Base Decorator
+class DataSourceDecorator(DataSource):
+    def __init__(self, wrappee: DataSource):
+        self._wrappee = wrappee
+
+    def write(self, data: bytes) -> None:
+        self._wrappee.write(data)
+
+    def read(self) -> bytes:
+        return self._wrappee.read()
+
+```
