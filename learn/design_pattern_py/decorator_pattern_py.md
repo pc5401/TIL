@@ -78,4 +78,40 @@ class DataSourceDecorator(DataSource):
     def read(self) -> bytes:
         return self._wrappee.read()
 
+
+# 4) Concrete Decorators
+class CompressionDecorator(DataSourceDecorator):
+    def write(self, data: bytes) -> None:
+        print("→ 압축 후 저장")
+        super().write(gzip.compress(data))
+
+    def read(self) -> bytes:
+        print("→ 압축 해제 후 리턴")
+        return gzip.decompress(super().read())
+
+
+class LoggingDecorator(DataSourceDecorator):
+    def write(self, data: bytes) -> None:
+        logging.info("write %d bytes", len(data))
+        super().write(data)
+
+    def read(self) -> bytes:
+        result = super().read()
+        logging.info("read %d bytes", len(result))
+        return result
+
+
+# 5) 클라이언트 구성
+if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
+
+    # 베이스 컴포넌트
+    source: DataSource = FileDataSource("note.bin")
+
+    # 단계별 데코레이션 (순서 자유)
+    source = LoggingDecorator(CompressionDecorator(source))
+
+    # 사용
+    source.write(b"Hello Decorator Pattern!" * 5)
+    print(source.read())
 ```
