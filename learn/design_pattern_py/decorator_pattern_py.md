@@ -115,3 +115,15 @@ if __name__ == "__main__":
     source.write(b"Hello Decorator Pattern!" * 5)
     print(source.read())
 ```
+
+```
+INFO:root:write 140 bytes
+→ 압축 후 저장
+→ 압축 해제 후 리턴
+INFO:root:read 140 bytes
+b'Hello Decorator Pattern!...'
+```
+
+*기능을 더 붙이고 싶으면 **새 데코레이터를 만들고 체인**에 꽂으면 끝.*
+
+---
