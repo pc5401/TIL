@@ -136,3 +136,16 @@ b'Hello Decorator Pattern!...'
 | 기능 조합 **런타임 변경** 가능       | 디버깅 시 중첩 깊이 파악 필요         |
 | 단일 책임 원칙 ↔ 각 데코레이터 하나의 책임 | 클라이언트가 **순서**를 알맞게 연결해야 함 |
 
+---
+
+## 4. 실무에서 자주 보는 데코레이터
+
+| 분야                    | 예                                                |
+| --------------------- | ------------------------------------------------ |
+| **Python @decorator** | 함수에 로깅, 캐시, 권한 체크                                |
+| **웹 미들웨어**            | Django / Flask request ↦ response 체인             |
+| **Java I/O Streams**  | `BufferedInputStream(new GZIPInputStream(sock))` |
+| **React HOC**         | `withAuth(Component)`                            |
+| **.NET Stream**       | CryptoStream, DeflateStream (서로 래핑)              |
+
+---
