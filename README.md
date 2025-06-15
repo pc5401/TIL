@@ -60,6 +60,7 @@
 - [🦋 Flyweight Pattern 노트](./learn/design_pattern_py/flyweight_py.md)
 - [☝️ 싱글톤 패턴 (Singleton)](./learn/design_pattern_py/singleton_pattern_py.md)
 - [🏗️ 빌더 패턴 (Builder Pattern) — Python 버전 노트](./learn/design_pattern_py/Builder_pattern_py.md)
+- [🎮 Command Pattern — “요청을 객체로 캡슐화” 노트](./learn/design_pattern_py/command_pattern_py.md)
 - [🎯 Strategy Pattern — “행동을 갈아끼우는” 디자인 패턴 노트](./learn/design_pattern_py/strategy_pattern_py.md)
 ## [nestjs](./learn/nestjs)
 - [컨트롤러 (Controllers)](./learn/nestjs/controllers.md)
