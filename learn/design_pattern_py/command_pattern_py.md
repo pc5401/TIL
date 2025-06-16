@@ -14,3 +14,27 @@
 | 실행 취소(Undo) 기능    | ‘반대로’ 하는 코드를 곳곳에 작성              | 커맨드에 `execute / undo` 메서드 |
 | 작업 큐 / 매크로        | 작업을 일단 저장 후 순차 실행                | 요청을 큐에 객체로 저장             |
 
+---
+
+## 2. 구조
+
+```
+Client ──▶ Invoker (Button)
+                  │
+                  ▼
+             Command (interface)
+             ├── execute()
+             ├── undo() (옵션)
+                  │
+    ┌─────────────┴─────────────┐
+ConcreteCommandA         ConcreteCommandB
+       │                           │
+       ▼                           ▼
+  Receiver (실제 작업 수행 객체)
+```
+
+* **Command** : `execute()` (필수) + `undo()` (선택)
+* **ConcreteCommand** : Receiver에 실제 동작 위임
+* **Invoker** : 버튼·메뉴·스케줄러 등 → `command.execute()` 호출
+* **Client** : ConcreteCommand를 만들어 Invoker 에 주입
+
