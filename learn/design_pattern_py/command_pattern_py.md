@@ -38,3 +38,37 @@ ConcreteCommandA         ConcreteCommandB
 * **Invoker** : 버튼·메뉴·스케줄러 등 → `command.execute()` 호출
 * **Client** : ConcreteCommand를 만들어 Invoker 에 주입
 
+---
+
+## 3. Python 예제 — **텍스트 에디터 Undo/Redo**
+
+```python
+from __future__ import annotations
+from abc import ABC, abstractmethod
+from typing import List
+
+
+# ---------- Receiver ----------
+class Document:
+    def __init__(self) -> None:
+        self.content: List[str] = []
+
+    def insert(self, text: str) -> None:
+        self.content.append(text)
+
+    def remove_last(self) -> str:
+        return self.content.pop()
+
+    def show(self) -> None:
+        print("".join(self.content))
+
+
+# ---------- Command Interface ----------
+class Command(ABC):
+    @abstractmethod
+    def execute(self) -> None: ...
+    @abstractmethod
+    def undo(self) -> None: ...
+
+
+```
