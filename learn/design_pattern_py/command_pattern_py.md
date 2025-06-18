@@ -71,4 +71,53 @@ class Command(ABC):
     def undo(self) -> None: ...
 
 
+# ---------- Concrete Commands ----------
+class InsertCommand(Command):
+    def __init__(self, doc: Document, text: str) -> None:
+        self.doc, self.text = doc, text
+
+    def execute(self) -> None:
+        self.doc.insert(self.text)
+
+    def undo(self) -> None:
+        self.doc.remove_last()
+
+
+# ---------- Invoker ----------
+class Editor:
+    def __init__(self) -> None:
+        self._undo_stack: List[Command] = []
+        self._redo_stack: List[Command] = []
+
+    def run(self, cmd: Command):
+        cmd.execute()
+        self._undo_stack.append(cmd)
+        self._redo_stack.clear()          # 새 분기 시작
+
+    def undo(self):
+        if self._undo_stack:
+            cmd = self._undo_stack.pop()
+            cmd.undo()
+            self._redo_stack.append(cmd)
+
+    def redo(self):
+        if self._redo_stack:
+            cmd = self._redo_stack.pop()
+            cmd.execute()
+            self._undo_stack.append(cmd)
+
+
+# ---------- Client ----------
+if __name__ == "__main__":
+    doc = Document()
+    editor = Editor()
+
+    editor.run(InsertCommand(doc, "Hello "))
+    editor.run(InsertCommand(doc, "Command "))
+    editor.run(InsertCommand(doc, "Pattern!"))
+    doc.show()          # Hello Command Pattern!
+
+    editor.undo(); doc.show()   # Hello Command
+    editor.undo(); doc.show()   # Hello
+    editor.redo(); doc.show()   # Hello Command
 ```
