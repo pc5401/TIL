@@ -54,6 +54,7 @@
 ## [design_pattern_py](./learn/design_pattern_py)
 - [🛠️ 팩토리 메서드 패턴 (Factory Method Pattern)](./learn/design_pattern_py/factory_method_pattern_py.md)
 - [🐑 Prototype Pattern (프로토타입) 노트](./learn/design_pattern_py/prototype_pattern_py.md)
+- [🔌 Adapter Pattern — “호환 안 되는 인터페이스 맞춰 주는 변환 어댑터”](./learn/design_pattern_py/adapter_pattern_py.md)
 - [🏭 추상 팩토리 패턴 (Abstract Factory)](./learn/design_pattern_py/abstract_by_py.md)
 - [👀 Observer Pattern — 이벤트를 “구독” · “발행”하는 디자인 패턴](./learn/design_pattern_py/observer_pattern_py.md)
 - [🎀 Decorator Pattern — 런타임에 ‘포장지’ 씌워 기능 확장하기](./learn/design_pattern_py/decorator_pattern_py.md)
