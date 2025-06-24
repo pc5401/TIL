@@ -35,6 +35,7 @@
 - [연결리스트 (Linked List)](./learn/data_structure/linked_list.md)
 - [배열](./learn/data_structure/array.md)
 ## [DB](./learn/DB)
+- [mysql_backup_tip.md](./learn/DB/mysql_backup_tip.md)
 - [mysql 학습](./learn/DB/mysql_basic.md)
 - [MySQL 권한 관리 및 백업/복구](./learn/DB/mysql_admin.md)
 - [NCloud 프라이빗 서버에서 MySQL 설치 · 퍼블릭 접근 설정 노트](./learn/DB/make_mysql.md)
