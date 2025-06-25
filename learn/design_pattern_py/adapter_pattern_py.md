@@ -33,3 +33,67 @@ Client ──▶ Target (원하는 인터페이스)
 * **Adapter** : Adaptee → Target 로 **변환** (위임·변환·매핑)
 
 ---
+
+## 3. Python 예제 — **JSON ↔ XML 파서 호환**
+
+> 기존 코드(클라이언트)는 `parse()` 로 `dict` 를 돌려 받기를 기대한다.
+> XML 라이브러리는 `XMLParser().load_xml()` 만 지원 → **Adapter** 투입!
+
+```python
+from __future__ import annotations
+import xml.etree.ElementTree as ET
+import json
+
+
+# -------- Target Interface --------
+class DataParser:
+    def parse(self, raw: str) -> dict: ...
+    
+
+# -------- Adaptee  (제3자 라이브러리) --------
+class XMLParser:
+    def load_xml(self, raw: str) -> ET.Element:
+        return ET.fromstring(raw)
+
+
+# -------- Adapter --------
+class XMLAdapter(DataParser):
+    def __init__(self, adaptee: XMLParser) -> None:
+        self._adaptee = adaptee
+
+    def parse(self, raw: str) -> dict:
+        root = self._adaptee.load_xml(raw)
+        # 간단 변환: <item key="x">y</item> .. → {key: text}
+        return {child.get("key"): child.text for child in root}
+
+
+# -------- Concrete Target --------
+class JSONParser(DataParser):
+    def parse(self, raw: str) -> dict:
+        return json.loads(raw)
+
+
+# -------- Client 코드 --------
+def client_code(parser: DataParser, raw: str):
+    print("Result >>", parser.parse(raw))
+
+
+if __name__ == "__main__":
+    json_raw = '{"name":"Alice","age":30}'
+    client_code(JSONParser(), json_raw)
+
+    xml_raw = """<root>
+                   <item key="name">Bob</item>
+                   <item key="age">25</item>
+                 </root>"""
+    client_code(XMLAdapter(XMLParser()), xml_raw)
+```
+
+```
+Result >> {'name': 'Alice', 'age': 30}
+Result >> {'name': 'Bob', 'age': '25'}
+```
+
+*클라이언트는 `DataParser` 만 알면 되고, XML 라이브러리 구현은 그대로.*
+
+---
