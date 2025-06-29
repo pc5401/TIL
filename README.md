@@ -100,6 +100,7 @@
 - [함수 타입 지정](./learn/Typescript/type_of_function.md)
 - [tsconfig.json 파일 생성](./learn/Typescript/about_tsconfig.md)
 ## [design_pattern_py](./learn/design_pattern_py)
+- [🎭 Facade Pattern — “복잡한 서브시스템을 한 문으로 감싸기”](./learn/design_pattern_py/facade_pattern_py.md)
 - [🎮 Command Pattern — “요청을 객체로 캡슐화”](./learn/design_pattern_py/command_pattern_py.md)
 - [🦋 Flyweight Pattern](./learn/design_pattern_py/flyweight_py.md)
 - [☝️ 싱글톤 패턴 (Singleton)](./learn/design_pattern_py/singleton_pattern_py.md)
