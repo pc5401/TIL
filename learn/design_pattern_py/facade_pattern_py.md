@@ -29,3 +29,30 @@ Client ──▶ Facade ──┬─▶ SubsystemA
 
 ---
 
+## 3. Python 예제 — “🎥 비디오 컨버터”
+
+> 서브시스템(코덱 추출, 디코더, 인코더, Muxer)을 숨기고
+> `convert(filename, target_format)` 한 줄만 보여 주는 Facade
+
+```python
+# --- Subsystems ---------------------------
+class FileReader:
+    def read(self, path): ...
+
+class VideoDecoder:
+    def decode(self, raw): ...
+
+class AudioDecoder:
+    def decode(self, raw): ...
+
+class VideoEncoder:
+    def encode(self, frames, fmt): ...
+
+class AudioEncoder:
+    def encode(self, frames, fmt): ...
+
+class Muxer:
+    def mux(self, v_stream, a_stream, out_path): ...
+
+
+```
