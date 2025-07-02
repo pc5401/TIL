@@ -54,5 +54,29 @@ class AudioEncoder:
 class Muxer:
     def mux(self, v_stream, a_stream, out_path): ...
 
+# --- Facade -----------------------------------------
+class VideoConverter:
+    def convert(self, src: str, dst_format: str) -> str:
+        print("[Facade] Converting…")
+
+        raw = FileReader().read(src)
+        v_frames = VideoDecoder().decode(raw)
+        a_frames = AudioDecoder().decode(raw)
+
+        v_str = VideoEncoder().encode(v_frames, dst_format)
+        a_str = AudioEncoder().encode(a_frames, dst_format)
+
+        out = src.rsplit(".", 1)[0] + "." + dst_format
+        Muxer().mux(v_str, a_str, out)
+
+        print("[Facade] Done →", out)
+        return out
+
+
+# --- Client code ------------------------------------
+if __name__ == "__main__":
+    converter = VideoConverter()
+    converter.convert("lecture.mov", "mp4")
+
 
 ```
