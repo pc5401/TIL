@@ -35,7 +35,7 @@ Client ──▶ Facade ──┬─▶ SubsystemA
 > `convert(filename, target_format)` 한 줄만 보여 주는 Facade
 
 ```python
-# --- Subsystems ---------------------------
+# --- Subsystems (축약 버전) ---------------------------
 class FileReader:
     def read(self, path): ...
 
@@ -77,16 +77,19 @@ class VideoConverter:
 if __name__ == "__main__":
     converter = VideoConverter()
     converter.convert("lecture.mov", "mp4")
-
-
 ```
 
-- 클라이언트는 **“파일 이름과 포맷”**만 알고,
-- 디코더·엔코더를 어느 순서로 호출해야 하는지 몰라도 된다!
+클라이언트는 \*\*“파일 이름과 포맷”\*\*만 알고,
+디코더·엔코더를 **어느 순서로 호출해야 하는지** 몰라도 된다!
 
-## 장 · 단점
+---
+
+## 4. 장 · 단점
+
 | 👍 장점                                   | ⚠️ 단점                                 |
 | --------------------------------------- | ------------------------------------- |
 | **의존성 역전** — 앱은 Facade만 지목, 서브시스템 교체 쉬움 | Facade 기능이 많아지면 “**신 God Object**” 위험 |
 | 학습비용·코드량 ↓                              | 너무 얇으면 결국 서브시스템 직접 호출하게 됨             |
 | 테스트 편리 (Mock Facade)                    | Facade 업데이트 후 서브시스템 버전 맞춰야            |
+
+---
