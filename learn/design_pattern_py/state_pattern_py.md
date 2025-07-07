@@ -15,3 +15,24 @@
 
 **State** 패턴으로 상태별 클래스를 분리 → 조건문 제거 + 새 상태 추가 쉬움.
 
+---
+
+## 2. 구조 그림
+
+```
+Context (Connection)
+  ├─ state: State
+  └─ request() → state.handle()
+
+State (interface / ABC)
+  └─ handle(context)
+
+ConcreteStateA / ConcreteStateB …
+  └─ handle(context)  # 상태별 행동 + 다음 상태로 전이 가능
+```
+
+* **Context** : 상태를 보관, 작업 요청을 상태 객체에 위임
+* **State** : 공통 인터페이스(`handle()` 등)
+* **ConcreteState** : 실제 작업 로직 + 필요하면 `context.state = 다른State()`로 전이
+
+---
