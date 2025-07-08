@@ -36,3 +36,47 @@ ConcreteStateA / ConcreteStateB …
 * **ConcreteState** : 실제 작업 로직 + 필요하면 `context.state = 다른State()`로 전이
 
 ---
+
+## 3. Python 예제 — **문서 워크플로**
+
+```python
+from __future__ import annotations
+from abc import ABC, abstractmethod
+
+
+# ---------- State Interface ----------
+class State(ABC):
+    @abstractmethod
+    def edit(self, ctx: "Document"): ...
+    
+    @abstractmethod
+    def publish(self, ctx: "Document"): ...
+
+
+# ---------- Concrete States ----------
+class Draft(State):
+    def edit(self, ctx):               # 허용
+        print("✏️  문서 수정함 (Draft)")
+    
+    def publish(self, ctx):
+        print("📤 리뷰 상태로 보냄")
+        ctx.state = Review()           # 상태 전이
+
+
+class Review(State):
+    def edit(self, ctx):
+        print("⛔ 리뷰 중엔 편집 금지!")
+    
+    def publish(self, ctx):
+        print("✅ 승인되어 Published 상태")
+        ctx.state = Published()
+
+
+class Published(State):
+    def edit(self, ctx):
+        print("🔒 이미 발행됨, 편집 불가")
+    
+    def publish(self, ctx):
+        print("🔔 독자에게 알림 전송")
+
+```
