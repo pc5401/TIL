@@ -79,4 +79,26 @@ class Published(State):
     def publish(self, ctx):
         print("🔔 독자에게 알림 전송")
 
+
+# ---------- Context ----------
+class Document:
+    def __init__(self):
+        self.state: State = Draft()    # 초기 상태
+
+    def edit(self):
+        self.state.edit(self)
+
+    def publish(self):
+        self.state.publish(self)
+
+
+# ---------- Client ----------
+if __name__ == "__main__":
+    doc = Document()
+    doc.edit()       # Draft 편집
+    doc.publish()    # → Review
+    doc.edit()       # 편집 금지
+    doc.publish()    # → Published
+    doc.publish()    # 알림
+
 ```
