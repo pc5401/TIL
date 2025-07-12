@@ -165,6 +165,7 @@
 - [🎮 Command Pattern — “요청을 객체로 캡슐화”](./learn/design_pattern_py/command_pattern_py.md)
 - [🛠️ 팩토리 메서드 패턴 (Factory Method Pattern)](./learn/design_pattern_py/factory_method_pattern_py.md)
 - [🎭 Facade Pattern — “복잡한 서브시스템을 한 문으로 감싸기”](./learn/design_pattern_py/facade_pattern_py.md)
+- [🛡️ Proxy Pattern — “진짜 객체 대신 대리인으로 제어하기”](./learn/design_pattern_py/proxy_pattern_py.md)
 - [🔄 State Pattern — “상태별로 행동을 바꾼다”](./learn/design_pattern_py/state_pattern_py.md)
 ## [network](./learn/network)
 - [네트워크 개요](./learn/network/network_overview.md)
