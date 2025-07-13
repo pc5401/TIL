@@ -16,3 +16,16 @@
 
 ---
 
+## 2. 구조 다이어그램
+
+```
+Client ──▶ Proxy ──▶ RealSubject
+              ▲
+      동일 인터페이스 (Subject)
+```
+
+* **Subject** : 공용 인터페이스 (`request()`)
+* **RealSubject** : 실제 작업 수행
+* **Proxy** : RealSubject 레퍼런스를 보관, 필요 시 생성/호출/검증 등 추가 로직
+
+---
