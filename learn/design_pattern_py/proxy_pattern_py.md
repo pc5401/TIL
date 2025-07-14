@@ -29,3 +29,45 @@ Client ──▶ Proxy ──▶ RealSubject
 * **Proxy** : RealSubject 레퍼런스를 보관, 필요 시 생성/호출/검증 등 추가 로직
 
 ---
+
+## 3. Python 예제 — **가상 프록시로 이미지 지연 로딩**
+
+```python
+from __future__ import annotations
+from abc import ABC, abstractmethod
+from time import sleep
+
+
+# ---------- Subject Interface ----------
+class Image(ABC):
+    @abstractmethod
+    def display(self) -> None: ...
+
+
+# ---------- RealSubject ----------
+class HighResImage(Image):
+    def __init__(self, filename: str) -> None:
+        self.filename = filename
+        self._load()
+
+    def _load(self):
+        print(f"🔄  Loading hi-res image from {self.filename} …")
+        sleep(2)                              # heavy operation mock
+        print("✅  Loaded.")
+
+    def display(self) -> None:
+        print(f"🖼️  Displaying {self.filename}")
+
+
+# ---------- Proxy ----------
+class ImageProxy(Image):
+    def __init__(self, filename: str) -> None:
+        self.filename = filename
+        self._real: HighResImage | None = None
+
+    def display(self) -> None:
+        if self._real is None:
+            self._real = HighResImage(self.filename)   # 지연 인스턴스화
+        self._real.display()
+
+```
