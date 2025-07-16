@@ -35,39 +35,77 @@ Client ──▶ Proxy ──▶ RealSubject
 ```python
 from __future__ import annotations
 from abc import ABC, abstractmethod
-from time import sleep
+import gzip, logging, functools
 
 
-# ---------- Subject Interface ----------
-class Image(ABC):
+# 1) Component
+class DataSource(ABC):
     @abstractmethod
-    def display(self) -> None: ...
+    def write(self, data: bytes) -> None: ...
+    @abstractmethod
+    def read(self) -> bytes: ...
 
 
-# ---------- RealSubject ----------
-class HighResImage(Image):
-    def __init__(self, filename: str) -> None:
-        self.filename = filename
-        self._load()
+# 2) ConcreteComponent
+class FileDataSource(DataSource):
+    def __init__(self, filename: str):
+        self._filename = filename
 
-    def _load(self):
-        print(f"🔄  Loading hi-res image from {self.filename} …")
-        sleep(2)                              # heavy operation mock
-        print("✅  Loaded.")
+    def write(self, data: bytes) -> None:
+        with open(self._filename, "wb") as f:
+            f.write(data)
 
-    def display(self) -> None:
-        print(f"🖼️  Displaying {self.filename}")
+    def read(self) -> bytes:
+        with open(self._filename, "rb") as f:
+            return f.read()
 
 
-# ---------- Proxy ----------
-class ImageProxy(Image):
-    def __init__(self, filename: str) -> None:
-        self.filename = filename
-        self._real: HighResImage | None = None
+# 3) Base Decorator
+class DataSourceDecorator(DataSource):
+    def __init__(self, wrappee: DataSource):
+        self._wrappee = wrappee
 
-    def display(self) -> None:
-        if self._real is None:
-            self._real = HighResImage(self.filename)   # 지연 인스턴스화
-        self._real.display()
+    def write(self, data: bytes) -> None:
+        self._wrappee.write(data)
+
+    def read(self) -> bytes:
+        return self._wrappee.read()
+
+
+# 4) Concrete Decorators
+class CompressionDecorator(DataSourceDecorator):
+    def write(self, data: bytes) -> None:
+        print("→ 압축 후 저장")
+        super().write(gzip.compress(data))
+
+    def read(self) -> bytes:
+        print("→ 압축 해제 후 리턴")
+        return gzip.decompress(super().read())
+
+
+class LoggingDecorator(DataSourceDecorator):
+    def write(self, data: bytes) -> None:
+        logging.info("write %d bytes", len(data))
+        super().write(data)
+
+    def read(self) -> bytes:
+        result = super().read()
+        logging.info("read %d bytes", len(result))
+        return result
+
+
+# 5) 클라이언트 구성
+if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO)
+
+    # 베이스 컴포넌트
+    source: DataSource = FileDataSource("note.bin")
+
+    # 단계별 데코레이션 (순서 자유)
+    source = LoggingDecorator(CompressionDecorator(source))
+
+    # 사용
+    source.write(b"Hello Decorator Pattern!" * 5)
+    print(source.read())
 
 ```
