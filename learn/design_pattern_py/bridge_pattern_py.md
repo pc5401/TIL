@@ -1,4 +1,4 @@
-# 🌉 Bridge Pattern — “추상과 구현을 독립적으로 확장하기” (Python 노트)
+# 🌉 Bridge Pattern — “추상과 구현을 독립적으로 확장하기”
 
 > **키워드**
 > 행위를 정의하는 **추상(Abstraction)** 과
@@ -37,3 +37,65 @@ Shape (abstract)    ⟂    Renderer (interface)
 * **ConcreteImplementation** : 실제 렌더링, DB, OS 호출 등
 
 ---
+
+## 3. Python 예제 — **도형 그리기 (벡터 vs 래스터)**
+
+```python
+from __future__ import annotations
+from abc import ABC, abstractmethod
+import math
+
+
+# ---------- Implementation 계층 ----------
+class Renderer(ABC):
+    @abstractmethod
+    def draw_circle(self, x: float, y: float, radius: float): ...
+
+
+class VectorRenderer(Renderer):
+    def draw_circle(self, x, y, radius):
+        print(f"🔶 Draw VECTOR circle at ({x},{y}) r={radius}")
+
+
+class RasterRenderer(Renderer):
+    def draw_circle(self, x, y, radius):
+        print(f"🖼️  Draw RASTER circle at ({x},{y}) r={radius}")
+
+
+# ---------- Abstraction 계층 ----------
+class Shape(ABC):
+    def __init__(self, renderer: Renderer):
+        self._r = renderer
+
+    @abstractmethod
+    def draw(self): ...
+    @abstractmethod
+    def resize(self, factor: float): ...
+
+
+class Circle(Shape):
+    def __init__(self, renderer: Renderer, x: float, y: float, radius: float):
+        super().__init__(renderer)
+        self.x, self.y, self.radius = x, y, radius
+
+    def draw(self):
+        self._r.draw_circle(self.x, self.y, self.radius)
+
+    def resize(self, factor: float):
+        self.radius *= factor
+
+
+# ---------- Client ----------
+if __name__ == "__main__":
+    raster = RasterRenderer()
+    vector = VectorRenderer()
+
+    circle1 = Circle(vector, 0, 0, 5)
+    circle2 = Circle(raster, 2, 3, 10)
+
+    circle1.draw()                 # 🔶 vector
+    circle2.draw()                 # 🖼️ raster
+
+    circle1.resize(2)
+    circle1.draw()                 # radius 10, vector 그대로
+```
