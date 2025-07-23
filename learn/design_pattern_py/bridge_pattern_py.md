@@ -99,3 +99,18 @@ if __name__ == "__main__":
     circle1.resize(2)
     circle1.draw()                 # radius 10, vector 그대로
 ```
+
+> **기능**(`Circle`, `resize`) 과 **플랫폼**(`VectorRenderer`, `RasterRenderer`) 을
+> *독립적으로* 교체 가능: `Circle(vector)`, `Circle(raster)` …
+
+---
+
+## 4. 장 · 단점
+
+| 👍 장점                            | ⚠️ 단점                                   |
+| -------------------------------- | --------------------------------------- |
+| **조합 폭발 방지** — 기능 × 구현 → 합성으로 분리 | 클래스 계층 2배, 초기 설계 복잡                     |
+| 두 계층 **독립 진화** 가능                | 단순 케이스엔 과설계                             |
+| 런타임에 구현 교체 (DI·테마·백엔드)           | Abstraction ↔ Implementation 간 추가 간접 호출 |
+
+---
