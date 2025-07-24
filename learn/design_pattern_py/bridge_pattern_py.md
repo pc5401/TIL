@@ -114,3 +114,37 @@ if __name__ == "__main__":
 | 런타임에 구현 교체 (DI·테마·백엔드)           | Abstraction ↔ Implementation 간 추가 간접 호출 |
 
 ---
+
+## 5. Bridge vs Adapter vs Abstract Factory
+
+| 패턴                   | 공통                 | 차이점                                |
+| -------------------- | ------------------ | ---------------------------------- |
+| **Bridge**           | 두 계층을 인터페이스로 분리·합성 | 초기 설계부터 분리, 양쪽이 **동등**             |
+| **Adapter**          | 인터페이스 변환           | “이미 존재”하는 코드 호환용 **후처리**           |
+| **Abstract Factory** | 플랫폼별 제품군 생성        | 구현 객체 **생성** 책임, Bridge는 **호출** 분리 |
+
+---
+
+## 6. 현업 적용 예
+
+| 도메인                    | Abstraction   | Implementation                               |
+| ---------------------- | ------------- | -------------------------------------------- |
+| **ORM** (`SQLAlchemy`) | 고수준 Query API | MySQL / Postgres / SQLite Dialect            |
+| **로깅**                 | `Logger`      | ConsoleHandler / FileHandler / SyslogHandler |
+| **GUI Toolkit**        | 위젯 클래스        | Windows / macOS / Linux 원시 API               |
+| **Cloud Storage SDK**  | 앱 레이어         | AWS S3 / Azure Blob / GCP Storage            |
+
+---
+
+## 7. 설계 팁
+
+1. **DI 컨테이너** 로 Implementation 주입 (`Circle(renderer=container.get(Renderer))`)
+2. 파이썬에서는 **duck typing** 으로 Renderer 인터페이스 간단 선언 (`Protocol`).
+3. Abstraction 계층에서 Implementation 메서드를 **작게 정의**해 결합 최소화.
+
+---
+
+### 결론
+
+> “*기능* 과 *플랫폼* 을 섞어두면 조합 지옥!
+> **Bridge** 로 두 레이어를 **따로 상속** + **런타임 연결**해 확장 걱정 없이 유지하자.” 🌉
