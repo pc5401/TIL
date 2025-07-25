@@ -158,6 +158,7 @@
 - [🦋 Flyweight Pattern](./learn/design_pattern_py/flyweight_py.md)
 - [☝️ 싱글톤 패턴 (Singleton)](./learn/design_pattern_py/singleton_pattern_py.md)
 - [🎀 Decorator Pattern — 런타임에 ‘포장지’ 씌워 기능 확장하기](./learn/design_pattern_py/decorator_pattern_py.md)
+- [🌳 Composite Pattern — “트리 구조(부분-전체)를 한 타입으로 다루기”](./learn/design_pattern_py/composite_pattern_py.md)
 - [👀 Observer Pattern — 이벤트를 “구독” · “발행”하는 디자인 패턴](./learn/design_pattern_py/observer_pattern_py.md)
 - [🐑 Prototype Pattern (프로토타입) 노트](./learn/design_pattern_py/prototype_pattern_py.md)
 - [🔌 Adapter Pattern — “호환 안 되는 인터페이스 맞춰 주는 변환 어댑터”](./learn/design_pattern_py/adapter_pattern_py.md)
