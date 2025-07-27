@@ -31,3 +31,34 @@ Component (공통 인터페이스)
 * **Composite**: 자식 목록을 보유하고, **자식에게 연산 위임(재귀)**
 
 ---
+
+## 3. Python 예제 — 파일/디렉터리 트리
+
+```python
+from __future__ import annotations
+from abc import ABC, abstractmethod
+from typing import List
+
+
+# ---------- Component ----------
+class FileSystemNode(ABC):
+    @abstractmethod
+    def size(self) -> int: ...
+    @abstractmethod
+    def show(self, indent: int = 0) -> None: ...
+
+
+# ---------- Leaf ----------
+class File(FileSystemNode):
+    def __init__(self, name: str, bytes_: int) -> None:
+        self.name = name
+        self._bytes = bytes_
+
+    def size(self) -> int:
+        return self._bytes
+
+    def show(self, indent: int = 0) -> None:
+        print(" " * indent + f"📄 {self.name} ({self._bytes}B)")
+
+
+```
