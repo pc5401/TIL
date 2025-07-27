@@ -61,4 +61,39 @@ class File(FileSystemNode):
         print(" " * indent + f"📄 {self.name} ({self._bytes}B)")
 
 
+# ---------- Composite ----------
+class Directory(FileSystemNode):
+    def __init__(self, name: str) -> None:
+        self.name = name
+        self.children: List[FileSystemNode] = []
+
+    def add(self, node: FileSystemNode) -> None:
+        self.children.append(node)
+
+    def remove(self, node: FileSystemNode) -> None:
+        self.children.remove(node)
+
+    def size(self) -> int:
+        return sum(child.size() for child in self.children)
+
+    def show(self, indent: int = 0) -> None:
+        print(" " * indent + f"📁 {self.name}/")
+        for child in self.children:
+            child.show(indent + 2)
+
+
+# ---------- Client ----------
+if __name__ == "__main__":
+    root = Directory("root")
+    src = Directory("src")
+    assets = Directory("assets")
+
+    root.add(src)
+    root.add(assets)
+    src.add(File("main.py", 1200))
+    src.add(File("utils.py", 800))
+    assets.add(File("logo.png", 102400))
+
+    root.show()
+    print("Total size:", root.size(), "bytes")
 ```
