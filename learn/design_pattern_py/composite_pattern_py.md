@@ -97,3 +97,32 @@ if __name__ == "__main__":
     root.show()
     print("Total size:", root.size(), "bytes")
 ```
+
+**출력 예시**
+
+```
+📁 root/
+  📁 src/
+    📄 main.py (1200B)
+    📄 utils.py (800B)
+  📁 assets/
+    📄 logo.png (102400B)
+Total size: 104400 bytes
+```
+
+---
+
+## 4. “안전(safe) vs 투명(transparent)” 인터페이스
+
+* **투명(Transparent)**: `Component` 에 `add/remove` 까지 포함 → Leaf에서도 호출 가능(보통 `NotImplementedError` 던짐).
+
+  * 장점: 클라이언트는 항상 같은 API 호출
+  * 단점: Leaf가 의미 없는 메서드를 가진다
+* **안전(Safe)**: `add/remove` 는 `Composite` 에만 둔다.
+
+  * 장점: 타입 안전
+  * 단점: 클라이언트가 Composite 타입을 알아야 함
+
+위 예시는 **안전(Safe)** 쪽 (Leaf에는 `add/remove` 없음).
+
+---
