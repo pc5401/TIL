@@ -146,3 +146,25 @@ Total size: 104400 bytes
 | **Visitor**   | 트리를 대상으로 연산 수행 | Visitor는 구조는 그대로 두고 **새 연산** 을 쉽게 추가 (Composite과 잘 어울림) |
 
 ---
+
+## 7. 실무의 경우
+
+* **HTML DOM**: `Element`(Composite), `TextNode`(Leaf)
+* **GUI 툴킷**: `Container`(Composite), `Widget`(Leaf)
+* **컴파일러 AST**: `Expression`(Composite/Leaf), `visit()` 연산은 Visitor로 분리
+* **게임 엔진**: 씬 그래프(노드 트리) 구성
+
+---
+
+## 8. 적용 팁
+
+1. **Visitor 패턴** 과 자주 함께 사용 → 연산을 구조 밖으로 빼고 확장성 높이기.
+2. 인터페이스를 **불변(immutable) 트리**로 두면 동시성/테스트가 편해짐(새 구조 리턴).
+3. Python에선 `__iter__` 제공해서 트리 순회를 자연스럽게 만들 수 있다.
+
+---
+
+### 결론
+
+> “부분과 전체를 **동일한 타입**으로 취급하고, **재귀 호출**로 행동을 위임하자.”
+> Composite는 트리 구조를 다루는 **표준 해법**이다. 🌲
