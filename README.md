@@ -168,6 +168,7 @@
 - [🎭 Facade Pattern — “복잡한 서브시스템을 한 문으로 감싸기”](./learn/design_pattern_py/facade_pattern_py.md)
 - [🛡️ Proxy Pattern — “진짜 객체 대신 대리인으로 제어하기”](./learn/design_pattern_py/proxy_pattern_py.md)
 - [🔄 State Pattern — “상태별로 행동을 바꾼다”](./learn/design_pattern_py/state_pattern_py.md)
+- [🔗 Chain of Responsibility Pattern — “요청을 *연쇄*로 흘려보내기”](./learn/design_pattern_py/chain_of_responsibility_pattern.md)
 - [🌉 Bridge Pattern — “추상과 구현을 독립적으로 확장하기”](./learn/design_pattern_py/bridge_pattern_py.md)
 ## [network](./learn/network)
 - [네트워크 개요](./learn/network/network_overview.md)
