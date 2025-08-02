@@ -8,7 +8,7 @@
 
 ---
 
-## 언제 쓰면 유용할까?
+## 1. 언제 쓰면 유용할까?
 
 | 현실-시나리오                        | 문제점(직접 if/elif)       |
 | ------------------------------ | --------------------- |
@@ -18,5 +18,20 @@
 
 **CoR**(Chain of Responsibility) 로
 핸들러를 체인으로 엮으면 **열·삽입·순서 재배치** 모두 간단!
+
+---
+
+## 2. 구조 미리보기
+
+```
+Client → HandlerA → HandlerB → HandlerC → … → (끝)
+           ▲
+           └─ BaseHandler (handle() / set_next())
+```
+
+* **Handler (interface / ABC)**:
+  `handle(request)` — 요청 처리 여부 결정, 못하면 `next.handle(request)` 호출
+* **ConcreteHandler**: 실제 처리 로직
+* **Client**: 체인의 *첫* 핸들러에만 요청
 
 ---
