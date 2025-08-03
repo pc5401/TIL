@@ -35,3 +35,35 @@ Client → HandlerA → HandlerB → HandlerC → … → (끝)
 * **Client**: 체인의 *첫* 핸들러에만 요청
 
 ---
+
+## 3. Python 예제 — 간단 **스팸-메일 필터** 체인
+
+```python
+from __future__ import annotations
+from abc import ABC, abstractmethod
+
+class Email:
+    def __init__(self, sender: str, subject: str, body: str):
+        self.sender, self.subject, self.body = sender, subject, body
+
+
+# ---------- Handler 인터페이스 ----------
+class Filter(ABC):
+    def __init__(self):
+        self._next: Filter | None = None
+
+    def set_next(self, nxt: "Filter") -> "Filter":
+        self._next = nxt
+        return nxt                                # 체인 조립 편하게 반환
+
+    def handle(self, mail: Email):
+        if self._process(mail):                  # 자기가 처리했으면 return
+            return
+        if self._next:
+            self._next.handle(mail)              # 못하면 패스 다운
+
+    @abstractmethod
+    def _process(self, mail: Email) -> bool:
+        """True = 내가 처리하고 체인 종료"""
+
+```
