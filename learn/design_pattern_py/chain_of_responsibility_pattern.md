@@ -66,4 +66,27 @@ class Filter(ABC):
     def _process(self, mail: Email) -> bool:
         """True = 내가 처리하고 체인 종료"""
 
+
+# ---------- Concrete Filters ----------
+class BlacklistFilter(Filter):
+    BLACKLIST = {"spam@bad.com", "ads@promo.net"}
+    def _process(self, mail):
+        if mail.sender in self.BLACKLIST:
+            print("🚫 블랙리스트 차단:", mail.sender)
+            return True
+        return False
+
+class KeywordFilter(Filter):
+    KEYWORDS = {"무료", "특가", "카지노"}
+    def _process(self, mail):
+        if any(k in mail.subject for k in self.KEYWORDS):
+            print("🔕 키워드 차단:", mail.subject)
+            return True
+        return False
+
+class PassThrough(Filter):
+    def _process(self, mail):
+        print("📥 받은편지함 도착:", mail.subject)
+        return True          # 최종 소비
+
 ```
