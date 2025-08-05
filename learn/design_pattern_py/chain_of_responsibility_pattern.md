@@ -89,4 +89,18 @@ class PassThrough(Filter):
         print("📥 받은편지함 도착:", mail.subject)
         return True          # 최종 소비
 
+
+# ---------- Client (체인 구성) ----------
+if __name__ == "__main__":
+    spam_chain = BlacklistFilter()
+    spam_chain.set_next(KeywordFilter()).set_next(PassThrough())
+
+    mails = [
+        Email("spam@bad.com", "hi", "…"),
+        Email("friend@naver.com", "무료 쿠폰 받아!", "…"),
+        Email("boss@company.com", "회의 자료", "…"),
+    ]
+
+    for m in mails:
+        spam_chain.handle(m)
 ```
