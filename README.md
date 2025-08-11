@@ -33,6 +33,7 @@
 - [🐑 Prototype Pattern (프로토타입) 노트](./learn/design_pattern_py/prototype_pattern_py.md)
 - [🛠️ 팩토리 메서드 패턴 (Factory Method Pattern)](./learn/design_pattern_py/factory_method_pattern_py.md)
 - [🌉 Bridge Pattern — “추상과 구현을 독립적으로 확장하기”](./learn/design_pattern_py/bridge_pattern_py.md)
+- [🧭 Visitor Pattern — “객체 구조는 그대로, **새 연산**만 계속 추가” (Python)](./learn/design_pattern_py/visiter_pattern_py.md)
 - [🦋 Flyweight Pattern](./learn/design_pattern_py/flyweight_py.md)
 ## [디자인_패턴](./learn/디자인_패턴)
 - [빌더 패턴(Builder Pattern)](./learn/디자인_패턴/builder_pattern.md)
