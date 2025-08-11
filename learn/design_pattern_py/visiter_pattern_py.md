@@ -1,4 +1,4 @@
-# 🧭 Visitor Pattern — “객체 구조는 그대로, **새 연산**만 계속 추가” (Python)
+# 🧭 Visitor Pattern — “객체 구조는 그대로, **새 연산**만 계속 추가”
 
 > **핵심**
 > 안정적인 **객체 구조(트리/그래프)** 위에, 구조를 건드리지 않고 **새 연산(행동)** 을 추가하고 싶을 때.
@@ -16,3 +16,18 @@
 | **컴포지트(Composite) 구조** | 연산이 클래스 안에 퍼짐 → SRP 위반             | 연산을 Visitor 밖으로 빼 SRP 회복             |
 
 ---
+
+## 2) 구조 (텍스트)
+
+```
+Element (Node)
+ ├─ accept(visitor)  ────────► Visitor
+ │                            ├─ visit_File(File)
+ ├─ File (Leaf)               └─ visit_Directory(Directory)
+ └─ Directory (Composite)
+```
+
+* **Element**: `accept(visitor)` 만 제공 (자기 자신을 방문자에게 넘김)
+* **Visitor**: 요소 타입별 `visit_*` 메서드 보유
+* **ConcreteVisitor**: 실제 연산 구현 (크기 합산, 렌더링, 검증 등)
+
