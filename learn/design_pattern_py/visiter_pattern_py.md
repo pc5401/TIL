@@ -31,3 +31,98 @@ Element (Node)
 * **Visitor**: 요소 타입별 `visit_*` 메서드 보유
 * **ConcreteVisitor**: 실제 연산 구현 (크기 합산, 렌더링, 검증 등)
 
+---
+
+## 3) Python 예제 — 파일/디렉터리에 **두 가지 연산** 추가
+
+> 구조는 그대로 두고, **(1) 총 용량 계산**, **(2) 트리 출력** 두 연산을 Visitor로 구현
+
+```python
+from __future__ import annotations
+from abc import ABC, abstractmethod
+from typing import List
+
+
+# ---------- Elements (파일 트리) ----------
+class Node(ABC):
+    @abstractmethod
+    def accept(self, visitor: "Visitor") -> None:
+        ...
+
+
+class File(Node):
+    def __init__(self, name: str, bytes_: int) -> None:
+        self.name, self.bytes = name, bytes_
+
+    def accept(self, visitor: "Visitor") -> None:
+        visitor.visit_file(self)
+
+
+class Directory(Node):
+    def __init__(self, name: str) -> None:
+        self.name = name
+        self.children: List[Node] = []
+
+    def add(self, node: Node) -> None:
+        self.children.append(node)
+
+    def accept(self, visitor: "Visitor") -> None:
+        visitor.visit_directory(self)   # 방문자가 순회 시점을 결정
+
+
+# ---------- Visitor 인터페이스 ----------
+class Visitor(ABC):
+    @abstractmethod
+    def visit_file(self, f: File) -> None: ...
+    @abstractmethod
+    def visit_directory(self, d: Directory) -> None: ...
+
+
+# ---------- Concrete Visitors ----------
+class SizeVisitor(Visitor):
+    """트리의 총 바이트 수 계산"""
+    def __init__(self) -> None:
+        self.total = 0
+
+    def visit_file(self, f: File) -> None:
+        self.total += f.bytes
+
+    def visit_directory(self, d: Directory) -> None:
+        for child in d.children:
+            child.accept(self)  # 재귀 순회 (전위/후위는 자유)
+
+
+class PrintTreeVisitor(Visitor):
+    """트리를 이쁘게 출력"""
+    def __init__(self) -> None:
+        self._depth = 0
+
+    def visit_file(self, f: File) -> None:
+        print("  " * self._depth + f"📄 {f.name} ({f.bytes}B)")
+
+    def visit_directory(self, d: Directory) -> None:
+        print("  " * self._depth + f"📁 {d.name}/")
+        self._depth += 1
+        for ch in d.children:
+            ch.accept(self)
+        self._depth -= 1
+
+
+# ---------- Client ----------
+if __name__ == "__main__":
+    root = Directory("root")
+    src = Directory("src")
+    root.add(src)
+    src.add(File("main.py", 1200))
+    src.add(File("utils.py", 800))
+    root.add(File("logo.png", 102400))
+
+    # (1) 사이즈 계산
+    s = SizeVisitor()
+    root.accept(s)
+    print("Total size:", s.total, "bytes")
+
+    # (2) 트리 프린트
+    printer = PrintTreeVisitor()
+    root.accept(printer)
+```
