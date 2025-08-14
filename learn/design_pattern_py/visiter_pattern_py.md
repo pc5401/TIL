@@ -151,3 +151,10 @@ Total size: 104,400 bytes
 | 복잡한 트리 연산(수집/변환/검사)을 한 곳에 캡슐화          | 순회 상태(깊이/경로) 관리 코드가 장황해질 수 있음               |
 
 ---
+
+## 5) Composite·Iterator와 궁합
+
+* **Composite + Visitor**: 구조(부분-전체)와 연산을 완전히 분리 → 클래식 조합
+* **Iterator + Visitor**: 방문자가 순회 책임을 지기 부담될 때, `for node in walk(tree): visitor.visit(node)` 처럼 **순회는 반복자, 연산은 방문자**로 나눠도 좋다.
+
+---
