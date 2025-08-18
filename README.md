@@ -27,6 +27,7 @@
 - [🌳 Composite Pattern — “트리 구조(부분-전체)를 한 타입으로 다루기”](./learn/design_pattern_py/composite_pattern_py.md)
 - [👀 Observer Pattern — 이벤트를 “구독” · “발행”하는 디자인 패턴](./learn/design_pattern_py/observer_pattern_py.md)
 - [🏭 추상 팩토리 패턴 (Abstract Factory)](./learn/design_pattern_py/abstract_by_py.md)
+- [🕸️ Mediator Pattern — “객체들이 **중재자**를 통해 대화하게 하라”](./learn/design_pattern_py/mediator_pattern_py.md)
 - [☝️ 싱글톤 패턴 (Singleton)](./learn/design_pattern_py/singleton_pattern_py.md)
 - [🎯 Strategy Pattern — “행동을 갈아끼우는” 디자인 패턴](./learn/design_pattern_py/strategy_pattern_py.md)
 - [🎮 Command Pattern — “요청을 객체로 캡슐화”](./learn/design_pattern_py/command_pattern_py.md)
