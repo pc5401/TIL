@@ -158,3 +158,20 @@ Total size: 104,400 bytes
 * **Iterator + Visitor**: 방문자가 순회 책임을 지기 부담될 때, `for node in walk(tree): visitor.visit(node)` 처럼 **순회는 반복자, 연산은 방문자**로 나눠도 좋다.
 
 ---
+
+## 6) 실무 팁
+
+1. **방문 메서드 네이밍 규칙** 통일: `visit_<lower-class-name>`
+2. 타입 늘어날 때는 `getattr` 기반 **동적 디스패치**도 가능:
+
+   ```python
+   def accept(self, v): getattr(v, f'visit_{self.__class__.__name__.lower()}')(self)
+   ```
+3. **불변 구조**와 결합하면 안전한 분석/변환 파이프라인(린터·코드젠)에 유리.
+4. Python 3.8+: `functools.singledispatchmethod`로 간단한 다형 방문 구현 가능.
+
+---
+
+### 결론
+
+> 구조는 튼튼히 고정하고, **연산은 방문자로 늘린다** — Visitor는 “AST/트리의 기능 확장 포트”다.
