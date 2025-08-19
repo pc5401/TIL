@@ -17,3 +17,17 @@
 **핵심**: 동료 객체는 서로를 모르고 **중재자만 안다**.
 
 ---
+
+## 2) 구조
+
+```
+Colleague ─┐
+Colleague ─┼──▶ Mediator ◀── Colleague
+Colleague ─┘        ▲
+                (규칙/라우팅)
+```
+
+* **Mediator** : 상호작용 규칙/흐름을 보관 (`notify(sender, event, payload)`)
+* **Colleague** : 작업 발생 시 **중재자에게만 통지**. 다른 동료에게 직접 호출 X
+
+---
