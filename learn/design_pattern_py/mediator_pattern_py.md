@@ -31,3 +31,46 @@ Colleague ─┘        ▲
 * **Colleague** : 작업 발생 시 **중재자에게만 통지**. 다른 동료에게 직접 호출 X
 
 ---
+
+## 3) Python 예제 — 간단 **채팅방** 중재
+
+```python
+from __future__ import annotations
+from abc import ABC, abstractmethod
+from typing import Dict
+
+
+# ---------- Mediator Interface ----------
+class ChatMediator(ABC):
+    @abstractmethod
+    def register(self, user: "User") -> None: ...
+    @abstractmethod
+    def notify(self, sender: "User", event: str, payload: str) -> None: ...
+
+
+# ---------- Concrete Mediator ----------
+class ChatRoom(ChatMediator):
+    def __init__(self) -> None:
+        self._users: Dict[str, User] = {}
+
+    def register(self, user: "User") -> None:
+        self._users[user.name] = user
+        user.mediator = self
+
+    def notify(self, sender: "User", event: str, payload: str) -> None:
+        if event == "broadcast":
+            for name, u in self._users.items():
+                if u is not sender:
+                    u.receive(f"{sender.name}: {payload}")
+        elif event.startswith("dm:"):
+            _, to = event.split(":", 1)
+            if to in self._users:
+                self._users[to].receive(f"[DM] {sender.name}: {payload}")
+        elif event == "banword":
+            # 예: 욕설 필터/정책 집행 같은 룰도 Mediator가 가짐
+            if "금지어" in payload:
+                sender.receive("⚠️ 금지어가 포함되어 전송되지 않았습니다.")
+            else:
+                self.notify(sender, "broadcast", payload)
+
+```
