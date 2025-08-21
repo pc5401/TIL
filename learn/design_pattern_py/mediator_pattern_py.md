@@ -73,4 +73,23 @@ class ChatRoom(ChatMediator):
             else:
                 self.notify(sender, "broadcast", payload)
 
+
+# ---------- Colleague ----------
+class User:
+    def __init__(self, name: str) -> None:
+        self.name = name
+        self.mediator: ChatMediator | None = None
+
+    # 동료는 중재자에게만 말한다
+    def say(self, text: str) -> None:
+        assert self.mediator
+        self.mediator.notify(self, "banword", text)
+
+    def dm(self, to: str, text: str) -> None:
+        assert self.mediator
+        self.mediator.notify(self, f"dm:{to}", text)
+
+    def receive(self, text: str) -> None:
+        print(f"{self.name} ◀ {text}")
+
 ```
