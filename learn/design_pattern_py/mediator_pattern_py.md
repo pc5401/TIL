@@ -92,4 +92,22 @@ class User:
     def receive(self, text: str) -> None:
         print(f"{self.name} ◀ {text}")
 
+
+# ---------- Client ----------
+if __name__ == "__main__":
+    room = ChatRoom()
+    alice = User("Alice"); room.register(alice)
+    bob   = User("Bob");   room.register(bob)
+    chris = User("Chris"); room.register(chris)
+
+    alice.say("안녕!")                 # 브로드캐스트
+    bob.dm("Alice", "반가워!")         # DM
+    chris.say("금지어 들어간 문장…")    # 정책에 의해 차단
 ```
+
+**포인트**
+
+* 사용자는 서로 참조하지 않고 `ChatRoom`만 안다.
+* **룰(금지어, 라우팅)** 을 Mediator 가 들고 있어 **동료가 단순**해진다.
+
+---
