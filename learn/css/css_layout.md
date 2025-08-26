@@ -4,6 +4,20 @@
 
 ---
 
+## 0. 흐름과 포맷팅 컨텍스트 한눈 정리
+
+* **일반 흐름(normal flow)**: 문서가 기본 규칙대로 배치되는 상태이다.
+* **포맷팅 컨텍스트(Formatting Context)**: 배치 규칙의 “영역”.
+
+  * **IFC (Inline Formatting Context)**: 인라인 박스가 줄박스(line box) 안에서 배치된다. 공백/글꼴/`line-height`의 영향을 크게 받는다.
+  * **BFC (Block Formatting Context)**: 블록 박스끼리 세로로 쌓인다. **부모가 BFC를 만들면 내부 float을 감싼다**(clearfix 효과), 외부와 **마진 겹침**이 차단된다.
+  * **Flex / Grid / Table**: 각각 고유 규칙. Flex·Grid는 현대 레이아웃 1순위.
+* **BFC를 만드는 대표 속성**: `overflow`가 `visible`이 아닌 값, `float`, `position`이 `absolute/fixed`, `display:inline-block/table-cell/flow-root`, `contain` 등.
+
+> **요약**: 레이아웃 문제의 70%는 “**지금 이 요소가 어떤 포맷팅 컨텍스트 안에 있나?**”로 풀린다.
+
+---
+
 ## 1. `display` — “이 박스는 어떤 성격인가?”
 
 ### 1) block / inline / inline‑block 핵심만
