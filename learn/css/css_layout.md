@@ -18,62 +18,89 @@
 
 ---
 
-## 1. `display` — “이 박스는 어떤 성격인가?”
+## 1. `display` — “이 박스는 어떤 성격인가?”
 
-### 1) block / inline / inline‑block 핵심만
+### 1) block / inline / inline‑block 핵심
 
-| 값 | 줄바꿈 | 크기 지정 | 수직 여백 | 대표 태그 |
-| --- | --- | --- | --- | --- |
-| `block` | 한다 | 가능 | 적용 | `div`, `p`, `h1` |
-| `inline` | 안 한다 | 사실상 불가 | 위아래 *무시* | `span`, `a` |
-| `inline‑block` | 안 한다 | 가능 | 적용 | `img`, `button` |
+| 값              | 줄바꿈  | 크기 지정  | 수직 여백    | 대표 태그            |
+| -------------- | ---- | ------ | -------- | ---------------- |
+| `block`        | 한다   | 가능     | 적용       | `div`, `p`, `h1` |
+| `inline`       | 안 한다 | 사실상 불가 | 위아래 *무시* | `span`, `a`      |
+| `inline‑block` | 안 한다 | 가능     | 적용       | `img`, `button`  |
 
-> **Tip** 인라인 요소의 가로 간격은 **HTML 소스의 공백**도 포함한다. 연달아 쓸 때는 `<!-- -->`로 공백을 지우거나 `letter‑spacing:0`을 잠시 줘서 해결한다.
+* `inline`의 높이/패딩은 줄박스에 영향을 주지만 **상하 마진은 무시**된다. 수직 정렬은 `vertical-align` 사용.
+* `inline-block`과 `float`의 `width:auto`는 **shrink-to-fit** 알고리즘을 사용한다. 내용 폭에 맞춰 “줄어드는” 특성 때문에 예기치 않은 줄바꿈이 생기면 `min-width`/`max-content`로 제어한다.
 
-### 2) 기타 display
+> **Tip** 인라인 요소의 가로 간격은 **HTML 소스 공백**도 포함한다. 연달아 쓸 때는 부모에 `font-size:0` → 자식에서 복구, 혹은 `<!-- -->` 공백 제거, 혹은 `letter-spacing:0` 임시 적용.
 
-* `display:none` ― 렌더 트리에서 요소 자체가 사라진다. `visibility:hidden`은 *공간은 남긴다*.
-* `display:table-*` ― 옛 IE 호환·SEO 목적에서 드물게 사용.
-* 현대 레이아웃 **1순위는 `flex` · `grid`**다. (별도 노트에서 자세히.)
+### 2) 실무에서 자주 쓰는 기타 display
+
+* `display:none` — 렌더 트리에서 요소가 사라진다. `visibility:hidden`은 **공간은 남긴다**.
+* `display:flow-root` — **현대식 clearfix**. 내부 float 감싸기 + 외부 마진 겹침 차단.
+* `display:contents` — 요소의 **박스만 제거**하고 자식만 남긴다. 접근성 트리/스타일 상속에 영향이 있으니 폼 라벨·인터랙티브 요소엔 신중.
+* `display:list-item` — 사용자 정의 마커(`::marker`) 꾸미기 가능.
+* `display:table-*` — 구형 호환·특수 레이아웃에서 드물게.
+
+### 3) 줄박스 & 인라인 디테일
+
+* **줄 높이**: `line-height`는 인라인 박스 배치의 기준이다. 텍스트가 아닌 `img` 등 **replaced 요소**는 기본적으로 **baseline**에 정렬되며, 필요 시 `vertical-align:middle/top/bottom`으로 교정한다.
+* **문자 방향/쓰기 모드**: `writing-mode`, `direction`에 따라 인라인 축이 바뀐다. 논리 속성(`margin-inline`, `inset-inline` 등)으로 방향성 대응.
 
 ---
 
-## 2. `position` — “좌표계를 바꾼다”
+## 2. `position` — “좌표계를 바꾼다”
 
-> **기본 흐름(static flow)에서 빼거나, 새로운 ‘기준점(containing block)’을 만든다.**
+> **기본 흐름(static)에서 빼거나, 새로운 ‘기준(containing block)’을 만든다.**
 
-### 1) 껍데기(static → relative) vs. 내용물(absolute)
+### 1) relative(껍데기) vs absolute(내용물)
 
 ```html
 <div class="card">
   <span class="badge">NEW</span>
-  …
 </div>
 ```
 
 ```css
-.card  { position: relative;      } /* 기준 */
-.badge { position: absolute; top:8px; right:8px; }
+.card  { position: relative; }
+.badge { position: absolute; top: 8px; right: 8px; }
 ```
 
-* `.card`는 원래 자리에서 움직이지 않고 **기준만 제공**한다.  
-* `.badge`는 레이아웃 흐름에서 빠지고, 좌표는 `.card`의 padding box를 기준.
+* `.card`는 원래 자리에서 **움직이지 않고 기준만 제공**한다.
+* `.badge`는 흐름에서 빠지고, 좌표는 **가장 가까운 *positioned* 조상(보통 `.card`)의 padding box**를 기준으로 한다.
 
 ### 2) fixed & sticky 차이
 
-| 값 | 기준 | 스크롤 시 |
-| --- | --- | -------- |
-| `fixed` | `viewport` | 절대 고정 |
-| `sticky` | **자신의 스크롤 컨테이너** | 임계 지점(`top`, `left`)에 닿으면 고정, 벗어나면 해제 |
+| 값        | 기준               | 스크롤 시                          |
+| -------- | ---------------- | ------------------------------ |
+| `fixed`  | 기본은 **viewport** | 항상 고정                          |
+| `sticky` | **자신의 스크롤 컨테이너** | 임계(`top/left…`) 닿으면 고정·벗어나면 해제 |
 
-> **함정** `position:sticky`가 동작하려면 **부모에 `overflow:visible`**이어야 한다.
+* **sticky 동작 조건**: 부모/조상에 `overflow:visible`이어야 하며, sticky 요소 **자체의 공간**이 있어야 한다.
+* **fixed의 함정**: 조상에 `transform`/`filter`/`perspective`가 있으면 **그 조상이 기준**이 된다(모바일에서 특히 주의).
 
-### 3) stacking context & `z-index`
+### 3) `inset`와 논리 속성
 
-* 새로운 컨텍스트를 만드는 조건  
-  `position:absolute|relative|fixed|sticky` + `z-index != auto`, `opacity<1`, `transform`, `filter` 등.
-* 같은 컨텍스트 안에서는 `z-index` 숫자 순으로 쌓인다.  
-* **디자인 컴포넌트 단위**로 컨텍스트를 자주 끊어 두면 예상치 못한 겹침 버그가 줄어든다.
+* `inset: <top> <right> <bottom> <left>`는 `top/right/bottom/left`의 축약형이다.
+* 국제화·세로쓰기 대응: `inset-inline-start/end`, `inset-block-start/end` 사용.
+
+### 4) 절대 중앙 정렬 3가지 패턴
+
+```css
+/* 1) calc 기반 */
+.modal { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); }
+/* 2) inset + margin:auto */
+.modal { position: fixed; inset: 0; width: 320px; height: max-content; margin: auto; }
+/* 3) Flex 컨테이너 활용 (권장) */
+.overlay { position: fixed; inset: 0; display: grid; place-items: center; }
+```
+
+### 5) stacking context & `z-index`
+
+* 새로운 **스택 컨텍스트** 생성 조건(일부): `position`+`z-index!=auto`, `opacity<1`, `transform`, `filter`, `mix-blend-mode`, `isolation:isolate`, `will-change` 등.
+* **같은 컨텍스트 안**에서는 `z-index` 숫자대로 쌓인다. 컨텍스트가 다르면 상위/하위 컨텍스트 간 숫자 비교가 **무의미**하다.
+* **치트시트(그림자 순서)**: 배경/테두리 → z<0 → 일반 콘텐츠 → positioned(z\:auto) → z>=0.
+
+> **실전 팁**: 컴포넌트 루트에 `position:relative`를 주어 **독립된 좌표계**를 만든 뒤, 내부 장식물·뱃지·툴팁을 `absolute`로 배치하면 재사용성이 올라간다.
 
 ---
 
@@ -134,3 +161,5 @@
 ## 7. 한 줄 정리
 
 > “`display`로 성격을 정하고, `position`으로 좌표계를 바꾸고, 필요할 때만 `float`로 흐름을 뒤트는 것이 현대 CSS 레이아웃의 기본이다.”
+
+
