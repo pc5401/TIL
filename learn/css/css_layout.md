@@ -104,30 +104,34 @@
 
 ---
 
-## 3. `float` — 퇴역했지만 여전히 쓰인다
+## 3. `float` — 여전히 자주 사용됨
 
-### 1) 이미지 랩핑용 최소 패턴
+### 1) 이미지 랩핑 최소 패턴
 
 ```html
-<img src="cat.jpg" class="float-l">
+<img src="cat.jpg" class="float-l" alt="고양이">
 <p>텍스트가 이미지 옆으로 감싸 흐른다…</p>
 ```
 
 ```css
-.float-l { float:left; margin:0 1rem 1rem 0; }
+.float-l { float: left; margin: 0 1rem 1rem 0; }
 ```
 
-### 2) 부모 깔끔하게 씻기(clearfix)
+### 2) 부모 깔끔하게 씻기(clearfix)
 
 ```css
-.clearfix::after {
-  content:"";
-  display:block;
-  clear:both;
-}
+/* 현대식: flow-root */
+.article { display: flow-root; }
+/* 전통식: clearfix 해크 */
+.clearfix::after { content:""; display:block; clear: both; }
 ```
 
-> **Tip** Flex · Grid 환경에서는 굳이 `float`를 쓸 일이 없다. 그러나 **리치 텍스트 CMS**처럼 사용자가 본문에 이미지를 삽입하는 경우 float 랩핑이 가장 간단하다.
+* `overflow:hidden/auto`로 BFC를 만들면 float을 감싸지만, **자식 그림자/툴팁이 잘릴 수** 있다. 가능하면 `flow-root` 사용.
+* **응용**: `shape-outside`로 텍스트를 원형/불규칙 이미지 곡선에 맞게 감쌀 수도 있다.
+
+> **Note** Flex·Grid 시대엔 주 레이아웃에 `float`를 쓰지 않는다. 다만 **리치 텍스트 본문** 이미지 랩핑에는 여전히 간편하다.
+
+---
 
 ---
 
@@ -161,5 +165,3 @@
 ## 7. 한 줄 정리
 
 > “`display`로 성격을 정하고, `position`으로 좌표계를 바꾸고, 필요할 때만 `float`로 흐름을 뒤트는 것이 현대 CSS 레이아웃의 기본이다.”
-
-
