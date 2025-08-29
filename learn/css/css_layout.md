@@ -149,13 +149,14 @@
 
 ---
 
-## 5. DevTools 실전 디버깅
+## 5. DevTools 디버깅 포인트
 
-| 탭 | 활용 포인트 |
-| --- | ---------- |
-| **Elements → Layout** (Chrome) | `position` · `z-index`와 새 스택 컨텍스트 여부를 바로 확인 |
-| **Contrast Checker** | fixed 헤더·푸터의 텍스트 가독성까지 테스트 |
-| **Toggle device toolbar** | sticky header가 모바일 브라우저에서 의도대로 동작하는지 스크롤해 본다 |
+| 도구                     | 체크 포인트                                                  |
+| ---------------------- | ------------------------------------------------------- |
+| **Elements → Layout**  | 요소의 `position`·`z-index`, 새 스택 컨텍스트 여부 확인               |
+| **Layers/Compositing** | `transform`/`will-change`로 레이어 승격 되었는지 확인(과도한 승격은 메모리↑) |
+| **Rendering** 패널       | 스크롤 성능·paint flashing, `sticky` 동작 시각화                  |
+| **Device Toolbar**     | 모바일에서 `fixed`/`sticky`/주소창 수축 시 동작 확인                   |
 
 ---
 
