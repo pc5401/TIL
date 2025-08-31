@@ -47,7 +47,7 @@
 - [애니메이션(Animation)과 트랜지션(Transition)](./learn/css/css_animation-transition.md)
 - [반응형 웹(Responsive Web)과 미디어 쿼리(Media Queries)](./learn/css/css_responsive-media-queries.md)
 - [선택자(Selector)](./learn/css/css_selector.md)
-- [레이아웃 (Layout) 방식 🗺️](./learn/css/css_layout.md)
+- [레이아웃 (Layout) 방식 🗺️](./learn/css/css_layout.md)
 - [CSS 개요](./learn/css/css_intro.md)
 - [박스 모델(Box Model) 🌐](./learn/css/css_box_model.md)
 - [🎨 색상 (Color) & 배경 (Background)](./learn/css/css_color-background.md)
