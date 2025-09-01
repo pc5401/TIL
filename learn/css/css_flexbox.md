@@ -10,6 +10,7 @@ Flexbox는 **가로·세로 한 축**의 배치·정렬·공간 분배를 브라
 
 ## 목차
 
+0. 멘탈 모델
 1. 핵심 개념 & 용어  
 2. Flex Container 속성 총람  
 3. Flex Item 속성 총람  
@@ -22,7 +23,7 @@ Flexbox는 **가로·세로 한 축**의 배치·정렬·공간 분배를 브라
 
 ---
 
-## 0. 멘탈 모델(필수 배경)
+## 0. 멘탈 모델
 
 * **Container ↔ Item**: `display:flex | inline-flex`인 부모가 컨테이너, **직계 자식**이 아이템이다.
 * **Main Axis / Cross Axis**: `flex-direction`이 축을 정한다. row면 가로가 Main, column이면 세로가 Main이다.
