@@ -22,6 +22,15 @@ Flexbox는 **가로·세로 한 축**의 배치·정렬·공간 분배를 브라
 
 ---
 
+## 0. 멘탈 모델(필수 배경)
+
+* **Container ↔ Item**: `display:flex | inline-flex`인 부모가 컨테이너, **직계 자식**이 아이템이다.
+* **Main Axis / Cross Axis**: `flex-direction`이 축을 정한다. row면 가로가 Main, column이면 세로가 Main이다.
+* **줄(Line)**: `flex-wrap:wrap`일 때 아이템 묶음(행/열) 단위를 말한다.
+* **Auto Min Size**: Flex 아이템의 기본 `min-width/height`는 **auto**다. 내용이 줄바꿈을 막으면 축소가 안 된다 → **`min-width:0`** 또는 \*\*`overflow:hidden`\*\*으로 과도 확장을 막는다.
+
+> **요약**: *축을 정하고 → 기본 크기(basis)를 잡고 → 남거나 부족한 공간을 grow/shrink로 분배*한다.
+
 ## 1. 핵심 개념
 
 | 용어 | 설명 |
