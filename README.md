@@ -51,7 +51,7 @@
 - [CSS 개요](./learn/css/css_intro.md)
 - [박스 모델(Box Model) 🌐](./learn/css/css_box_model.md)
 - [🎨 색상 (Color) & 배경 (Background)](./learn/css/css_color-background.md)
-- [css_flexbox.md](./learn/css/css_flexbox.md)
+- [🌈 Flexbox 한 방 정리](./learn/css/css_flexbox.md)
 ## [nestjs](./learn/nestjs)
 - [미들웨어 (Middleware)](./learn/nestjs/middleware.md)
 - [파이프 (Pipes)](./learn/nestjs/pipes.md)
