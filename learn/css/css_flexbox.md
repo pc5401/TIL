@@ -43,30 +43,35 @@ Flexbox는 **가로·세로 한 축**의 배치·정렬·공간 분배를 브라
 
 ---
 
-## 2. Flex Container 속성
+## 2. Flex Container 속성 총람
 
-| 속성 | 주요 값 | 비고 |
-| ---- | ------- | ---- |
-| `display` | `flex` • `inline-flex` | 요소를 Flex Container로 전환 |
-| `flex-direction` | `row` 🔰 / `row-reverse` / `column` / `column-reverse` | Main Axis 방향 |
-| `flex-wrap` | `nowrap` 🔰 / `wrap` / `wrap-reverse` | 줄바꿈 여부 |
-| `flex-flow` | `<direction> <wrap>` | 위 두 속성 단축 |
-| `justify-content` | `flex-start` 🔰 · `flex-end` · `center` · `space-between` · `space-around` · `space-evenly` | **Main Axis** 정렬 |
-| `align-items` | `stretch` 🔰 · `flex-start` · `flex-end` · `center` · `baseline` | **Cross Axis** 정렬(단일 줄) |
-| `align-content` | `stretch` 🔰 · `flex-start` · `center` · `space-between` … | 줄이 2 줄↑일 때 Cross Axis 정렬 |
-| `gap` | `<row-gap> <column-gap>` | 아이템 간 격자 간격 |
-| `row-gap / column-gap` | 개별 간격 | `gap`의 축 분리 버전 |
-| `place-content` | `align-content` + `justify-content` | Grid와 동일 패턴 |
+| 속성                     | 주요 값(기본값 🔰)                                                                                               | 의미/비고                  |
+| ---------------------- | ---------------------------------------------------------------------------------------------------------- | ---------------------- |
+| `display`              | `flex` · `inline-flex`                                                                                     | 컨테이너 전환                |
+| `flex-direction`       | **`row`🔰** · `row-reverse` · `column` · `column-reverse`                                                  | Main 축 방향              |
+| `flex-wrap`            | **`nowrap`🔰** · `wrap` · `wrap-reverse`                                                                   | 줄바꿈 여부                 |
+| `flex-flow`            | `<direction> <wrap>`                                                                                       | 상단 2속성 단축              |
+| `justify-content`      | **`flex-start`🔰** · `flex-end` · `center` · `space-between` · `space-around` · `space-evenly`             | **Main 축 정렬**          |
+| `align-items`          | **`stretch`🔰** · `flex-start` · `flex-end` · `center` · `baseline`                                        | **Cross 축 정렬(단일 줄)**   |
+| `align-content`        | **`stretch`🔰** · `flex-start` · `flex-end` · `center` · `space-between` · `space-around` · `space-evenly` | **여러 줄**일 때 Cross 축 정렬 |
+| `gap`                  | `<row-gap> <column-gap>`                                                                                   | 아이템 간격. 마진보다 예측 가능     |
+| `row-gap`/`column-gap` |                                                                                                            | 축별 간격 제어               |
+| `place-content`        | `align-content` + `justify-content`                                                                        | 줄이 2줄↑에서 유용            |
 
 ```css
-.container{
-  display:flex;
-  flex-flow:row wrap;
-  gap:24px 16px;
-  justify-content:space-between;
-  align-items:center;
+.container {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 24px 16px;
+  justify-content: space-between;
+  align-items: center;
 }
 ```
+
+> **Note**: Flex 아이템 사이에는 **마진 겹침이 없다**. 간격은 가능하면 `gap`을 쓰고, 내부 여백은 `padding`으로 관리한다.
+
+---
+
 
 ---
 
