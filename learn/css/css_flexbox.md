@@ -184,16 +184,19 @@ footer  { flex:0 0 auto; }
 
 ---
 
-## 6. 디버깅 & 흔한 함정
+## 6. 디버깅 & 흔한 함정
 
-| 증상 | 원인 | 해결 |
-| ---- | ---- | ---- |
-| 카드가 한 줄을 넘어가지 않음 | `flex-wrap:nowrap` 기본 | `flex-wrap:wrap` 설정 |
-| 이미지가 폭을 뚫고 나옴 | 아이템 축소 불가 | `min-width:0` 추가 후 `overflow:hidden` |
-| 중앙 정렬이 안 됨 | `margin`이 간격을 차지 | `gap` 사용 또는 마진 제거 |
-| `align-items`가 먹히지 않음 | 여러 줄일 때 | `align-content`로 변경 |
-| 스크롤‑스냅 안 걸림 | Flex Item 스냅 지정 누락 | `scroll-snap-align:start` 적용 |
-| 키보드 탭 순서가 엉망 | `order` 과다 사용 | 시맨틱 DOM 순서 유지, ARIA 점검 |
+| 증상                  | 원인                    | 해결                                           |
+| ------------------- | --------------------- | -------------------------------------------- |
+| 한 줄만 유지되어 줄바꿈 안 됨   | 기본 `flex-wrap:nowrap` | `flex-wrap:wrap`                             |
+| 이미지/텍스트가 폭을 밀어냄     | Auto min size(줄바꿈 없음) | 아이템 또는 컨테이너에 `min-width:0`/`overflow:hidden` |
+| 중앙 정렬이 안 됨          | 마진/간격 혼용              | `gap` 사용, 정렬은 `justify/align`로               |
+| `align-items`가 안 먹음 | 여러 줄 레이아웃             | `align-content`로 줄 묶음 정렬                     |
+| 탭 이동/읽기 순서 이상       | `order` 남용            | DOM 순서 유지, ARIA 점검                           |
+| 버튼 한 개만 우측 배치하고 싶음  | 공간 분배 미숙              | 해당 아이템에 `margin-left:auto`                   |
+| column에서 세로 스크롤 안 됨 | 자식 min-height\:auto   | 스크롤 영역에 `min-height:0; overflow:auto`        |
+
+> **DevTools**: Chrome **Layout** 탭에서 Main/Cross 축, gap, 아이템 크기·정렬을 즉시 시각화해 확인한다.
 
 ---
 
