@@ -114,58 +114,72 @@ Flexbox는 **가로·세로 한 축**의 배치·정렬·공간 분배를 브라
 
 ## 5. 실전 레시피
 
-### 5‑1 중앙 카드
+### 5‑1. 화면 중앙 카드 (정중앙)
 
 ```css
-.wrapper{
+.wrapper {
   display:flex; justify-content:center; align-items:center;
   min-height:100vh; background:#fafafa;
 }
-.card{ width:320px; }
+.card { width: 320px; }
 ```
 
-### 5‑2 로그인 모달(고정 너비 + 가변 폼)
+### 5‑2. 로그인 모달 (고정 헤더 + 가변 폼)
 
 ```css
-.modal{
+.modal {
   display:flex; flex-direction:column; gap:1rem;
-  width:400px;
+  width: 400px; max-height: min(80vh, 720px);
 }
-.modal > header{ flex:0; }
-.modal > form  { flex:1; overflow:auto; }
+.modal > header { flex: 0 0 auto; }
+.modal > form   { flex: 1 1 auto; overflow:auto; min-height:0; }
 ```
 
-### 5‑3 반응형 카드 그리드
+### 5‑3. 반응형 카드 그리드(행 균등)
 
 ```css
-.cards{
-  display:flex; flex-flow:row wrap; gap:2rem;
-}
-.card{
-  flex:1 1 clamp(240px,25%,320px);   /* 최소 240, 최대 320 */
-}
-.nav{ margin-left:auto; } /* 💡 auto margin 밀기 */
+.cards { display:flex; flex-wrap:wrap; gap:2rem; }
+.card  { flex: 1 1 0; min-width: 240px; max-width: 320px; }
 ```
 
-### 5‑4 헤더(로고 + 메뉴 + 유틸)
+### 5‑4. 헤더(로고 · 메뉴 · 유틸)
 
 ```css
-header{
-  display:flex; align-items:center; gap:2rem;
-}
-.nav{ margin-left:auto; }       /* auto margin 밀기 */
-.util{ display:flex; gap:1rem; }
+header { display:flex; align-items:center; gap:2rem; }
+.nav    { margin-left:auto; }     /* 우측 밀기 */
+.util   { display:flex; gap:1rem; }
 ```
 
-### 5‑5 채팅 버블
+### 5‑5. 채팅 버블(아바타 + 본문 + 시간)
 
 ```css
-.message{
-  display:flex; gap:.5rem; align-items:flex-end;
-}
-.avatar{ flex:0 0 40px; }
-.text  { flex:1; }
-.time  { flex:0; font-size:.75rem; }
+.message { display:flex; gap:.5rem; align-items:flex-end; }
+.avatar  { flex: 0 0 40px; }
+.text    { flex: 1 1 auto; min-width:0; }
+.time    { flex: 0 0 auto; font-size:.75rem; }
+```
+
+### 5‑6. Sticky Footer 레이아웃
+
+```css
+.page   { min-height:100svh; display:flex; flex-direction:column; }
+.main   { flex:1 1 auto; min-height:0; }
+footer  { flex:0 0 auto; }
+```
+
+### 5‑7. 툴바 버튼 우측 정렬 (auto margin)
+
+```css
+.toolbar { display:flex; gap:1rem; }
+.spacer  { margin-left:auto; }
+```
+
+### 5‑8. 가로 스크롤 카드 리스트 + 스냅
+
+```css
+.scroller {
+  display:flex; gap:1rem; overflow:auto; scroll-snap-type:x mandatory; }
+.card    { flex:0 0 80%; scroll-snap-align:start; }
 ```
 
 ---
