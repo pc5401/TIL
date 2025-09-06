@@ -200,17 +200,21 @@ footer  { flex:0 0 auto; }
 
 ---
 
-## 7. 베스트 프랙티스 & 접근성
+## 7. 베스트 프랙티스 & 접근성
 
-1. **축 먼저 그린다** (Figma / 종이 스케치).  
-2. 공백은 **`gap`** — 내부 여백은 **`padding`**.  
-3. 중앙·우측 정렬은 `margin:auto` 트릭 활용.  
-4. **중첩 Flex**로 복잡도를 단계별 관리.  
-5. `order`는 시각 효과용 최소 사용 → 스크린리더 · 탭 순서 검증 필수.  
-6. 컨테이너·아이템 모두 `min-width:0` 기본 적용.  
-7. **접근성 글꼴 확대** 고려 시 `flex-basis` % 대신 `clamp()`·`min()` 사용.  
-8. IE11 폴백은 `display:-ms-flexbox` + 구 스펙 속성, 그러나 가능하면 Graceful Degradation 문구 안내.
+1. **축 먼저 설계**: Figma/스케치에서 row/column을 먼저 잡는다.
 
+2. **간격은 `gap`**: 외부 간격은 부모가, 내부 간격은 `padding`이 책임진다.
+
+3. **중첩 Flex**: 큰 틀(row/column) → 내부(정렬/분배)로 단계화한다.
+
+4. **`order` 최소화**: 시각 순서와 논리 순서를 분리하지 않는다. 필요한 경우 **포커스 순서**와 **ARIA**를 검증한다.
+
+5. **Auto Min Size 대응**: 기본으로 `min-width:0`(row) / `min-height:0`(column)을 습관화한다.
+
+6. **타이포 확대 대응**: 레이아웃 폭 기반은 `%`보다는 `clamp()`/`min()`을 섞어 탄력적으로 한다.
+
+7. **성능**: 자주 변경되는 위치/크기는 `transform/opacity` 위주로 애니메이션하여 리플로우를 줄인다.
 ---
 
 ## 8. Flexbox vs Grid 한눈 비교
@@ -239,3 +243,4 @@ footer  { flex:0 0 auto; }
 ### 📌 마무리...
 
 > **“`flex-direction`으로 축을 결정하고, `gap`·`flex`·`auto margin`으로 공간을 분배하도록.”**
+
