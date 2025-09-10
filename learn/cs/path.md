@@ -54,3 +54,31 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname  = path.dirname(__filename);
 const full = path.join(__dirname, 'public', 'index.html');
 ```
+
+### 2.3 안전한 파일 서빙 (디렉터리 트래버설 방지)
+
+```js
+import http from 'http';
+import fs from 'fs/promises';
+import path from 'path';
+
+const root = path.resolve(process.cwd(), 'public');
+
+function safeJoin(root, reqPath){
+  const target = path.resolve(root, '.' + reqPath); // 정규화
+  if (!target.startsWith(root)) throw new Error('Forbidden');
+  return target;
+}
+
+http.createServer(async (req, res) => {
+  try {
+    const file = safeJoin(root, req.url === '/' ? '/index.html' : req.url);
+    const data = await fs.readFile(file);
+    res.writeHead(200); res.end(data);
+  } catch (e) { res.writeHead(404); res.end('Not found'); }
+}).listen(8080);
+```
+
+> 체크리스트: `path.resolve` → `startsWith(root)`로 범위 확인 → 심볼릭 링크 정책 결정 → 예외 처리.
+
+---
