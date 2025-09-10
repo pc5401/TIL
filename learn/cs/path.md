@@ -41,3 +41,16 @@
 
 * **정규화**: 중복 구분자, `.`/`..` 제거.
 * **결합**: 기준 디렉터리 + 상대 경로 → 정규화.
+
+```js
+// Node.js (CJS)
+const path = require('path');
+const abs = path.resolve('/var/www', './assets/../img/logo.png'); // → /var/www/img/logo.png
+
+// ESM
+import { fileURLToPath } from 'url';
+import path from 'path';
+const __filename = fileURLToPath(import.meta.url);
+const __dirname  = path.dirname(__filename);
+const full = path.join(__dirname, 'public', 'index.html');
+```
