@@ -82,3 +82,14 @@ http.createServer(async (req, res) => {
 > 체크리스트: `path.resolve` → `startsWith(root)`로 범위 확인 → 심볼릭 링크 정책 결정 → 예외 처리.
 
 ---
+
+## 3. 웹에서의 경로 해석 (HTML/CSS/JS 별 차이)
+
+### 3.1 HTML에서의 기준점
+
+* 기본 기준: **현재 문서 URL**.
+* `<base href="/subapp/">`가 있으면 하이퍼링크와 **상대 URL 해석 기준**이 \*\*/<subapp/>\*\*이 된다.
+
+  * 예: 문서가 `/blog/post.html`, `<base href="/v2/">`인 경우 `<a href="img/x.png">` → `/v2/img/x.png`.
+  * **스크립트/CSS의 `srcset`·`fetch` 등도 base의 영향을 받는다.**
+
