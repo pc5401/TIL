@@ -93,3 +93,10 @@ http.createServer(async (req, res) => {
   * 예: 문서가 `/blog/post.html`, `<base href="/v2/">`인 경우 `<a href="img/x.png">` → `/v2/img/x.png`.
   * **스크립트/CSS의 `srcset`·`fetch` 등도 base의 영향을 받는다.**
 
+### 3.2 루트 상대 vs 문서 상대 (동작 예)
+
+* 현재 문서: `https://example.com/app/page/profile.html`.
+
+  * `src="/img/a.png"` → `https://example.com/img/a.png` (**루트 기준**).
+  * `src="../img/a.png"` → `https://example.com/app/img/a.png` (**문서 기준**).
+
