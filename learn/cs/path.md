@@ -100,3 +100,9 @@ http.createServer(async (req, res) => {
   * `src="/img/a.png"` → `https://example.com/img/a.png` (**루트 기준**).
   * `src="../img/a.png"` → `https://example.com/app/img/a.png` (**문서 기준**).
 
+### 3.3 CSS `url()`의 기준
+
+* **CSS 파일의 위치 기준**으로 해석된다.
+
+  * CSS: `/css/main.css` 안의 `background:url('../img/bg.png')` → `/img/bg.png`.
+  * 빌더(Vite/Webpack) 사용 시, `url()`은 빌드 파이프라인에서 **에셋 리라이트/복사**가 일어날 수 있다.
