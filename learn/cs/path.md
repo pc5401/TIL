@@ -106,3 +106,24 @@ http.createServer(async (req, res) => {
 
   * CSS: `/css/main.css` 안의 `background:url('../img/bg.png')` → `/img/bg.png`.
   * 빌더(Vite/Webpack) 사용 시, `url()`은 빌드 파이프라인에서 **에셋 리라이트/복사**가 일어날 수 있다.
+
+### 3.4 JS 모듈의 기준 (브라우저)
+
+* `type="module"` 스크립트의 상대 import는 **해당 모듈 파일** 기준.
+
+  * `import './utils.js'`는 현재 모듈 파일과 같은 폴더.
+  * **Bare Specifier**(`import react from 'react'`)는 브라우저 기본 미지원 → **Import Map** 또는 빌더 사용.
+
+```html
+<script type="importmap">
+{
+  "imports": {
+    "lodash": "https://cdn.skypack.dev/lodash-es"
+  }
+}
+</script>
+<script type="module">
+  import _ from 'lodash';
+  console.log(_.chunk([1,2,3], 2));
+</script>
+```
