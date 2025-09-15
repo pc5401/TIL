@@ -127,3 +127,18 @@ http.createServer(async (req, res) => {
   console.log(_.chunk([1,2,3], 2));
 </script>
 ```
+
+---
+
+## 4. 서버·프레임워크 관점 (Express/Vite/Webpack 등)
+
+### 4.1 Express 정적 제공과 마운트 경로
+
+```js
+app.use('/static', express.static(path.join(__dirname, 'public')));
+// 브라우저에서는 /static/main.css 로 접근한다.
+```
+
+* \*\*템플릿에서는 루트 상대(`/static/...`)\*\*를 쓰면 라우트가 바뀌어도 안전하다.
+* 앱이 서브경로(`/subapp/`)로 배치되면, **공용 접두사**를 환경변수/설정으로 추상화한다.
+
