@@ -142,3 +142,11 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 * \*\*템플릿에서는 루트 상대(`/static/...`)\*\*를 쓰면 라우트가 바뀌어도 안전하다.
 * 앱이 서브경로(`/subapp/`)로 배치되면, **공용 접두사**를 환경변수/설정으로 추상화한다.
 
+### 4.2 번들러의 공개 경로 (Public/Base)
+
+* **Webpack**: `output.publicPath`
+* **Vite**: `base` (`vite.config.ts`)
+* **CRA**: `homepage`(package.json)
+
+> 빌드산출물의 **상대/루트 경로**는 배포 위치(도메인 루트/서브디렉터리/CDN)에 맞춰 설정한다.
+
