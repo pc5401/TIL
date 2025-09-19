@@ -155,3 +155,13 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 * `history` 모드에서 **직접 새로고침**하면 `/route/x`를 서버가 처리해야 한다 → *모든 비정적 요청을 `index.html`로* 리라이트.
 * 에셋은 **루트 상대**(`/assets/...`)로 두면 라우트와 무관하게 해석된다.
 
+### 4.4 Service Worker 스코프
+
+* 등록 파일의 경로가 **스코프**를 결정한다.
+
+```js
+navigator.serviceWorker.register('/sw.js'); // 전체 사이트
+navigator.serviceWorker.register('/app/sw.js'); // /app/ 이하만
+```
+
+---
