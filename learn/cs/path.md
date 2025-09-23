@@ -199,3 +199,12 @@ navigator.serviceWorker.register('/app/sw.js'); // /app/ 이하만
 | 파일 다운로드 경로 공격     | `..` 포함 입력                       | 정규화 후 허용 루트 검증 + 화이트리스트                  |
 
 ---
+
+## 8. 디버깅 체크리스트
+
+* **DevTools → Network**: 실제 요청 URL, `base` 영향 확인.
+* **Elements/Styles**: CSS `url()`의 계산된 경로 보기.
+* **Coverage/SourceMap**: 번들러가 재배치한 에셋 경로 추적.
+* **서버 로그**: 404/500 요청 라우트·정규화 값 확인.
+
+---
