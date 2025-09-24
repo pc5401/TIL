@@ -1,4 +1,4 @@
-# 절대 경로 vs 상대 경로
+# 절대 경로 vs 상대 경로 
 
 > 경로는 \*\*무대(파일시스템/웹)\*\*에 따라 의미가 달라진다. “무대 → 기준점 → 해석 규칙”을 먼저 정리한다.
 
@@ -208,3 +208,16 @@ navigator.serviceWorker.register('/app/sw.js'); // /app/ 이하만
 * **서버 로그**: 404/500 요청 라우트·정규화 값 확인.
 
 ---
+
+## 9. 스니펫 모음
+
+### 9.1 `<base>` 안전 사용 패턴
+
+```html
+<!-- 앱이 /app/ 하위에 배포될 때 -->
+<head>
+  <base href="/app/">
+  <link rel="stylesheet" href="assets/main.css">
+  <script type="module" src="src/main.js"></script>
+</head>
+```
