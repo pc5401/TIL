@@ -1,6 +1,6 @@
-# 절대 경로 vs 상대 경로 
+# 절대 경로 vs 상대 경로
 
-> 경로는 \*\*무대(파일시스템/웹)\*\*에 따라 의미가 달라진다. “무대 → 기준점 → 해석 규칙”을 먼저 정리한다.
+> 경로는 **무대(파일시스템/웹)**에 따라 의미가 달라진다. “무대 → 기준점 → 해석 규칙”을 먼저 정리한다.
 
 ---
 
@@ -14,7 +14,7 @@
   * **루트 상대 경로(root‑relative)**: `/assets/app.js` — **사이트 루트** 기준.
   * **문서 상대 경로(document‑relative)**: `../img/a.png` — **현재 문서의 위치** 기준.
 
-> 주의: 실무에서 “절대 경로”라고 부를 때 **OS 절대 경로**와 \*\*웹의 루트 상대 경로(`/...`)\*\*를 혼동하기 쉽다. 맥락을 명시한다.
+> 주의: 실무에서 “절대 경로”라고 부를 때 **OS 절대 경로**와 **웹의 루트 상대 경로(`/...`)**를 혼동하기 쉽다. 맥락을 명시한다.
 
 ---
 
@@ -88,7 +88,7 @@ http.createServer(async (req, res) => {
 ### 3.1 HTML에서의 기준점
 
 * 기본 기준: **현재 문서 URL**.
-* `<base href="/subapp/">`가 있으면 하이퍼링크와 **상대 URL 해석 기준**이 \*\*/<subapp/>\*\*이 된다.
+* `<base href="/subapp/">`가 있으면 하이퍼링크와 **상대 URL 해석 기준**이 **/<subapp/>**이 된다.
 
   * 예: 문서가 `/blog/post.html`, `<base href="/v2/">`인 경우 `<a href="img/x.png">` → `/v2/img/x.png`.
   * **스크립트/CSS의 `srcset`·`fetch` 등도 base의 영향을 받는다.**
@@ -139,7 +139,7 @@ app.use('/static', express.static(path.join(__dirname, 'public')));
 // 브라우저에서는 /static/main.css 로 접근한다.
 ```
 
-* \*\*템플릿에서는 루트 상대(`/static/...`)\*\*를 쓰면 라우트가 바뀌어도 안전하다.
+* **템플릿에서는 루트 상대(`/static/...`)**를 쓰면 라우트가 바뀌어도 안전하다.
 * 앱이 서브경로(`/subapp/`)로 배치되면, **공용 접두사**를 환경변수/설정으로 추상화한다.
 
 ### 4.2 번들러의 공개 경로 (Public/Base)
@@ -173,7 +173,7 @@ navigator.serviceWorker.register('/app/sw.js'); // /app/ 이하만
 * **대소문자**: Windows는 보통 **대소문자 무시**, 리눅스는 **구분** → 리포지토리에서는 **소문자 일관**.
 * **공백/비ASCII 문자**: URL 인코딩(`%20`) 이슈. 파일명 표준화.
 * **CORS**: 절대 URL로 타 도메인 호출 시, 서버의 CORS 정책 필요.
-* **SEO/시맨틱**: 내부 링크는 가능하면 \*\*절대 URL(정규화)\*\*로 사이트맵/OG 태그에 제공.
+* **SEO/시맨틱**: 내부 링크는 가능하면 **절대 URL(정규화)**로 사이트맵/OG 태그에 제공.
 
 ---
 
@@ -221,3 +221,11 @@ navigator.serviceWorker.register('/app/sw.js'); // /app/ 이하만
   <script type="module" src="src/main.js"></script>
 </head>
 ```
+
+### 9.2 Vite 배포 접두사
+
+```ts
+// vite.config.ts
+export default { base: process.env.BASE_URL || '/' }
+```
+
