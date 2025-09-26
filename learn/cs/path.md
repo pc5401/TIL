@@ -229,3 +229,10 @@ navigator.serviceWorker.register('/app/sw.js'); // /app/ 이하만
 export default { base: process.env.BASE_URL || '/' }
 ```
 
+### 9.3 Webpack publicPath
+
+```js
+module.exports = {
+  output: { publicPath: process.env.PUBLIC_PATH || '/' }
+}
+```
