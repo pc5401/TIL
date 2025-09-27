@@ -236,3 +236,11 @@ module.exports = {
   output: { publicPath: process.env.PUBLIC_PATH || '/' }
 }
 ```
+
+### 9.4 템플릿 헬퍼 예시 (Express + EJS)
+
+```ejs
+<link rel="stylesheet" href="<%= assets('main.css') %>">
+```
+
+---
