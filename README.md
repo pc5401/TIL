@@ -66,6 +66,8 @@
 - [AssemblyScript_test.md](./learn/Web/AssemblyScript_test.md)
 - [폰트를 활용한 웹 개발 가이드](./learn/Web/font_guide.md)
 - [TIL: 타임스탬프(Timestamp) 정리 ⏱️](./learn/Web/timestamp.md)
+## [repair](./learn/repair)
+- [컴퓨터 부팅 시간이 오래 걸림 — 내 노트북 트러블슈팅 기록](./learn/repair/long_time_booting.md)
 ## [cs](./learn/cs)
 - [TIL: Tokenizer를 활용한 문자열 분석](./learn/cs/tokenizer.md)
 - [절대 경로 vs 상대 경로](./learn/cs/path.md)
